@@ -1,0 +1,12 @@
+/src/node_modules
+/src/public
+/src/.tmp
+/src/.sass-cache
+/src/.idea
+/src/client/bower_components
+/src/server/config/local.env.js
+
+
+/chef/cookbooks/
+/chef/data_bags/ssh/authorized_keys.json
+/.vagrant/
