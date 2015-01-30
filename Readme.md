@@ -10,7 +10,7 @@ The Network Status Website is the website for Verizon Digital Media Services tha
 1. Redevelop the Edgecast status site to unveil a new look feel, ensure branding is consistant, and include an administration component that allows operations to log in and change the status.  This site will then consolidate the different status pages that are existing today.
 	- [VDMS: http://status.verizondigitalmedia.com](http://status.verizondigitalmedia.com) (Currently Branded for VDMS)
 	- [Edgecast: http://status.edgecast.com](http://status.edgecast.com) (Original Edgecast Network Status)
-2. Existing code was developed in Python and utilizing a PostGres DB.  Current technology stack is now one of Javascript and the code can also then be rewritten as a MEAN stack.
+2. Existing code was developed in Python and utilizing a PostgreSQL DB.  Current technology stack is now one of Javascript and the code can also then be rewritten as a MEAN stack.
 3. Operations today updates Status through the MCC in a method that is difficult. The desire is to provide an easier method for them to Update the Status Information.
 
 ## Project Contact List
@@ -53,9 +53,14 @@ Daniel Scholl          | Peeran Hussain
 - Show Optional Portal Status 
 
 #### Network Status Administration
-- TBD
-- TBD
-- TBD
+ - Authenticate users for Administrative Access
+ - Administrative Functions:
+ 	- Select Items for Editing:
+ 		- By POP
+ 		- By Service
+ 		- Individually (Single or Multiple)
+ 	- Edit Current Status of Selected Items
+ 	- Update Network Status RSS Newsfeed
 
 ## Technical Requirements
 - MEAN Stack  (Mongo, Express, Angular, Node)
@@ -140,30 +145,34 @@ marketing.cms DevOps uses Chef Solo provisioner. It means that your environment 
      [http://docs.vagrantup.com/v2/installation/index.html](http://docs.vagrantup.com/v2/installation/index.html)
   
   3. Install Required Vagrant Plugins
-  	  -  vagrant-share (1.1.2)
-     -  vagrant-omnibus (1.4.1)
+  	  -  vagrant-share (1.1.3)
+  	  -  vagrant-omnibus (1.4.1)
 
-  6. Build your environment
+  4. Configure your ssh key
+ 
+  	  In the *chef/data\_bags/ssh* directory is a sample file for using your ssh key to inject into the box being built.  Copy the file to authorized_keys.json and ensure your public ssh key is in the file.
+
+  5. Build your environment
 
      To build your environment in the chef directory execute the command:
      
      ```
-     $ vagrant up --provider=virtualbox
+     $ vagrant up
      ```
 
      Vagrant will start to build your environment. You'll see green status
      messages while Chef is configuring the system.
      
      >
-     NOTE: There is a current issue where sometimes mySQL does not properly start and the install fails.  To fix this do the following.  
+     NOTE: Vagrant supports multiple providers for virtualization.  If you have different providers installed in your machine you can specify which provider to use.
+     
      ```
-        $ vagrant ssh
-        vagrant@cmdsdev:~$ sudo service mysql start
-        vagrant@cmdsdev:~$ exit
-        $ vagrant provision
+        $ vagrant up --provider=virtualbox
+
+        $ vagrant up --provider=vmware_fusion
      ```
 
- 7. Visit [http://localhost:3080](http://localhost:3080) address and you'll see the
+ 6. Visit [http://localhost:3080](http://localhost:3080) address and you'll see the
      network status page.
 
 ### Basic Usage
@@ -214,4 +223,5 @@ Userful when you need to change network or synced folder settings.
 
 Official Vagrant site has more documentation.
 [http://docs.vagrantup.com/v2/](http://docs.vagrantup.com/v2/)
+
 
