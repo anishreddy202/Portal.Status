@@ -7,7 +7,10 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai', 'sinon'],
+
+    // reporters configuration
+    reporters: ['mocha'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -33,9 +36,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
-      '**/*.coffee': 'coffee',
     },
 
     ngHtml2JsPreprocessor: {
@@ -58,7 +59,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // Start these browsers, currently available:
