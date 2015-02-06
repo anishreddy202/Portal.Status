@@ -41,16 +41,16 @@ Daniel Scholl          | Peeran Hussain
 - Support the ability to show different Sub Categories for each Product *(HTTP Small, Large etc.)*
 	- Each Sub Category should show status for POP.
 		- Include POP Location and Service Status
-		
-			Status Type             | 
-			----------------------- | 
-			Ok                      | 
-			Scheduled Maintenance   | 
-			Performance Degredation | 
-			Not Applicable          | 
+
+			Status Type             |
+			----------------------- |
+			Ok                      |
+			Scheduled Maintenance   |
+			Performance Degredation |
+			Not Applicable          |
 
 - Show Specific Product Status News if available.
-- Show Optional Portal Status 
+- Show Optional Portal Status
 
 #### Network Status Administration
  - Authenticate users for Administrative Access
@@ -131,6 +131,13 @@ The architecture consists of a single server architecture.  The objectives of th
 
 ![Editor preferences pane](docs/architecture.png)
 
+
+### Design Documentation
+
+1. [Graphical Visual Design - CDN](docs/Visual_cdn)
+2. [DataModel Design](docs/Datamodel.md)
+
+
 Development Environment
 ---------------
 
@@ -143,29 +150,29 @@ marketing.cms DevOps uses Chef Solo provisioner. It means that your environment 
 
   2. Install Vagrant
      [http://docs.vagrantup.com/v2/installation/index.html](http://docs.vagrantup.com/v2/installation/index.html)
-  
+
   3. Install Required Vagrant Plugins
   	  -  vagrant-share (1.1.3)
   	  -  vagrant-omnibus (1.4.1)
 
   4. Configure your ssh key
- 
+
   	  In the *chef/data\_bags/ssh* directory is a sample file for using your ssh key to inject into the box being built.  Copy the file to authorized_keys.json and ensure your public ssh key is in the file.
 
   5. Build your environment
 
      To build your environment in the chef directory execute the command:
-     
+
      ```
      $ vagrant up
      ```
 
      Vagrant will start to build your environment. You'll see green status
      messages while Chef is configuring the system.
-     
+
      >
      NOTE: Vagrant supports multiple providers for virtualization.  If you have different providers installed in your machine you can specify which provider to use.
-     
+
      ```
         $ vagrant up --provider=virtualbox
 
@@ -187,7 +194,7 @@ Vagrant's basic commands (should be executed inside DevOps directory):
 	```
 	$ vagrant ssh
 	```
-	
+
 * Start the virtual machine.
 	```
 	$ vagrant up
@@ -213,7 +220,7 @@ Useful if you have overwriten a file that you want reset. ie: httpd.conf
 	```
 	$ vagrant provision
 	```
-	
+
 * Reload the virtual machine.
 >
 Userful when you need to change network or synced folder settings.
