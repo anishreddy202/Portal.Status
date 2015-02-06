@@ -134,8 +134,8 @@ The architecture consists of a single server architecture.  The objectives of th
 
 ### Design Documentation
 
-1. [Graphical Visual Design - CDN](docs/Visual_cdn)
-2. [DataModel Design](docs/Datamodel.md)
+1. [Graphical Visual Design - CDN](docs/Visual_cdn.png)
+2. [DataModel Design](docs/DataModel.md)
 
 
 Development Environment
