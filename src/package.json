@@ -57,7 +57,6 @@
     "grunt-karma": "~0.8.2",
     "grunt-mocha-test": "~0.10.2",
     "grunt-build-control": "DaftMonk/grunt-build-control",
-    "grunt-mocha-test": "~0.10.2",
     "grunt-contrib-sass": "^0.7.3",
     "jit-grunt": "^0.5.0",
     "time-grunt": "~0.3.1",
@@ -79,7 +78,8 @@
     "karma-coffee-preprocessor": "~0.2.1",
     "karma-jade-preprocessor": "0.0.11",
     "karma-ng-html2js-preprocessor": "~0.1.0",
-    "karma-requirejs": "~0.2.1"
+    "karma-requirejs": "~0.2.1",
+    "grunt-nodestatic": "^0.1.2"
   },
   "engines": {
     "node": ">=0.10.0"
