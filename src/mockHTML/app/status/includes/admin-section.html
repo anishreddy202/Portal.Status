@@ -1,0 +1,11 @@
+<div ng-show="isAdmin">
+  New Status <select ng-model="newStatus" ng-options="statusObj.id as statusObj.name for statusObj in allowedStatuses"></select>
+  <br/>
+  Comment:
+  <br/>
+  Title: <input type="text" ng-model="newstitle" size="80">
+  <br>
+  <textarea ng-model="comment" rows="20" cols="80"></textarea>
+  <br>
+  <button ng-click="update(newStatus, newstitle, comment)">Update</button>
+</div>

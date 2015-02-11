@@ -1,0 +1,20 @@
+/* Custom Fonts */
+@font-face { font-family: 'vzFont';
+  src: url("font/VerizonApex-Medium.otf"); 
+  src: local('VerizonApex-Medium'), url("font/VerizonApex-Medium.otf");
+} 
+@font-face { font-family: 'vzFontLight';
+  src: url("font/VerizonApex-Light.otf"); 
+  src: local('VerizonApex-Light'), url("font/VerizonApex-Light.otf");
+} 
+@font-face { font-family: 'vzFontBook';
+  src: url("font/VerizonApex-Book.otf"); 
+  src: local('VerizonApex-Book'), url("font/VerizonApex-Book.otf");
+}
+@font-face {
+	font-family:Apex;
+	font-style:normal;
+	font-weight:400;
+	src:url(fonts/apex-book-webfont.eot);
+	src:url(fonts/apex-book-webfont.eot?#iefix) format("embedded-opentype"),url(fonts/apex-book-webfont.woff) format("woff"),url(fonts/apex-book-webfont.ttf) format("truetype"),url(fonts/apex-book-webfont.svg#Apex-Book) format("svg")
+}
