@@ -8,7 +8,7 @@
   function config($stateProvider) {
     $stateProvider
       .state('status', {
-        url: '/status',
+        url: '/',
         templateUrl: 'app/status/status.html',
         controller: 'StatusCtrl as vm'
       });
