@@ -7,6 +7,6 @@ module.exports = {
   mongo: {
     uri: 'mongodb://localhost/ui-dev'
   },
-
+  mock: false,
   seedDB: true
 };
