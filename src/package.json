@@ -15,9 +15,11 @@
     "express-session": "~1.0.2",
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
+    "mongoDAL": "git+https://github.com/vzdigitalmedia/mongoDAL.lib.git",
     "mongodb": "^1.4.30",
     "morgan": "~1.0.0",
-    "serve-favicon": "~2.0.1"
+    "serve-favicon": "~2.0.1",
+    "verror": "^1.6.0"
   },
   "devDependencies": {
     "mocha": "^2.1.0",

@@ -1,36 +1,49 @@
 'use strict';
-var db = require("../../mongoDAL");
-var assert = require('assert');
+var db = require("mongoDAL");
+var Verror = require("verror");
 
 var StatusService = function(config){
   var self = this;
-  var defaultReport = './files/defaultReport.json';
+  var config = config.mongo;
+  var report;
 
   self.report = function(done){
-  	 db.connect(config.mongo, function (err, db) {
-      db.collectionExists("status", function(err, exists){
-        if(exists) {
-          db.status.first( {}, function (err, result) {
-            done(err, result);
-          });
 
-        } else {
-          getDefaultReport(function(err, result){
-            done(err, result);
-          });
+    db.connect(config, function(err, db) {
+      if(err) {
+        if(!report) getDefaultReport();
+
+        return done(null, report);
+      }
+
+      db.collectionExists("status", function(err, exists) {
+        if(err || !exists) {
+          if(!report) getDefaultReport();
+
+          return done(null, report);
         }
-      });
-    });
-  }
 
-  var getDefaultReport = function(done){
-    try {
-      done(null, require(defaultReport));
-    } catch(err) {
-      done(err);
-      //TODO: Add Verror here and wrap the error.
-    }
+        db.status.first({}, function(err, result) {
+          if(err || result === null) {
+            if(!report) getDefaultReport();
+
+            return done(null, report);
+          }
+
+            return done(null, result);
+        });
+      });
+
+    });
   };
+
+  var getDefaultReport = function() {
+    try {
+      report = JSON.parse(require('fs').readFileSync(__dirname + '/files/defaultReport.json', 'utf8'));
+    } catch (err) {
+      throw new Verror(err, 'Bad default json file');
+    }
+  }
 
   return self;
 };

@@ -3,7 +3,6 @@
 'use strict';
 
 var should = require('should');
-var assert = require('assert');
 var StatusService = require('../lib/mongo.status.service');
 
 describe("Status Data", function(){
@@ -13,12 +12,13 @@ describe("Status Data", function(){
 
   it('Should return an Object', function(done){
     statusService.report(function(err, result) {
-      assert.ok(err === null, err);
+      (err === null).should.be.true;
       data = result;
       data.should.not.be.equal(null);
       data.should.be.instanceof(Object);
+      done();
     });
-    done();
+
   });
 
   it('Should have an id', function(done){
