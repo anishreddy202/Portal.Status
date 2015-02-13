@@ -25,6 +25,12 @@ $row-light:							  #F5F5F6;
 $row-dark: 							  #efecf0;
 $row-border: 						  #e1e1e1;
 
+.icon-close-circle { color: $red; }
+.icon-warning { color: $orange; }
+.icon-clock { color: $blue; }
+.icon-check-circle { color: $green; }
+.icon-envelope { color: $red; }
+
 
 @mixin leftGradient($leftColor, $middleColor, $rightColor) {
 	background: $grey-3;
@@ -57,7 +63,7 @@ $row-border: 						  #e1e1e1;
 			margin-right: 20px;
 			vertical-align: bottom;
 			display: inline-block;
-			background: url('Images/logo-vdms.png') no-repeat;
+			background: url('../assets/Images/logo-vdms.png') no-repeat;
 		}
 		h2 {
 			margin: 0px;
@@ -82,9 +88,9 @@ $row-border: 						  #e1e1e1;
 			margin-top: 10px;
 			li {
 				display: inline-block;
-				.fa { 
+				.icon-envelope { 
 					margin-right: 10px; 
-					font-size: 24px; 
+					font-size: 20px; 
 					color: red; 
 					vertical-align: bottom;
 				}
@@ -146,13 +152,17 @@ $row-border: 						  #e1e1e1;
 			}
 			.table-header-logo {
 				//margin-left: 10px;
-				.fa { 
-					margin-right: 20px;
-					font-size: 70px;
-					height: 55px;
-					width: 65px;
-					opacity: 0.7;
-					//margin-top: 10px;
+				.pull-left {
+					> span {
+						margin-right: 10px;
+						font-size: 50px;
+						height: 55px;
+						width: 69px;
+						opacity: 0.7;
+						margin-top: 8px;
+						display: block;
+						text-align: center;
+					}
 				}
 				span.tab-header {
 					font-size: 30px;
@@ -171,9 +181,9 @@ $row-border: 						  #e1e1e1;
 					font-weight: normal;
 				}
 				.icons-info {
-					.fa {
+					.fa, span {
 						margin-right: 0px;
-						font-size: 20px; 
+						font-size: 18px; 
 						width: auto;
 						height: auto;
 						border-right: 1px solid rgba(255, 255, 255, 0.24);
@@ -614,18 +624,18 @@ $row-border: 						  #e1e1e1;
 			.table-header-inner {
 				width: 1200px;
 				margin: 0px auto;
-				padding: 3px 0px 3px;
+				padding: 6px 0px 6px;
 				color: $white;
 			}
 			
 			.table-header-info {
 				span {
-					margin-top: 3px;
+					margin-top: 0px;
 					font-size: 17px;
 					text-transform: capitalize;
 				}
 				.status-box {
-					margin-top: 11px;
+					margin-top: 9px;
 					a {
 						//min-width: 108px;
 						//margin-right: 5px;
@@ -635,7 +645,12 @@ $row-border: 						  #e1e1e1;
 						background: $grey-c;
 						font-size: 21px;
 						display: inherit;
-						.fa { font-size: 27px; }
+						span { 
+							font-size: 24px;
+							margin-top: 1px;
+							vertical-align: top;
+							display: inline-block; 
+						}
 					}
 					/*i:after {
 						content: " ";
@@ -653,7 +668,7 @@ $row-border: 						  #e1e1e1;
 							color: $green;
 							text-decoration: none;
 							&:hover { text-decoration: none; }
-							span { color: $white; }
+							//span { color: $white; }
 						}
 					}
 				}
@@ -832,7 +847,7 @@ $row-border: 						  #e1e1e1;
 				//width: 9%;
 				//max-width: 110px;
 				//height: 61px;
-				padding: 10px 12px;
+				padding: 11px 12px;
 				word-wrap: break-word;
 		    font-size: 14px;
 		    color: $cdn-background;
@@ -897,12 +912,14 @@ $row-border: 						  #e1e1e1;
 					margin-right: 5px;
 					padding: 1px 4px 0px;
 					color: $grey-c;
-					border: 1px solid $grey-c;
+					//border: 1px solid $grey-c;
 					display: inline-block;
 					mix-blend-mode: multiply;
-					i {
-						margin: 0px;
-						font-size: 13px;
+					span {
+						margin-top: -4px;
+						font-size: 17px;
+						vertical-align: middle;
+						display: inline-block;
 					}
 				}
 			}
@@ -970,6 +987,7 @@ $row-border: 						  #e1e1e1;
 			  		color: $grey-3;
 			  		cursor: pointer;
 			  		text-transform: capitalize;
+			  		font-size: 14px;
 			  		&:hover {
 			  			text-decoration: none;
 			  		}
@@ -987,12 +1005,12 @@ $row-border: 						  #e1e1e1;
 							font-style: italic;
 				    }
 			  }
-			  .fa {
-					font-size: 27px;
+			  a {
+					font-size: 23px;
 					cursor: pointer;
 					&:hover {
 						text-decoration: none;
-						&.fa-times-circle { color: $red; }
+						&.icon-close-circle { color: $red; }
 						&.fa-check-circle { color: $green; }
 						&.fa-warning { color: $orange; }
 						&.fa-clock-o { color: $blue; }
