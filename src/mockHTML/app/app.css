@@ -65,8 +65,8 @@ a:hover, a:focus {
   font-family: Apex;
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/apex-book-webfont.eot);
-  src: url(fonts/apex-book-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/apex-book-webfont.woff) format("woff"), url(fonts/apex-book-webfont.ttf) format("truetype"), url(fonts/apex-book-webfont.svg#Apex-Book) format("svg"); }
+  src: url(../assets/fonts/apex-book-webfont.eot);
+  src: url(../assets/fonts/apex-book-webfont.eot?#iefix) format("embedded-opentype"), url(../assets/fonts/apex-book-webfont.woff) format("woff"), url(../assets/fonts/apex-book-webfont.ttf) format("truetype"), url(../assets/fonts/apex-book-webfont.svg#Apex-Book) format("svg"); }
 /*variables */
 .outer-wrap {
   min-width: 1200px;
@@ -90,7 +90,7 @@ a:hover, a:focus {
       margin-right: 20px;
       vertical-align: bottom;
       display: inline-block;
-      background: url("Images/logo-vdms.png") no-repeat; }
+      background: url("../assets/Images/logo-vdms.png") no-repeat; }
     .top-header .panel h2 {
       margin: 0px;
       color: #666666;
@@ -1214,5 +1214,3 @@ i {
 	}
 }
 */
-
-/*# sourceMappingURL=app.css.map */
