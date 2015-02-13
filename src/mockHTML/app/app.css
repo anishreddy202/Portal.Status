@@ -68,6 +68,21 @@ a:hover, a:focus {
   src: url(../assets/fonts/apex-book-webfont.eot);
   src: url(../assets/fonts/apex-book-webfont.eot?#iefix) format("embedded-opentype"), url(../assets/fonts/apex-book-webfont.woff) format("woff"), url(../assets/fonts/apex-book-webfont.ttf) format("truetype"), url(../assets/fonts/apex-book-webfont.svg#Apex-Book) format("svg"); }
 /*variables */
+.icon-close-circle {
+  color: #ff3300; }
+
+.icon-warning {
+  color: #ef7d00; }
+
+.icon-clock {
+  color: #3399FF; }
+
+.icon-check-circle {
+  color: #0ABF30; }
+
+.icon-envelope {
+  color: #ff3300; }
+
 .outer-wrap {
   min-width: 1200px;
   overflow-x: hidden; }
@@ -111,9 +126,9 @@ a:hover, a:focus {
       margin-top: 10px; }
       .top-header .panel ul li {
         display: inline-block; }
-        .top-header .panel ul li .fa {
+        .top-header .panel ul li .icon-envelope {
           margin-right: 10px;
-          font-size: 24px;
+          font-size: 20px;
           color: red;
           vertical-align: bottom; }
         .top-header .panel ul li .badge {
@@ -164,12 +179,15 @@ a:hover, a:focus {
         border-radius: 0px;
         background: transparent;
         border: none; }
-      .tabs-wrapper ul.nav-tabs li .table-header-logo .fa {
-        margin-right: 20px;
-        font-size: 70px;
+      .tabs-wrapper ul.nav-tabs li .table-header-logo .pull-left > span {
+        margin-right: 10px;
+        font-size: 50px;
         height: 55px;
-        width: 65px;
-        opacity: 0.7; }
+        width: 69px;
+        opacity: 0.7;
+        margin-top: 8px;
+        display: block;
+        text-align: center; }
       .tabs-wrapper ul.nav-tabs li .table-header-logo span.tab-header {
         font-size: 30px;
         text-transform: uppercase;
@@ -184,17 +202,17 @@ a:hover, a:focus {
         margin-left: 10px;
         background: #0ABF30;
         font-weight: normal; }
-      .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info .fa {
+      .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info .fa, .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info span {
         margin-right: 0px;
-        font-size: 20px;
+        font-size: 18px;
         width: auto;
         height: auto;
         border-right: 1px solid rgba(255, 255, 255, 0.24);
         padding-right: 7px;
         padding-left: 7px; }
-        .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info .fa:first-child {
+        .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info .fa:first-child, .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info span:first-child {
           padding-left: 0px; }
-        .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info .fa:last-child {
+        .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info .fa:last-child, .tabs-wrapper ul.nav-tabs li .table-header-logo .icons-info span:last-child {
           border-right: none; }
 
 .tab-button {
@@ -534,14 +552,14 @@ a:hover, a:focus {
     .table-section .table-header .table-header-inner {
       width: 1200px;
       margin: 0px auto;
-      padding: 3px 0px 3px;
+      padding: 6px 0px 6px;
       color: #ffffff; }
     .table-section .table-header .table-header-info span {
-      margin-top: 3px;
+      margin-top: 0px;
       font-size: 17px;
       text-transform: capitalize; }
     .table-section .table-header .table-header-info .status-box {
-      margin-top: 11px;
+      margin-top: 9px;
       /*i:after {
       	content: " ";
       	width: 1px;
@@ -557,8 +575,11 @@ a:hover, a:focus {
         background: #cccccc;
         font-size: 21px;
         display: inherit; }
-        .table-section .table-header .table-header-info .status-box a .fa {
-          font-size: 27px; }
+        .table-section .table-header .table-header-info .status-box a span {
+          font-size: 24px;
+          margin-top: 1px;
+          vertical-align: top;
+          display: inline-block; }
       .table-section .table-header .table-header-info .status-box.checks > a {
         padding: 0px 10px 0px 15px;
         background: none;
@@ -566,8 +587,6 @@ a:hover, a:focus {
         text-decoration: none; }
         .table-section .table-header .table-header-info .status-box.checks > a:hover {
           text-decoration: none; }
-        .table-section .table-header .table-header-info .status-box.checks > a span {
-          color: #ffffff; }
   .table-section .panel {
     min-width: 1200px;
     border: none;
@@ -715,7 +734,7 @@ a:hover, a:focus {
     border-top: 1px solid #af00b6;
     border-bottom: 1px solid #af00b6; }
   .table-wrapper table.mytable thead th {
-    padding: 10px 12px;
+    padding: 11px 12px;
     word-wrap: break-word;
     font-size: 14px;
     color: #803383;
@@ -769,12 +788,13 @@ a:hover, a:focus {
       margin-right: 5px;
       padding: 1px 4px 0px;
       color: #cccccc;
-      border: 1px solid #cccccc;
       display: inline-block;
       mix-blend-mode: multiply; }
-      .table-wrapper table.mytable thead th > a.info-POP i {
-        margin: 0px;
-        font-size: 13px; }
+      .table-wrapper table.mytable thead th > a.info-POP span {
+        margin-top: -4px;
+        font-size: 17px;
+        vertical-align: middle;
+        display: inline-block; }
 .table-wrapper tbody tr:nth-child(odd) > td:first-child .tooltip-arrow {
   margin-top: -18px; }
 .table-wrapper tbody tr:nth-child(even) > td:first-child .tooltip-arrow {
@@ -815,7 +835,8 @@ a:hover, a:focus {
       .table-wrapper tbody tr td:first-child a {
         color: #333333;
         cursor: pointer;
-        text-transform: capitalize; }
+        text-transform: capitalize;
+        font-size: 14px; }
         .table-wrapper tbody tr td:first-child a:hover {
           text-decoration: none; }
         .table-wrapper tbody tr td:first-child a label {
@@ -828,20 +849,20 @@ a:hover, a:focus {
         float: right;
         text-transform: capitalize;
         font-style: italic; }
-    .table-wrapper tbody tr td .fa {
-      font-size: 27px;
+    .table-wrapper tbody tr td a {
+      font-size: 23px;
       cursor: pointer; }
-      .table-wrapper tbody tr td .fa:hover {
+      .table-wrapper tbody tr td a:hover {
         text-decoration: none; }
-        .table-wrapper tbody tr td .fa:hover.fa-times-circle {
+        .table-wrapper tbody tr td a:hover.icon-close-circle {
           color: #ff3300; }
-        .table-wrapper tbody tr td .fa:hover.fa-check-circle {
+        .table-wrapper tbody tr td a:hover.fa-check-circle {
           color: #0ABF30; }
-        .table-wrapper tbody tr td .fa:hover.fa-warning {
+        .table-wrapper tbody tr td a:hover.fa-warning {
           color: #ef7d00; }
-        .table-wrapper tbody tr td .fa:hover.fa-clock-o {
+        .table-wrapper tbody tr td a:hover.fa-clock-o {
           color: #3399FF; }
-        .table-wrapper tbody tr td .fa:hover.fa-circle-o {
+        .table-wrapper tbody tr td a:hover.fa-circle-o {
           color: #cccccc; }
 
 .cdn .table-header {
@@ -1214,3 +1235,53 @@ i {
 	}
 }
 */
+@font-face {
+  font-family: 'icomoon';
+  src: url("../assets/fonts/icomoon.eot?-4mwg1v");
+  src: url("../assets/fonts/icomoon.eot?#iefix-4mwg1v") format("embedded-opentype"), url("../assets/fonts/icomoon.woff?-4mwg1v") format("woff"), url("../assets/fonts/icomoon.ttf?-4mwg1v") format("truetype"), url("../assets/fonts/icomoon.svg?-4mwg1v#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-check-circle:before {
+  content: "\e607"; }
+
+.icon-disable:before {
+  content: "\e608"; }
+
+.icon-envelope:before {
+  content: "\e609"; }
+
+.icon-info:before {
+  content: "\e60a"; }
+
+.icon-close-circle:before {
+  content: "\e605"; }
+
+.icon-clock:before {
+  content: "\e604"; }
+
+.icon-warning:before {
+  content: "\e606"; }
+
+.icon-cdn:before {
+  content: "\e600"; }
+
+.icon-route:before {
+  content: "\e601"; }
+
+.icon-transact:before {
+  content: "\e602"; }
+
+.icon-uplynk:before {
+  content: "\e603"; }
