@@ -1064,10 +1064,10 @@ $row-border: 						  #e1e1e1;
 						}
 		  		}
 		  		&:nth-child(odd) > td:first-child {
-						//.tooltip-arrow { margin-top: -18px;}
+						.tooltip-arrow { margin-top: -19px;}
 					}
 					&:nth-child(even) > td:first-child {
-						//.tooltip-arrow { margin-top: -18px; }
+						.tooltip-arrow { margin-top: -18px; }
 					}
 					&:nth-child(even) > td:first-child::before, 
 					&:nth-child(even) > td:last-child::after {
@@ -1081,6 +1081,14 @@ $row-border: 						  #e1e1e1;
 						}
 					}
 		  	}
+		  	@media screen and (-webkit-min-device-pixel-ratio:0) {
+				 tr:nth-child(odd) > td:first-child {
+						.tooltip-arrow { margin-top: -18px; }
+					}
+					tr:nth-child(even) > td:first-child {
+						.tooltip-arrow { margin-top: -18px; }
+					}
+				}
 		  }
 		}
 	}
@@ -1145,6 +1153,14 @@ $row-border: 						  #e1e1e1;
 						}
 					}
 		  	}
+		  	@media screen and (-webkit-min-device-pixel-ratio:0) {
+				 tr:nth-child(odd) > td:first-child {
+						.tooltip-arrow { margin-top: -18px; }
+					}
+					tr:nth-child(even) > td:first-child {
+						.tooltip-arrow { margin-top: -18px; }
+					}
+				}
 		  }
 		}
 	}
@@ -1209,6 +1225,14 @@ $row-border: 						  #e1e1e1;
 						}
 					}
 		  	}
+		  	@media screen and (-webkit-min-device-pixel-ratio:0) {
+				 tr:nth-child(odd) > td:first-child {
+						.tooltip-arrow { margin-top: -18px; }
+					}
+					tr:nth-child(even) > td:first-child {
+						.tooltip-arrow { margin-top: -18px; }
+					}
+				}
 		  }
 		}
 	}
@@ -1275,6 +1299,14 @@ $row-border: 						  #e1e1e1;
 						}
 					}
 		  	}
+		  	@media screen and (-webkit-min-device-pixel-ratio:0) {
+				 tr:nth-child(odd) > td:first-child {
+						.tooltip-arrow { margin-top: -18px; }
+					}
+					tr:nth-child(even) > td:first-child {
+						.tooltip-arrow { margin-top: -18px; }
+					}
+				}
 		  }
 		}
 	}

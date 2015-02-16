@@ -886,6 +886,10 @@ a:hover, a:focus {
   background: #803383; }
 .cdn .table-wrapper table tbody tr td .tooltip.right .tooltip-arrow {
   border-right-color: #803383; }
+.cdn .table-wrapper table tbody tr:nth-child(odd) > td:first-child .tooltip-arrow {
+  margin-top: -19px; }
+.cdn .table-wrapper table tbody tr:nth-child(even) > td:first-child .tooltip-arrow {
+  margin-top: -18px; }
 .cdn .table-wrapper table tbody tr:nth-child(even) > td:first-child::before, .cdn .table-wrapper table tbody tr:nth-child(even) > td:last-child::after {
   background-color: #EFECF0;
   border-top: 1px solid #E1C7E1;
@@ -894,6 +898,11 @@ a:hover, a:focus {
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
     .cdn .table-wrapper table tbody tr:nth-child(even) > td:first-child::before, .cdn .table-wrapper table tbody tr:nth-child(even) > td:last-child::after {
       height: 36px; } }
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .cdn .table-wrapper table tbody tr:nth-child(odd) > td:first-child .tooltip-arrow {
+    margin-top: -18px; }
+  .cdn .table-wrapper table tbody tr:nth-child(even) > td:first-child .tooltip-arrow {
+    margin-top: -18px; } }
 
 .transact .table-header {
   background: #148999; }
@@ -925,6 +934,11 @@ a:hover, a:focus {
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
     .transact .table-wrapper table tbody tr:nth-child(even) > td:first-child::before, .transact .table-wrapper table tbody tr:nth-child(even) > td:last-child::after {
       height: 42px; } }
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .transact .table-wrapper table tbody tr:nth-child(odd) > td:first-child .tooltip-arrow {
+    margin-top: -18px; }
+  .transact .table-wrapper table tbody tr:nth-child(even) > td:first-child .tooltip-arrow {
+    margin-top: -18px; } }
 
 .route .table-header {
   background: #b23f6b; }
@@ -956,6 +970,11 @@ a:hover, a:focus {
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
     .route .table-wrapper table tbody tr:nth-child(even) > td:first-child::before, .route .table-wrapper table tbody tr:nth-child(even) > td:last-child::after {
       height: 42px; } }
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .route .table-wrapper table tbody tr:nth-child(odd) > td:first-child .tooltip-arrow {
+    margin-top: -18px; }
+  .route .table-wrapper table tbody tr:nth-child(even) > td:first-child .tooltip-arrow {
+    margin-top: -18px; } }
 
 .uplynk .table-header {
   background: #c39e39; }
@@ -987,6 +1006,11 @@ a:hover, a:focus {
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
     .uplynk .table-wrapper table tbody tr:nth-child(even) > td:first-child::before, .uplynk .table-wrapper table tbody tr:nth-child(even) > td:last-child::after {
       height: 42px; } }
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .uplynk .table-wrapper table tbody tr:nth-child(odd) > td:first-child .tooltip-arrow {
+    margin-top: -18px; }
+  .uplynk .table-wrapper table tbody tr:nth-child(even) > td:first-child .tooltip-arrow {
+    margin-top: -18px; } }
 
 /* tooltip css */
 .tooltip.right {
