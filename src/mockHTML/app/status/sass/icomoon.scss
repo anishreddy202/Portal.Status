@@ -23,6 +23,14 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-angle-down:before {
+	content: "\e60c";
+}
+
+.icon-angle-up:before {
+	content: "\e60b";
+}
+
 .icon-check-circle:before {
 	content: "\e607";
 }
@@ -66,4 +74,3 @@
 .icon-uplynk:before {
 	content: "\e603";
 }
-
