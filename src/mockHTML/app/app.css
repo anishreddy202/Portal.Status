@@ -893,7 +893,7 @@ a:hover, a:focus {
   margin-top: -1px; }
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
     .cdn .table-wrapper table tbody tr:nth-child(even) > td:first-child::before, .cdn .table-wrapper table tbody tr:nth-child(even) > td:last-child::after {
-      height: 42px; } }
+      height: 36px; } }
 
 .transact .table-header {
   background: #148999; }
@@ -1126,74 +1126,6 @@ a:hover, a:focus {
     .icon-disable > .popover > .arrow {
       border-right-color: #cccccc; }
 
-/*.box-shadow($shadow1) {
-  -webkit-box-shadow: $shadow1;
-  -moz-box-shadow: $shadow1;
-  box-shadow: $shadow1;
-}
-.box-shadow( 1px 0px 0px #FFF );*/
-/*
-.fa {
-	display: inline-block;
-	font-family: FontAwesome;
-	font-style: normal;
-	font-weight: normal;
-	line-height: 1;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-feature-settings: normal;
-	font-language-override: normal;
-	font-kerning: auto;
-	font-synthesis: weight style;
-	font-variant: normal;
-	font-size: inherit;
-	text-rendering: auto;
-	-moz-osx-font-smoothing: grayscale;
-}*/
-/*
-i {
-	&.fa-check-circle { 
-		//color: $green; 
-	}
-	//&.fa-times-circle { color: $red; }
-	//&.fa-warning { color: $orange; }
-	//&.fa-clock-0 { color: $blue; }
-	//&.icon-grey { color: $grey-c; }
-}*/
-/*
-.cdn ~ .tooltip.right {
-	> .tooltip-inner {
-		background: $cdn-background;
-	}
-	.tooltip-arrow {
-		border-right-color: $cdn-background;
-	}
-}
-.transact ~ .tooltip {
-	> .tooltip-inner {
-		background: $transact-background;
-	}
-	.tooltip-arrow {
-		border-right-color: $transact-background;
-	}
-}
-.route ~ .tooltip {
-	> .tooltip-inner {
-		background: $route-background;
-	}
-	.tooltip-arrow {
-		border-right-color: $route-background;
-	}
-}
-.uplynk ~ .tooltip {
-	> .tooltip-inner {
-		background: $uplynk-background;
-	}
-	.tooltip-arrow {
-		border-right-color: $uplynk-background;
-	}
-}
-*/
 @font-face {
   font-family: 'icomoon';
   src: url("../assets/fonts/icomoon.eot?-4mwg1v");
