@@ -17,17 +17,17 @@
           "code": "HLG",
           "name": "HTTP LARGE",
           "locations" : [
-            { "code":   "DCA",         "enabled": true,
+            { "code":   "DCA",         "enabled": false,
               "name":   "ASHBURN",     "region": "AMERICAS",
               "status": "OK" },
 
             { "code":   "IAD",         "enabled": true,
               "name":   "ASHBURN",     "region": "AMERICAS",
-              "status": "OK" },
+              "status": "ERR" },
 
             { "code":   "ATL",         "enabled": true,
               "name":   "ATLANTA",     "region": "AMERICAS",
-              "status": "OK" },
+              "status": "MNT" },
 
             { "code":   "FTY",         "enabled": true,
               "name":   "ATLANTA",     "region": "AMERICAS",
@@ -35,7 +35,7 @@
 
             { "code":   "MDW",         "enabled": true,
               "name":   "CHICAGO",     "region": "AMERICAS",
-              "status": "OK" },
+              "status": "DGR" },
 
             { "code":   "ORD",         "enabled": true,
               "name":   "CHICAGO",     "region": "AMERICAS",
@@ -1688,7 +1688,7 @@
 
             { "code":   "MDW",         "enabled": true,
               "name":   "CHICAGO",     "region": "AMERICAS",
-              "status": "OK" },
+              "status": "ERR" },
 
             { "code":   "ORD",         "enabled": true,
               "name":   "CHICAGO",     "region": "AMERICAS",
@@ -2523,13 +2523,13 @@
               "name":   "CHICAGO",     "region": "AMERICAS",
               "status": "OK" },
 
-            { "code":   "ORD",         "enabled": true,
+            { "code":   "ORD",         "enabled": false,
               "name":   "CHICAGO",     "region": "AMERICAS",
               "status": "OK" },
 
             { "code":   "DFW",         "enabled": true,
               "name":   "DALLAS",      "region": "AMERICAS",
-              "status": "OK" },
+              "status": "DGR" },
 
             { "code":   "FTW",         "enabled": true,
               "name":   "DALLAS",      "region": "AMERICAS",
@@ -3385,7 +3385,7 @@
 
             { "code":   "BUR",         "enabled": true,
               "name":   "LOS ANGELAS", "region": "AMERICAS",
-              "status": "OK" },
+              "status": "MNT" },
 
             { "code":   "CPM",         "enabled": true,
               "name":   "LOS ANGELAS", "region": "AMERICAS",
@@ -3421,7 +3421,7 @@
 
             { "code":   "RHV",         "enabled": true,
               "name":   "SAN JOSE",    "region": "AMERICAS",
-              "status": "OK" },
+              "status": "ERR" },
 
             { "code":   "SJC",         "enabled": true,
               "name":   "SAN JOSE",    "region": "AMERICAS",
