@@ -927,7 +927,7 @@ $row-border: 						  #e1e1e1;
 	}
 	tbody {
 		tr:nth-child(odd) > td:first-child {
-			.tooltip-arrow { margin-top: -18px; }
+			.tooltip-arrow { margin-top: -19px; }
 		}
 		tr:nth-child(even) > td:first-child {
 			.tooltip-arrow { margin-top: -18px; }
@@ -1006,15 +1006,15 @@ $row-border: 						  #e1e1e1;
 				    }
 			  }
 			  a {
-					font-size: 23px;
+					font-size: 22px;
 					cursor: pointer;
 					&:hover {
 						text-decoration: none;
 						&.icon-close-circle { color: $red; }
-						&.fa-check-circle { color: $green; }
-						&.fa-warning { color: $orange; }
-						&.fa-clock-o { color: $blue; }
-						&.fa-circle-o { color: $grey-c; }
+						&.icon-check-circle { color: $green; }
+						&.icon-warning { color: $orange; }
+						&.icon-clock { color: $blue; }
+						&.icon-disable { color: $grey-c; }
 					}
 			  }
 			}
@@ -1064,10 +1064,10 @@ $row-border: 						  #e1e1e1;
 						}
 		  		}
 		  		&:nth-child(odd) > td:first-child {
-						.tooltip-arrow { margin-top: -18px;}
+						//.tooltip-arrow { margin-top: -18px;}
 					}
 					&:nth-child(even) > td:first-child {
-						.tooltip-arrow { margin-top: -18px; }
+						//.tooltip-arrow { margin-top: -18px; }
 					}
 					&:nth-child(even) > td:first-child::before, 
 					&:nth-child(even) > td:last-child::after {
@@ -1147,42 +1147,6 @@ $row-border: 						  #e1e1e1;
 		  }
 		}
 	}
-	/*.panel .table > thead {
-    color: $white;
-    background: $transact-background;
-  }
-  .panel .panel-heading {
-    background: lighten($transact-background, 47%);
-    border-top: 1px solid saturate($transact-background, 82%);
-    border-bottom: 1px solid saturate($transact-background, 82%);
-	}
-	.panel table.table.inner > tbody > tr {
-		border-bottom: 1px solid lighten($transact-background, 40%);
-	}
-	.panel table.table.inner > tbody > tr:nth-child(even) {
-		background: lighten($transact-background, 53%);
-	}
-	.panel table.table.inner {
-		//border-bottom: 1px solid lighten($transact-light-blue, 40%);
-	}
-	.panel .table > thead > tr > th:first-child {
-    width: 315px;
-	}
-	.panel .table > thead > tr > th:nth-child(5) {
-    width: 222px;
-    font-size: 16px;
-	}
-	.panel .table > thead > tr > th {
-		width: 222px;
-	}
-	.panel table.table.inner > tbody > tr > td > table > tbody > tr > td:first-child {
-    width: 316px;
-	}
-	.panel table.table.inner > tbody > tr > td > table > tbody > tr > td {
-		height: 40px;
-		padding-top: 3px;
-		width: 222px;
-	}*/
 }
 
 .route {
@@ -1389,7 +1353,7 @@ $row-border: 						  #e1e1e1;
 	}
 }
 
-.fa-times-circle ~ .popover {
+.icon-close-circle ~ .popover {
 	background: $red;
 	border: 1px solid $red;
 	
@@ -1404,7 +1368,7 @@ $row-border: 						  #e1e1e1;
 		}
 	}
 }
-.fa-check-circle ~ .popover {
+.icon-check-circle ~ .popover {
 	background: $green;
 	border: 1px solid $green;
 	
@@ -1419,7 +1383,7 @@ $row-border: 						  #e1e1e1;
 		}
 	}
 }
-.fa-warning ~ .popover {
+.icon-warning ~ .popover {
 	background: $orange;
 	border: 1px solid $orange;
 	
@@ -1434,7 +1398,7 @@ $row-border: 						  #e1e1e1;
 		}
 	}
 }
-.fa-clock-o ~ .popover {
+.icon-clock ~ .popover {
 	background: $blue;
 	border: 1px solid $blue;
 	
@@ -1449,7 +1413,7 @@ $row-border: 						  #e1e1e1;
 		}
 	}
 }
-.fa-circle-o ~ .popover {
+.icon-disable ~ .popover {
 	background: $grey-9;
 	border: 1px solid $grey-9;
 	
@@ -1466,7 +1430,7 @@ $row-border: 						  #e1e1e1;
 }
 
 /* colors for popover icons */
-.fa-check-circle { 
+.icon-check-circle { 
 	color: $green; 
 	> .popover {
 		background: $green; 
@@ -1476,7 +1440,7 @@ $row-border: 						  #e1e1e1;
 		}
 	}
 }
-.fa-times-circle { 
+.icon-close-circle { 
 	color: $red; 
 	> .popover.right {
 		background: $red; 
@@ -1486,7 +1450,7 @@ $row-border: 						  #e1e1e1;
 		}
 	}
 }
-.fa-warning { 
+.icon-warning { 
 	color: $orange; 
 	> .popover {
 		background: $orange; 
@@ -1496,7 +1460,7 @@ $row-border: 						  #e1e1e1;
 		}
 	}
 }
-.fa-clock-o { 
+.icon-clock { 
 	color: $blue; 
 	> .popover {
 		background: $blue; 
@@ -1506,7 +1470,7 @@ $row-border: 						  #e1e1e1;
 		}
 	}
 }
-.fa-circle-o { 
+.icon-disable { 
 	color: $grey-c; 
 	> .popover {
 		background: $grey-c; 
