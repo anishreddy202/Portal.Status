@@ -1,4 +1,5 @@
 /* jshint -W024 */
+/* jshint -W098 */
 /* jshint expr:true */
 'use strict';
 

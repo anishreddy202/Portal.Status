@@ -2,30 +2,36 @@
 var db = require("mongoDAL");
 var Verror = require("verror");
 
-var StatusService = function(config){
+var StatusService = function(configuration){
   var self = this;
-  var config = config.mongo;
+  var config = configuration.mongo;
   var report;
 
   self.report = function(done){
 
     db.connect(config, function(err, db) {
       if(err) {
-        if(!report) getDefaultReport();
+        if(!report) {
+          getDefaultReport();
+        }
 
         return done(null, report);
       }
 
       db.collectionExists("status", function(err, exists) {
         if(err || !exists) {
-          if(!report) getDefaultReport();
+          if(!report) {
+            getDefaultReport();
+          }
 
           return done(null, report);
         }
 
         db.status.first({}, function(err, result) {
           if(err || result === null) {
-            if(!report) getDefaultReport();
+            if(!report) {
+              getDefaultReport();
+            }
 
             return done(null, report);
           }
