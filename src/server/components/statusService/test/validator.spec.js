@@ -22,9 +22,7 @@ describe("Schema Validation", function() {
   });
 
   it("The Default Report Validates with no errors", function() {
-    console.log(data.report);
     validator.validate(data.report, function(err, result){
-      console.log(err);
       (err === null).should.be.true;
 
     });
