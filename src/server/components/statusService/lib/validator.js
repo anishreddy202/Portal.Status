@@ -16,7 +16,7 @@ var Validator = function(){
   var systemCodes = ["MCC", "TCC", "LLS", "LIS", "ODS", "UCC"];
   var serviceCodes = ["HLG", "HSM", "ADN", "ING", "DLY", "FTP", "STG", "PRG", "SRT", "ADA", "SZT", "API"];
   var locationCodes = ["DCA", "IAD", "ATL", "FTY", "MDW", "ORD", "DFW", "FTW", "BUR", "CPM", "LAX", "OXR",
-                       "FLL", "MIA", "EWR", "LGA", "BNG", "RHV", "SJC", "CGH", "PAE", "SEA", "AMS", "RTM",
+                       "FLL", "MIA", "EWR", "LGA", "BNJ", "RHV", "SJC", "CGH", "PAE", "SEA", "AMS", "RTM",
                        "CPH", "FCN", "FRA", "FRF", "HEL", "LCY", "LHR", "MAD", "TOJ", "MXP", "CDG", "ORY",
                        "ARN", "STO", "VIE", "WAW", "BTH", "HHP", "CGK", "KHH", "MEL", "KIX", "SIN", "SYD",
                        "HND", "NRT", "MCC", "TCC", "UCC", "LIS", "LLS", "ODS"];
@@ -25,7 +25,8 @@ var Validator = function(){
     Joi.object().keys({
       code: Joi.string().valid(locationCodes).required(),
       name: Joi.string().required(),
-      region: Joi.string().required()
+      region: Joi.string().required(),
+      status: Joi.string().valid(statusCodes).required()
     })).required();
 
   var serviceSchema = Joi.array().includes(

@@ -31,7 +31,7 @@ describe("Schema Validation", function() {
   });
 
  ////////////   CATEGORY  ////////////
-  describe("Category Schema", function(done) {
+ describe("Category Schema", function(done) {
     it("Defines a required code property", function(done) {
       delete category.code;
 
@@ -98,11 +98,11 @@ describe("Schema Validation", function() {
         done();
       });
     });
-  });
-
-
-  ////////////   SYSTEMS  ////////////
-  describe("Systems Schema", function(done) {
+ });
+ //
+ //
+ // ////////////   SYSTEMS  ////////////
+ describe("Systems Schema", function(done) {
 
     beforeEach(function(){
       delete category.systems;
@@ -176,9 +176,9 @@ describe("Schema Validation", function() {
     });
  });
 
-
-  ////////////   Services  ////////////
-  describe("Services Schema", function(done) {
+ //
+ // ////////////   Services  ////////////
+ describe("Services Schema", function(done) {
 
     beforeEach(function(){
       delete category.services;
@@ -237,10 +237,10 @@ describe("Schema Validation", function() {
         done();
       });
     });
-  });
-
-  ////////////   Services  ////////////
-  describe("Locations Schema", function(done) {
+ });
+ //
+ // ////////////   Locations  ////////////
+ describe("Locations Schema", function(done) {
     beforeEach(function(){
       delete service.locations;
       service.locations = [];
@@ -271,15 +271,75 @@ describe("Schema Validation", function() {
       validator.validate([category], function(err, result){
         var cleanCategory = result[0];
         var cleanService = cleanCategory.services[0];
+        var cleanLocation = cleanService.locations[0];
 
         (err === null).should.be.false;
-        //cleanService.should.have.property('code');
+        cleanLocation.should.have.property('code');
         //console.log(err);
         done();
       });
     });
-    it("Defines a required name property");
-    it("Defines a required region property");
 
-  });
+   it("Defines a required name property", function(done) {
+     delete location.name;
+     service.locations.push(location);
+     category.services.push(service);
+
+     validator.validate([category], function(err, result){
+       var cleanCategory = result[0];
+       var cleanService = cleanCategory.services[0];
+       var cleanLocation = cleanService.locations[0];
+
+       (err === null).should.be.false;
+       cleanLocation.should.not.have.property('name');
+       done();
+     });
+   });
+   it("Defines a required region property", function(done) {
+     delete location.region;
+     service.locations.push(location);
+     category.services.push(service);
+
+     validator.validate([category], function(err, result){
+       var cleanCategory = result[0];
+       var cleanService = cleanCategory.services[0];
+       var cleanLocation = cleanService.locations[0];
+
+       (err === null).should.be.false;
+       cleanLocation.should.not.have.property('region');
+       done();
+     });
+   });
+   it("Defines a required status property", function(done) {
+     delete location.status;
+     service.locations.push(location);
+     category.services.push(service);
+
+     validator.validate([category], function(err, result){
+       var cleanCategory = result[0];
+       var cleanService = cleanCategory.services[0];
+       var cleanLocation = cleanService.locations[0];
+
+       (err === null).should.be.false;
+       cleanLocation.should.not.have.property('status');
+       done();
+     });
+   });
+   it("Restricts code property to specific values", function(done) {
+     location.status = "BAD";
+     service.locations.push(location);
+     category.services.push(service);
+
+     validator.validate([category], function(err, result){
+       var cleanCategory = result[0];
+       var cleanService = cleanCategory.services[0];
+       var cleanLocation = cleanService.locations[0];
+
+       (err === null).should.be.false;
+       cleanLocation.should.have.property('status');
+       done();
+     });
+   });
+
+ });
 });
