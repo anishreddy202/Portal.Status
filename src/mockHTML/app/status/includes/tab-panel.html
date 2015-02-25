@@ -2,20 +2,16 @@
   <div class="tabs-wrapper">
     <ul id="myTab" class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active cdn">
-        <a href="#cdn" role="tab" id="cdn-tab" data-toggle="tab" aria-controls="cdn" aria-expanded="true">
+        <a href="#cdn" class="clearfix" role="tab" id="cdn-tab" data-toggle="tab" aria-controls="cdn" aria-expanded="true">
           <div class="table-header-logo clearfix">
               <span class="icon-cdn"></span>
-            <!--div class="pull-left">
-              <div class="">
-                <span class="tab-header">cdn</span>
-              <span class="badge">45</span>
-              </div>
-              <div class="icons-info">
-                <span class="icon-close-circle"></span>
-                <span class="icon-clock"></span>
-                <span class="icon-warning"></span>
-              </div>
-            </div-->
+          </div>
+          <div class="table-header-list">
+            <ul class="list-inline">
+              <li><span class="icon-close-circle"></span></li>
+              <li><span class="icon-warning"></span></li>
+              <li><span class="icon-clock"></span></li>
+            </ul>
           </div>
           <div class="table-header-title">
             <span>Deliver</span>
@@ -25,18 +21,12 @@
       <li role="presentation" class="transact">
         <a href="#transact" role="tab" id="transact-tab" data-toggle="tab" aria-controls="transact" aria-expanded="true">
           <div class="table-header-logo clearfix">
-              <span class="icon-transact"></span>
-            <!--div class="pull-left">
-              <div class="">
-                <span class="tab-header">transact</span>
-                <span class="badge">45</span>
-              </div>
-              <div class="icons-info">
-                <span class="icon-close-circle"></span>
-                <span class="icon-clock"></span>
-                <span class="icon-warning"></span>
-              </div>
-            </div-->
+              <span class="icon-store"></span>
+          </div>
+          <div class="table-header-list">
+            <ul>
+              <li></li>
+            </ul>
           </div>
           <div class="table-header-title">
             <span>Store</span>
@@ -46,36 +36,66 @@
       <li role="presentation" class="route">
         <a href="#route" role="tab" id="route-tab"  data-toggle="tab" aria-controls="route" aria-expanded="true">
           <div class="table-header-logo clearfix">
+              <span class="icon-gauge"></span>
+          </div>
+          <div class="table-header-list">
+            <ul class="list-inline">
+              <li><span class="icon-close-circle"></span></li>
+              <li><span class="icon-warning"></span></li>
+              <li><span class="icon-clock"></span></li>
+            </ul>
+          </div>
+          <div class="table-header-title">
+            <span>Gauge</span>
+          </div>
+        </a>
+      </li>
+      <li role="presentation" class="route">
+        <a href="#route" role="tab" id="route-tab"  data-toggle="tab" aria-controls="route" aria-expanded="true">
+          <div class="table-header-logo clearfix">
               <span class="icon-route"></span>
-            <!--div class="pull-left">
-              <div class="">
-                <span class="tab-header">route</span>
-              <span class="badge">45</span>
-              </div>
-              <div class="icons-info">
-                <span class="icon-close-circle"></span>
-                <span class="icon-clock"></span>
-                <span class="icon-warning"></span>
-              </div>
-            </div-->
+          </div>
+          <div class="table-header-list">
+            <ul class="list-inline">
+              <li></li>
+            </ul>
+          </div>
+          <div class="table-header-title">
+            <span>Route</span>
           </div>
         </a>
       </li>
       <li role="presentation" class="uplynk">
         <a href="#uplynk" role="tab" id="uplynk-tab" data-toggle="tab" aria-controls="uplynk">
           <div class="table-header-logo clearfix">
-              <span class="icon-uplynk"></span>
-            <!--div class="pull-left">
-              <div class="">
-                <span class="tab-header">uplynk</span>
-              <span class="badge">45</span>
-              </div>
-              <div class="icons-info">
-                <span class="icon-close-circle"></span>
-                <span class="icon-clock"></span>
-                <span class="icon-warning"></span>
-              </div>
-            </div-->
+              <span class="icon-shield"></span>
+          </div>
+          <div class="table-header-list">
+            <ul class="list-inline">
+              <li><span class="icon-close-circle"></span></li>
+              <li><span class="icon-warning"></span></li>
+              <li><span class="icon-clock"></span></li>
+            </ul>
+          </div>
+          <div class="table-header-title">
+            <span>Shield</span>
+          </div>
+        </a>
+      </li>
+      <li role="presentation" class="uplynk">
+        <a href="#uplynk" role="tab" id="uplynk-tab" data-toggle="tab" aria-controls="uplynk">
+          <div class="table-header-logo clearfix">
+              <span class="icon-transact"></span>
+          </div>
+          <div class="table-header-list">
+            <ul class="list-inline">
+              <li><span class="icon-close-circle"></span></li>
+              <li><span class="icon-warning"></span></li>
+              <li><span class="icon-clock"></span></li>
+            </ul>
+          </div>
+          <div class="table-header-title">
+            <span>Transact</span>
           </div>
         </a>
       </li>
@@ -111,7 +131,7 @@
                   <tr>
                     <th>PoP Location 
                       <a class="info-POP" data-original-title="" href="#" data-toggle="popover" data-html="true" title="" data-placement="right" data-content="<div>Three-letter codes are for POP identification only and do not indicate the specific geographic location of the POP.</div>">
-                        <span class="icon-info"></span>
+                        <span class="icon-info-circle"></span>
                       </a> 
                     </th>
                     <th>HTTP Large</th>
@@ -874,7 +894,7 @@
                   <tr>
                     <th>PoP Location 
                       <a class="info-POP" data-original-title="" href="#" data-toggle="popover" data-html="true" title="" data-placement="right" data-content="<div>Three-letter codes are for POP identification only and do not indicate the specific geographic location of the POP.</div>">
-                        <span class="icon-info"></span>
+                        <span class="icon-info-circle"></span>
                       </a> 
                     </th>
                     <th>HTTP Large</th>
@@ -1637,7 +1657,7 @@
                   <tr>
                     <th>PoP Location 
                       <a class="info-POP" data-original-title="" href="#" data-toggle="popover" data-html="true" title="" data-placement="right" data-content="<div>Three-letter codes are for POP identification only and do not indicate the specific geographic location of the POP.</div>">
-                        <span class="icon-info"></span>
+                        <span class="icon-info-circle"></span>
                       </a> 
                     </th>
                     <th>HTTP Large</th>
@@ -2400,7 +2420,7 @@
                   <tr>
                     <th>PoP Location 
                       <a class="info-POP" data-original-title="" href="#" data-toggle="popover" data-html="true" title="" data-placement="right" data-content="<div>Three-letter codes are for POP identification only and do not indicate the specific geographic location of the POP.</div>">
-                        <span class="icon-info"></span>
+                        <span class="icon-info-circle"></span>
                       </a> 
                     </th>
                     <th>HTTP Large</th>

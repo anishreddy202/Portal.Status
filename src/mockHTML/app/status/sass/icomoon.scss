@@ -23,6 +23,22 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-gauge:before {
+	content: "\e60d";
+}
+
+.icon-info-circle:before {
+	content: "\e60e";
+}
+
+.icon-shield:before {
+	content: "\e60f";
+}
+
+.icon-store:before {
+	content: "\e610";
+}
+
 .icon-angle-down:before {
 	content: "\e60c";
 }
@@ -74,3 +90,4 @@
 .icon-uplynk:before {
 	content: "\e603";
 }
+
