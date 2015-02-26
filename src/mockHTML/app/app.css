@@ -91,7 +91,13 @@ a:hover, a:focus {
 
 .outer-wrap {
   min-width: 1200px;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  height: 100%; }
+
+.content-wrapper {
+  min-height: 100%;
+  height: auto !important;
+  margin: 0px auto -135px; }
 
 /* top header */
 .top-header {
@@ -209,9 +215,9 @@ a:hover, a:focus {
         text-align: center;
         width: 100%; }
         .tabs-wrapper ul.nav-tabs li .table-header-logo > span {
+          margin-top: 3px;
           margin-right: -2px;
           font-size: 30px;
-          margin-top: 6px;
           display: block;
           text-align: center; }
         .tabs-wrapper ul.nav-tabs li .table-header-logo span.tab-header {
@@ -242,7 +248,7 @@ a:hover, a:focus {
             border-right: none; }
       .tabs-wrapper ul.nav-tabs li .table-header-title {
         text-align: center;
-        margin-top: 0px;
+        margin-top: 3px;
         opacity: 0; }
         .tabs-wrapper ul.nav-tabs li .table-header-title span {
           text-transform: uppercase;
@@ -792,8 +798,8 @@ a:hover, a:focus {
   font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif; }
   .network-news.well {
     margin-bottom: 0px;
-    padding: 20px 0 0px;
-    background: #666666;
+    padding: 20px 0 20px;
+    background: #3d4045;
     border-radius: 0px;
     border: 1px solid #333333; }
   .network-news .wrapper {
@@ -1007,6 +1013,16 @@ a:hover, a:focus {
           color: #2e68b1; }
         .table-wrapper tbody tr td a:hover.icon-disable {
           color: #cccccc; }
+  .table-wrapper tbody tr:last-child {
+    border-top: 1px solid #E1E1E1;
+    border-bottom: 1px solid #E1E1E1; }
+    .table-wrapper tbody tr:last-child td {
+      border-right: 0px; }
+      .table-wrapper tbody tr:last-child td:first-child::before, .table-wrapper tbody tr:last-child td:last-child::after {
+        border-right: none;
+        border-left: none;
+        margin-left: 0px;
+        border-bottom: 1px solid #E1E1E1; }
 
 /*
 .cdn {
@@ -1418,6 +1434,34 @@ a:hover, a:focus {
   .icon-disable ~ .popover.left > .arrow {
     border-left-color: #cccccc; }
 
+.push {
+  height: 135px; }
+
+footer {
+  background: #43474d; }
+  footer .well {
+    margin-bottom: 0px;
+    border: none;
+    border-radius: 0px;
+    background: transparent;
+    height: 135px;
+    margin: 0 auto;
+    width: 1200px; }
+  footer .footer-logo .vz-logo-wh {
+    width: 174px;
+    height: 38px;
+    display: inline-block;
+    background: url("../assets/Images/logo-vdms-wh.png") no-repeat scroll 0% 0% transparent; }
+  footer .footer-logo .copy-right {
+    color: #ffffff;
+    font-size: 11px;
+    font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif; }
+    footer .footer-logo .copy-right span {
+      margin-left: 20px;
+      font-size: 12px;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight: normal; }
+
 /* colors for popover icons
 .icon-check-circle { 
 	> .popover {
@@ -1533,5 +1577,3 @@ a:hover, a:focus {
 
 .icon-uplynk:before {
   content: "\e603"; }
-
-/*# sourceMappingURL=app.css.map */

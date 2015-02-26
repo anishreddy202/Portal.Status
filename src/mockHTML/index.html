@@ -18,40 +18,37 @@
 <body>
 	<div class="outer-wrap">
 
-	  <!-- top header begins -->
-	  <div id="top-header"></div>
-	  <script>
-	      $('#top-header').load("app/status/includes/top-header.html");
-	  </script>
-	  <!-- top header ends -->
+    <div class="content-wrapper">
+  	  <!-- top header begins -->
+  	  <div id="top-header"></div>
+  	  <script>
+  	      $('#top-header').load("app/status/includes/top-header.html");
+  	  </script>
+  	  <!-- top header ends -->
 
-	  <!-- tab panel begins -->
-    <div id="tab-panel"></div>
-    <script>
-        $('#tab-panel').load("app/status/includes/tab-panel.html");
-    </script>
-    <!-- tab panel ends -->
+  	  <!-- tab panel begins -->
+      <div id="tab-panel"></div>
+      <script>
+          $('#tab-panel').load("app/status/includes/tab-panel.html");
+      </script>
+      <!-- tab panel ends -->
+      
+      <!-- network status news begins -->
+      <div id="network-status"></div>
+      <script>
+          $('#network-status').load("app/status/includes/network-status.html");
+      </script>
+      <!-- network status news ends -->
 
-    <!-- tab button begins -->
-    <div id="tab-button"></div>
-    <script>
-        $('#tab-button').load("app/status/includes/tab-button.html");
-    </script>
-    <!-- tab button ends -->
-    
-    <!-- network status news begins -->
-    <div id="network-status"></div>
-    <script>
-        $('#network-status').load("app/status/includes/network-status.html");
-    </script>
-    <!-- network status news ends -->
+      <!-- admin section begins ->
+      <div id="admin-section"></div>
+      <script>
+          $('#admin-section').load("app/status/includes/admin-section.html");
+      </script>
+      <!- admin section ends -->
 
-    <!-- admin section begins ->
-    <div id="admin-section"></div>
-    <script>
-        $('#admin-section').load("app/status/includes/admin-section.html");
-    </script>
-    <!- admin section ends -->
+      <div class="push"></div>
+    </div>
 
     <!-- footer section begins -->
     <div id="footer-section"></div>
@@ -70,7 +67,7 @@
     });
   </script>
 
-  <!-- show and hide script for network news -->
+  <!-- show and hide script for network news 
   <script>
     $(document).ready(function() {
        $('#network-status').click(function() {
@@ -80,5 +77,6 @@
        });
     });
   </script>
+-->
 </body>
 </html>
