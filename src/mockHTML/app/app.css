@@ -161,10 +161,10 @@ a:hover, a:focus {
         border: medium none;
         color: #ffffff; }
       .tabs-wrapper ul.nav-tabs li.active {
+        margin-left: -1px;
         margin-bottom: -7px;
         height: 100px;
-        border-left: 1px solid rgba(255, 255, 255, 0.25);
-        box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.25), 0px 0px 0px rgba(255, 255, 255, 0.3) inset; }
+        border-left: 1px solid rgba(255, 255, 255, 0.25); }
         .tabs-wrapper ul.nav-tabs li.active.cdn {
           background: #ed1d24; }
         .tabs-wrapper ul.nav-tabs li.active.transact {
@@ -204,6 +204,8 @@ a:hover, a:focus {
           padding-top: 8px; }
           .tabs-wrapper ul.nav-tabs li a:hover .table-header-title, .tabs-wrapper ul.nav-tabs li a:hover .table-header-list {
             display: block; }
+        .tabs-wrapper ul.nav-tabs li a:focus {
+          outline-offset: 0px; }
       .tabs-wrapper ul.nav-tabs li .table-header-logo {
         text-align: center;
         width: 100%; }
@@ -250,13 +252,15 @@ a:hover, a:focus {
       .tabs-wrapper ul.nav-tabs li .table-header-list {
         height: 20px;
         display: none; }
-        .tabs-wrapper ul.nav-tabs li .table-header-list ul.list-inline {
+        .tabs-wrapper ul.nav-tabs li .table-header-list > ul {
           margin-top: 5px;
           margin-left: 0px;
           text-align: center; }
-          .tabs-wrapper ul.nav-tabs li .table-header-list ul.list-inline > li {
+          .tabs-wrapper ul.nav-tabs li .table-header-list > ul > li {
             padding: 0px;
             border: none; }
+            .tabs-wrapper ul.nav-tabs li .table-header-list > ul > li span {
+              font-size: 16px; }
       .tabs-wrapper ul.nav-tabs li.transact > .table-header-logo span {
         font-size: 35px;
         margin-top: 13px; }
