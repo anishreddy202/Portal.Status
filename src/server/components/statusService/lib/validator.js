@@ -11,10 +11,10 @@ var Validator = function(){
 
   ////////////   SCHEMA DEFINITION   ////////////
 
-  var categoryCodes = ["CDN", "TRT", "RTE", "UPL"];
+  var categoryCodes = ["DEL", "TRT", "RTE", "DFD","STR","ACE"];
   var statusCodes = ["OK", "ERR", "MNT", "DGR"];
-  var systemCodes = ["MCC", "TCC", "LLS", "LIS", "ODS", "UCC"];
-  var serviceCodes = ["HLG", "HSM", "ADN", "ING", "DLY", "FTP", "STG", "PRG", "SRT", "ADA", "SZT", "API"];
+  var systemCodes = ["MCC", "TCC"];
+  var serviceCodes = ["HLG", "HSM", "ADN","FSM", "WEC", "WOT","CAN", "FTP", "STG", "PRG", "SRT", "ADA", "SZT", "API","UPL"];
   var locationCodes = ["DCA", "IAD", "ATL", "FTY", "MDW", "ORD", "DFW", "FTW", "BUR", "CPM", "LAX", "OXR",
                        "FLL", "MIA", "EWR", "LGA", "BNJ", "RHV", "SJC", "CGH", "PAE", "SEA", "AMS", "RTM",
                        "CPH", "FCN", "FRA", "FRF", "HEL", "LCY", "LHR", "MAD", "TOJ", "MXP", "CDG", "ORY",
@@ -62,7 +62,6 @@ var Validator = function(){
   };
 
   function validateSchema(data, done){
-
 
     Joi.validate(data, schema, options, function(err, value){
       var error = null;

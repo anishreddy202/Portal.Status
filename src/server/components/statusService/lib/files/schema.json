@@ -1,8 +1,8 @@
 {
   "categories" : [
     {
-      "code": "CDN",
-      "name": "CDN"
+      "code": "DLR",
+      "name": "DELIVER"
     },
     {
       "code": "TRT",
@@ -13,30 +13,34 @@
       "name": "ROUTE"
     },
     {
-      "code": "UPL",
-      "name": "UPLYNK"
+      "code": "ACE",
+      "name": "ACCELERATE"
+    },
+    {
+      "code": "DFD",
+      "name": "DEFEND"
+    },
+    {
+      "code": "STR",
+      "name": "STORE"
     }
   ],
   "services": [
     {
       "code": "HLG",
-      "name": "HTTP LARGE",
+      "name": "EDGECAST CDN HTTP LARGE"
     },
     {
       "code": "HSM",
-      "name" : "HTTP SMALL"
+      "name" : "EDGECAST CDN HTTP SMALL"
     },
     {
       "code": "ADN",
       "name": "ADN"
     },
     {
-      "code": "ING",
-      "name": "INGEST"
-    },
-    {
-      "code": "DLY",
-      "name": "DELIVERY"
+      "code": "FSM",
+      "name": "EDGECAST CDN FLASH MEDIA"
     },
     {
       "code": "FTP",
@@ -47,8 +51,12 @@
       "name": "STORAGE"
     },
     {
+      "code": "UPL",
+      "name": "UPLYNK STREAMING SYSTEM"
+    },
+    {
       "code": "PRG",
-      "name": "PURGE"
+      "name": "FAST PURGE"
     },
     {
       "code": "SRT",
@@ -65,6 +73,18 @@
     {
       "code": "API",
       "name": "REST API"
+    },
+    {
+      "code": "CAN",
+      "name": "CAN"
+    },
+    {
+      "code": "WOT",
+      "name": "WAF ON TRANSACT"
+    },
+    {
+      "code": "WEC",
+      "name": "WAF ON EDGECAST CDN"
     }
   ],
   "locations" : [
@@ -327,22 +347,6 @@
     {
       "code": "TCC",
       "name": "TRANSACT CONTROL CENTER"
-    },
-    {
-      "code": "UCC",
-      "name": "UPLYNK CONTROL CENTER"
-    },
-    {
-      "code": "LIS",
-      "name": "LIVE STREAMING"
-    },
-    {
-      "code": "LLS",
-      "name": "LIVE LINEAR STREAMING"
-    },
-    {
-      "code": "ODS",
-      "name": "ON-DEMAND STREAMING"
     }
   ],
   "conditions": [
