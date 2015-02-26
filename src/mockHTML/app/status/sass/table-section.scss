@@ -1664,6 +1664,7 @@ footer {
 		width: 1200px;
 	}
 	.footer-logo {
+		margin-top: 20px;
 		.vz-logo-wh {
 	    width: 174px;
 	    height: 38px;
@@ -1671,14 +1672,18 @@ footer {
 	    background: url("../assets/Images/logo-vdms-wh.png") no-repeat scroll 0% 0% transparent;
 		}
 		.copy-right {
+			margin-top: -8px;
 			color: $white;
 			font-size: 11px;
 			font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif;
+			vertical-align: middle;
+			display: inline-block;
 			span {
 				margin-left: 20px;
 				font-size: 12px;
 				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 				font-weight: normal;
+
 			}
 		}
 	}

@@ -1447,20 +1447,25 @@ footer {
     height: 135px;
     margin: 0 auto;
     width: 1200px; }
-  footer .footer-logo .vz-logo-wh {
-    width: 174px;
-    height: 38px;
-    display: inline-block;
-    background: url("../assets/Images/logo-vdms-wh.png") no-repeat scroll 0% 0% transparent; }
-  footer .footer-logo .copy-right {
-    color: #ffffff;
-    font-size: 11px;
-    font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif; }
-    footer .footer-logo .copy-right span {
-      margin-left: 20px;
-      font-size: 12px;
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-weight: normal; }
+  footer .footer-logo {
+    margin-top: 20px; }
+    footer .footer-logo .vz-logo-wh {
+      width: 174px;
+      height: 38px;
+      display: inline-block;
+      background: url("../assets/Images/logo-vdms-wh.png") no-repeat scroll 0% 0% transparent; }
+    footer .footer-logo .copy-right {
+      margin-top: -8px;
+      color: #ffffff;
+      font-size: 11px;
+      font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      vertical-align: middle;
+      display: inline-block; }
+      footer .footer-logo .copy-right span {
+        margin-left: 20px;
+        font-size: 12px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-weight: normal; }
 
 /* colors for popover icons
 .icon-check-circle { 
