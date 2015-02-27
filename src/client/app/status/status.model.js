@@ -17,6 +17,7 @@
     function network(data){
       var self = this;
       this.name = data.name;
+      this.classname = MapClassName(data.name);
       this.code = data.code;
       this.systems = MapNetworkSystems(data.systems);
       this.locations = MapLocationServices(data.services);
@@ -140,6 +141,27 @@
       }
       return statusCount;
 
+    }
+
+    function MapClassName(data){
+      if(data == "DELIVER"){
+        return "cdn";
+      }
+      else if(data == "DEFEND"){
+        return "shield";
+      }
+      else if(data == "TRANSACT"){
+        return "transact";
+      }
+      else if(data == "ACCELERATE"){
+        return "gauge";
+      }
+      else if(data == "STORE"){
+        return "store";
+      }
+      else if(data == "ROUTE"){
+        return "route";
+      }
     }
 
 
