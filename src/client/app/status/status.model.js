@@ -48,7 +48,7 @@
 
     function service(data){
       var self = this;
-      this.name = data.name.toLowerCase()
+      this.name = data.name.toLowerCase().replace('waf','WAF').replace('can','CAN').replace('api','API').replace('adn','ADN')
                   .replace('http','HTTP').replace('cdn','CDN').replace('upl','UpL').replace('ftp','FTP').replace('edgecast','EdgeCast');
       this.code = data.code;
       this.enabled;
