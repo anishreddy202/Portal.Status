@@ -629,8 +629,8 @@
           ]
         },
         {
-          "code": "UPL",
-          "name": "UPLYNK STREAMING SYSTEM",
+          "code": "PRG",
+          "name": "FAST PURGE",
           "locations" : [
             { "code":   "DCA",         "enabled": true,
               "name":   "ASHBURN",     "region": "AMERICAS",
@@ -834,8 +834,8 @@
           ]
         },
         {
-          "code": "PRG",
-          "name": "FAST PURGE",
+          "code": "UPL",
+          "name": "UPLYNK STREAMING SYSTEM",
           "locations" : [
             { "code":   "DCA",         "enabled": true,
               "name":   "ASHBURN",     "region": "AMERICAS",

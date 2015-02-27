@@ -48,7 +48,8 @@
 
     function service(data){
       var self = this;
-      this.name = data.name.toLowerCase().replace('http','HTTP').replace('ftp','FTP');
+      this.name = data.name.toLowerCase()
+                  .replace('http','HTTP').replace('cdn','CDN').replace('upl','UpL').replace('ftp','FTP').replace('edgecast','EdgeCast');
       this.code = data.code;
       this.enabled;
       this.status;
