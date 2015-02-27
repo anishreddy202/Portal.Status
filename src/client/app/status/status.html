@@ -1,3 +1,4 @@
+
 <div class="top-header">
   <div class="panel clearfix">
     <div class="pull-left">
@@ -19,7 +20,12 @@
   <div class="tabs-wrapper">
     <ul id="myTab" class="nav nav-tabs" role="tablist">
       <li role="presentation" ng-repeat="status in vm.network"
-          ng-class="{'active ': status.name == 'DELIVER' && vm.selectedNetwork.name == 'DELIVER','active': status.name == 'TRANSACT' && vm.selectedNetwork.name == 'TRANSACT', 'active': status.name == 'ROUTE' && vm.selectedNetwork.name == 'ROUTE','active': status.name == 'DEFEND' && vm.selectedNetwork.name == 'DEFEND', 'active': status.name == 'STORE' && vm.selectedNetwork.name == 'STORE','active': status.name == 'ACCELERATE' && vm.selectedNetwork.name == 'ACCELERATE'} ">
+          ng-class="{'active ': status.name == 'DELIVER' && vm.selectedNetwork.name == 'DELIVER',
+          'active transact': status.name == 'TRANSACT' && vm.selectedNetwork.name == 'TRANSACT',
+          'active route': status.name == 'ROUTE' && vm.selectedNetwork.name == 'ROUTE',
+          'active defend': status.name == 'DEFEND' && vm.selectedNetwork.name == 'DEFEND',
+          'active store': status.name == 'STORE' && vm.selectedNetwork.name == 'STORE',
+          'active accelerate': status.name == 'ACCELERATE' && vm.selectedNetwork.name == 'ACCELERATE'} ">
 
         <a href="#cdn" role="tab" id="cdn-tab" data-toggle="tab" aria-controls="cdn" aria-expanded="true" ng-click="vm.selectNetwork(status)">
           <div class="table-header-logo clearfix">
@@ -89,7 +95,8 @@
                   </a>
                   <a ng-if="service.status == 'MNT'" class="icon-clock" alt="" data-toggle="popover" data-html="true" data-placement="left">
                   </a>
-                  <a ng-if="service.status == 'ERR'" class="icon-close-circle" alt="" data-toggle="popover" data-html="true" data-placement="left">
+                  <a ng-if="service.status == 'ERR'" class="icon-close-circle" alt="" data-toggle="popover" data-html="true"
+                     title="Service Outage" data-placement="left">
                   </a>
                 </span>
                 <a ng-if="service.enabled == false" class="icon-disable" alt="" data-toggle="popover" data-html="true" data-placement="left">
