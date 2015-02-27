@@ -25,12 +25,14 @@
         .then(function(response) {
           MapNetworkStatus(response.data)
           self.selectedNetwork = self.network[0];
+          console.log(self.selectedNetwork);
         })
         .catch();
     }
 
     function selectNetwork(network){
       self.selectedNetwork = network;
+      console.log(self.selectedNetwork);
     }
 
     /**private functions **/

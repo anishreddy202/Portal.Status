@@ -9,7 +9,7 @@
     <div class="pull-right">
       <ul>
         <li><a href="#"><span class="badge">2</span>Network Status Updates</a></li>
-        <li><a href="#"><i class="fa fa-envelope"></i>VDMS Support</a></li>
+        <li><a href="#"><span class="icon-envelope"></span>VDMS Support</a></li>
       </ul>
     </div>
   </div>
@@ -19,25 +19,23 @@
   <div class="tabs-wrapper">
     <ul id="myTab" class="nav nav-tabs" role="tablist">
       <li role="presentation" ng-repeat="status in vm.network"
-          ng-class="{'active cdn': status.name == 'CDN' && vm.selectedNetwork.name == 'CDN'  , 'active transact': status.name == 'TRANSACT' && vm.selectedNetwork.name == 'TRANSACT'  ,
-          'active route': status.name == 'ROUTE' && vm.selectedNetwork.name == 'ROUTE'  ,'active uplynk': status.name == 'UPLYNK' && vm.selectedNetwork.name == 'UPLYNK' } ">
+          ng-class="{'active ': status.name == 'DELIVER' && vm.selectedNetwork.name == 'DELIVER','active': status.name == 'TRANSACT' && vm.selectedNetwork.name == 'TRANSACT', 'active': status.name == 'ROUTE' && vm.selectedNetwork.name == 'ROUTE','active': status.name == 'DEFEND' && vm.selectedNetwork.name == 'DEFEND', 'active': status.name == 'STORE' && vm.selectedNetwork.name == 'STORE','active': status.name == 'ACCELERATE' && vm.selectedNetwork.name == 'ACCELERATE'} ">
+
         <a href="#cdn" role="tab" id="cdn-tab" data-toggle="tab" aria-controls="cdn" aria-expanded="true" ng-click="vm.selectNetwork(status)">
           <div class="table-header-logo clearfix">
-            <div class="pull-left">
-              <i class="fa fa-eject"></i>
-            </div>
-            <div class="pull-left">
-              <div class="">
-                <span class="tab-header">{{status.name}}</span>
-                <span class="badge">{{status.status.count}}</span>
-              </div>
-            </div>
-            <div class="icons-info">
-              <i ng-if="status.status.error" class="fa fa-times-circle"></i>
-              <i ng-if="status.status.maintance"class="fa fa-clock-o"></i>
-              <i ng-if="status.status.warning" class="fa fa-warning"></i>
-            </div>
+            <span class="icon-{{status.classname}}"></span>
           </div>
+          <div class="table-header-list">
+            <ul class="list-inline">
+              <li ng-if="status.status.error" ><span class="icon-close-circle"></span></li>
+              <li ng-if="status.status.warning"><span class="icon-warning"></span></li>
+              <li ng-if="status.status.maintance"><span class="icon-clock"></span></li>
+            </ul>
+          </div>
+          <div class="table-header-title">
+            <span>{{status.name}}</span>
+          </div>
+
         </a>
       </li>
     </ul>
@@ -46,8 +44,8 @@
 
 <div id="myTabContent" class="tab-content">
   <div role="tabpanel" class="tab-pane fade in active">
-    <div class="table-section" ng-class="{'cdn': vm.selectedNetwork.name == 'CDN'  , 'transact': vm.selectedNetwork.name == 'TRANSACT'  ,
-          'route': vm.selectedNetwork.name == 'ROUTE'  ,'uplynk': vm.selectedNetwork.name == 'UPLYNK' } ">
+
+    <div class="table-section">
       <div class="table-header clearfix">
         <div class="table-header-inner clearfix">
           <div class="pull-right" ng-repeat="system in vm.selectedNetwork.systems">
@@ -60,6 +58,49 @@
           </div>
         </div>
       </div>
+
+      <div class="panel panel-default">
+        <div class="table-wrapper">
+          <div class="table-wrapper">
+            <table class="mytable">
+            <thead>
+            <tr>
+              <th>PoP Location
+                <a class="info-POP" data-original-title="" href="#" data-toggle="popover" data-html="true" title="" data-placement="right" data-content="<div>Three-letter codes are for POP identification only and do not indicate the specific geographic location of the POP.</div>">
+                  <i class="icon-info-circle"></i>
+                </a>
+              </th>
+              <th ng-repeat="system in vm.selectedNetwork.services">{{system.name}}</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="location in vm.selectedNetwork.locations">
+              <td>
+                <a type="button" data-toggle="tooltip" data-placement="right">{{location.name}}
+                  <label>({{location.code}})</label>
+                </a>
+                <span>{{location.region}}</span>
+              </td>
+              <td ng-repeat="service in location.services">
+                <span ng-if="service.enabled == true">
+                  <a ng-if="service.status == 'OK'" class="icon-check-circle" alt="" data-toggle="popover" data-html="true" data-placement="left">
+                  </a>
+                  <a ng-if="service.status == 'DGR'" class="icon-warning" alt="" data-toggle="popover" data-html="true" data-placement="left">
+                  </a>
+                  <a ng-if="service.status == 'MNT'" class="icon-clock" alt="" data-toggle="popover" data-html="true" data-placement="left">
+                  </a>
+                  <a ng-if="service.status == 'ERR'" class="icon-close-circle" alt="" data-toggle="popover" data-html="true" data-placement="left">
+                  </a>
+                </span>
+                <a ng-if="service.enabled == false" class="icon-disable" alt="" data-toggle="popover" data-html="true" data-placement="left">
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -68,41 +109,3 @@
 
 <!--</div>-->
 
-<div class="table-wrapper">
-  <table class="mytable">
-    <thead>
-    <tr>
-      <th>PoP Location
-        <a class="info-POP" data-original-title="" href="#" data-toggle="popover" data-html="true" title="" data-placement="right" data-content="<div>Three-letter codes are for POP identification only and do not indicate the specific geographic location of the POP.</div>">
-          <i class="fa fa-info"></i>
-        </a>
-      </th>
-      <th ng-repeat="system in vm.selectedNetwork.services">{{system.name}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="location in vm.selectedNetwork.locations">
-      <td>
-        <a type="button" data-toggle="tooltip" data-placement="right">{{location.name}}
-          <label>({{location.code}})</label>
-        </a>
-        <span>{{location.region}}</span>
-      </td>
-      <td ng-repeat="service in location.services">
-      <span ng-if="service.enabled == true">
-        <a ng-if="service.status == 'OK'" class="fa fa-check-circle" alt="" data-toggle="popover" data-html="true" data-placement="left">
-        </a>
-        <a ng-if="service.status == 'DGR'" class="fa fa-warning" alt="" data-toggle="popover" data-html="true" data-placement="left">
-        </a>
-        <a ng-if="service.status == 'MNT'" class="fa fa-clock-o" alt="" data-toggle="popover" data-html="true" data-placement="left">
-        </a>
-        <a ng-if="service.status == 'ERR'" class="fa fa-times-circle" alt="" data-toggle="popover" data-html="true" data-placement="left">
-        </a>
-      </span>
-        <a ng-if="service.enabled == false" class="fa fa-circle-o" alt="" data-toggle="popover" data-html="true" data-placement="left">
-        </a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
