@@ -63,7 +63,10 @@
                 <div class="table-header-info clearfix">
                   <span class="pull-left">{{system.name}}</span>
                   <div class="status-box checks pull-right">
-                    <a><i class="fa fa-check-circle"></i></a>
+                    <a><i ng-if="system.status == 'OK'" class="icon-check-circle"></i></a>
+                    <a><i ng-if="system.status == 'DGR'" class="icon-warning"></i></a>
+                    <a><i ng-if="system.status == 'MNT'" class="icon-clock"></i></a>
+                    <a><i ng-if="system.status == 'ERR'" class="icon-close-circle"></i></a>
                   </div>
                 </div>
               </div>
@@ -100,8 +103,7 @@
                       </a>
                       <a ng-if="service.status == 'MNT'" class="icon-clock" alt="" data-toggle="popover" data-html="true" data-placement="left">
                       </a>
-                      <a ng-if="service.status == 'ERR'" class="icon-close-circle" alt="" data-toggle="popover" data-html="true"
-                         title="Service Outage" data-placement="left">
+                      <a ng-if="service.status == 'ERR'" class="icon-close-circle" popover-placement="bottom" popover="Service Outage">
                       </a>
                     </span>
                       <a ng-if="service.enabled == false" class="icon-disable" alt="" data-toggle="popover" data-html="true" data-placement="left">
