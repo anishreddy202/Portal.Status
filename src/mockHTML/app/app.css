@@ -140,8 +140,9 @@ a:hover, a:focus {
           margin-right: 7px;
           margin-top: -5px;
           vertical-align: middle;
-          padding: 5px 7px;
-          background: #ed1d24; }
+          padding: 6px 8px;
+          background: #ed1d24;
+          border-radius: 100%; }
         .top-header .panel ul li a {
           margin-left: 50px;
           font-size: 16px;
@@ -484,7 +485,7 @@ a:hover, a:focus {
           top: 10px !important;
           border-right-color: #cccccc; }
         .table-wrapper table.mytable thead th:first-child .popover .popover-content {
-          color: #000000;
+          color: #333333;
           display: block; }
     .table-wrapper table.mytable thead th > a.info-POP {
       margin-left: 5px;
@@ -827,5 +828,3 @@ footer {
 
 .icon-uplynk:before {
   content: "\e603"; }
-
-/*# sourceMappingURL=app.css.map */

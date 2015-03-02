@@ -90,8 +90,9 @@ $row-border: 						  #e1e1e1;
 					margin-right: 7px;
 					margin-top: -5px;
 					vertical-align: middle;
-					padding: 5px 7px;
+					padding: 6px 8px;
 					background: $red;
+					border-radius: 100%;
 				}
 				a {
 					margin-left: 50px;
@@ -512,7 +513,7 @@ $row-border: 						  #e1e1e1;
 							border-right-color: $grey-c;
 						}
 						.popover-content {
-							color: $black;
+							color: $grey-3;
 							display: block;
 						}
 					}
