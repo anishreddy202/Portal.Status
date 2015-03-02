@@ -56,17 +56,24 @@
     <div id="myTabContent" class="tab-content">
       <div role="tabpanel" class="tab-pane fade in active">
 
-        <div class="table-section">
+        <div ng-class="{
+          'table-section': vm.selectedNetwork.name == 'DELIVER',
+          'table-section transact': vm.selectedNetwork.name == 'TRANSACT',
+          'table-section route': vm.selectedNetwork.name == 'ROUTE',
+          'table-section defend': vm.selectedNetwork.name == 'DEFEND',
+          'table-section store': vm.selectedNetwork.name == 'STORE',
+          'table-section accelerate': vm.selectedNetwork.name == 'ACCELERATE'} ">
+
           <div class="table-header clearfix">
             <div class="table-header-inner clearfix">
               <div class="pull-right" ng-repeat="system in vm.selectedNetwork.systems">
                 <div class="table-header-info clearfix">
                   <span class="pull-left">{{system.name}}</span>
                   <div class="status-box checks pull-right">
-                    <a><i ng-if="system.status == 'OK'" class="icon-check-circle"></i></a>
-                    <a><i ng-if="system.status == 'DGR'" class="icon-warning"></i></a>
-                    <a><i ng-if="system.status == 'MNT'" class="icon-clock"></i></a>
-                    <a><i ng-if="system.status == 'ERR'" class="icon-close-circle"></i></a>
+                    <a><span ng-if="system.status == 'OK'" class="icon-check-circle"></span></a>
+                    <a><span ng-if="system.status == 'DGR'" class="icon-warning"></span></a>
+                    <a><span ng-if="system.status == 'MNT'" class="icon-clock"></span></a>
+                    <a><span ng-if="system.status == 'ERR'" class="icon-close-circle"></span></a>
                   </div>
                 </div>
               </div>
@@ -81,10 +88,11 @@
                   <tr>
                     <th>PoP Location
                       <a class="info-POP" data-original-title="" href="#" data-toggle="popover" data-html="true" title="" data-placement="right" data-content="<div>Three-letter codes are for POP identification only and do not indicate the specific geographic location of the POP.</div>">
-                        <i class="icon-info-circle"></i>
+                        <span class="icon-info-circle"></span>
                       </a>
                     </th>
                     <th ng-repeat="system in vm.selectedNetwork.services">{{system.name}}</th>
+                    <th ng-if = "vm.selectedNetwork.name != 'DELIVER'"></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -96,19 +104,24 @@
                       <span>{{location.region}}</span>
                     </td>
                     <td ng-repeat="service in location.services">
-                    <span ng-if="service.enabled == true">
-                      <a ng-if="service.status == 'OK'" class="icon-check-circle" alt="" data-toggle="popover" data-html="true" data-placement="left">
-                      </a>
-                      <a ng-if="service.status == 'DGR'" class="icon-warning" alt="" data-toggle="popover" data-html="true" data-placement="left">
-                      </a>
-                      <a ng-if="service.status == 'MNT'" class="icon-clock" alt="" data-toggle="popover" data-html="true" data-placement="left">
-                      </a>
-                      <a ng-if="service.status == 'ERR'" class="icon-close-circle" popover-placement="bottom" popover="Service Outage">
-                      </a>
-                    </span>
+                      <span ng-if="service.enabled == true">
+                        <a ng-if="service.status == 'OK'" class="icon-check-circle" alt=""
+                            title="<div>Service Outage</div>"
+                            data-toggle="popover" data-html="true" data-placement="left">
+                        </a>
+                        <a ng-if="service.status == 'DGR'" class="icon-warning" alt="" data-toggle="popover" data-html="true" data-placement="left">
+                        </a>
+                        <a ng-if="service.status == 'MNT'" class="icon-clock" alt="" data-toggle="popover" data-html="true" data-placement="left">
+                        </a>
+                        <a ng-if="service.status == 'ERR'" class="icon-close-circle"
+                           title="<div>Service Outage</div>"
+                           data-toggle="popover" data-html="true" data-placement="left">
+                        </a>
+                      </span>
                       <a ng-if="service.enabled == false" class="icon-disable" alt="" data-toggle="popover" data-html="true" data-placement="left">
                       </a>
                     </td>
+                    <td ng-if = "vm.selectedNetwork.name != 'DELIVER'"></td>
                   </tr>
                   </tbody>
                 </table>
@@ -135,18 +148,3 @@
     </div>
   </footer>
 </div>
-
-
-
-
-
-<!--<footer class="footer">-->
-  <!--<div class="well clearfix">-->
-    <!--<div class="pull-left">-->
-      <!--<div class="footer-logo">-->
-        <!--<span class="vz-logo-wh"></span>-->
-        <!--<span class="copy-right"><span>&copy;</span> 2015 VERIZON DIGITAL MEDIA SERVICES. ALL RIGHTS RESERVED.</span>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</footer>-->

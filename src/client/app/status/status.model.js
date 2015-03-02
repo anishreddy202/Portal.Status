@@ -29,7 +29,6 @@
     }
 
     function system(data){
-      console.log(data);
       var self = this;
       this.name = data.name.toLowerCase().replace('cdn','CDN').replace('upl','UpL');
       this.code = data.code;
