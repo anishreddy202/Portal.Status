@@ -1,0 +1,69 @@
+<div class="page sign-in">
+
+  <div class="row">
+    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
+      <img class="img-responsive vz-logo-header" src="assets/images/login/vz-logo.png" alt="logo">
+      <h1 class="signin-header">Digital Media Services</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-0 col-sm-0 col-md-0 col-lg-1">
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
+      <img class="img-responsive" src="assets/images/form/globe.png" alt="logo">
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
+      <div class="form-header">
+        <h2>Log In</h2>
+      </div>
+      <form name="LoginCtrl.form" class="form-validation" novalidate ng-submit="LoginCtrl.login(LoginCtrl.form)">
+        <div>
+          <div class="form-group"
+               data-ng-class="{'has-error': LoginCtrl.form.email.$invalid && LoginCtrl.form.email.$dirty,
+                        'has-success': !LoginCtrl.form.email.$invalid,
+                        'has-feedback': (LoginCtrl.form.email.$invalid && LoginCtrl.form.email.$dirty) || !LoginCtrl.form.email.$invalid}">
+            <label>Email</label>
+            <input type="text" name="email" placeholder="Name" class="form-control" required
+                   data-ng-model="LoginCtrl.user.email">
+          <span class="form-control-feedback"
+                data-ng-class="{'icon-check': !LoginCtrl.form.email.$invalid,
+                           'icon-error': LoginCtrl.form.email.$invalid && LoginCtrl.form.email.$dirty}"
+                data-ng-show="!LoginCtrl.form.email.$pristine"></span>
+            <p class="help-block error" data-ng-show="LoginCtrl.form.email.$invalid && !LoginCtrl.form.email.$pristine">Email is required.</p>
+          </div>
+
+          <div class="form-group"
+               data-ng-class="{'has-error': LoginCtrl.form.password.$invalid && LoginCtrl.form.password.$dirty,
+                        'has-success': !LoginCtrl.form.password.$invalid,
+                        'has-feedback': (LoginCtrl.form.password.$invalid && LoginCtrl.form.password.$dirty) || !LoginCtrl.form.password.$invalid}">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="password" class="form-control" required
+                   data-ng-model="LoginCtrl.user.password">
+          <span class="form-control-feedback"
+                data-ng-class="{'icon-check': !LoginCtrl.form.password.$invalid,
+                           'icon-error': LoginCtrl.form.password.$invalid && LoginCtrl.form.password.$dirty}"
+                data-ng-show="!LoginCtrl.form.password.$pristine"></span>
+            <p class="help-block error" data-ng-show="LoginCtrl.form.password.$invalid && !LoginCtrl.form.password.$pristine">Password is required.</p>
+          </div>
+
+          <div class = "form-group has-error" ng-show="LoginCtrl.errors.failed">
+            <p class="help-block"><span class="icon-warning"> </span>{{ LoginCtrl.errors.other }}</p>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <button type="submit" class="btn btn-danger btn-block">Login</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-0 col-md-0 col-lg-2">
+    </div>
+  </div>
+</div>
