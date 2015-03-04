@@ -11,12 +11,6 @@
         url: '/',
         templateUrl: 'app/status/status.html',
         controller: 'StatusCtrl as vm'
-      })
-      .state('admin', {
-        url: '/admin',
-        templateUrl: 'app/status/admin.html',
-        controller: 'StatusCtrl as vm',
-        authenticate:true
       });
   }
 

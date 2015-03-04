@@ -10,6 +10,7 @@ angular.module('uiApp', [
   'uiApp.login',
   'uiApp.news',
   'uiApp.users',
+  'uiApp.admin',
 ])
   .config(config)
   .factory('authInterceptor',authInterceptor)
