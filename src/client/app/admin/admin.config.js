@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('uiApp.admin', [])
+    .module('uiApp.admin', ['uiApp.status'])
     .config(config);
 
   function config($stateProvider) {

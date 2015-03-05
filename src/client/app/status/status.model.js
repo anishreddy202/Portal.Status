@@ -54,6 +54,7 @@
       this.code = data.code;
       this.enabled;
       this.status;
+      this.isSelected = false;
       return self;
     }
 
