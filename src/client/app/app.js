@@ -56,4 +56,3 @@ function appRun($rootScope, $location, authService) {
   });
 }
 
-29
