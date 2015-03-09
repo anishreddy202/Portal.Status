@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default" role="navigation" ng-controller="HeaderCtrl as HeaderCtrl">
+  <div class="container-fluid">
+    <div class="navbar-nav-vdms pull-right">
+
+      <div class="nav-right dropdown ui-dropdown">
+        <span ng-show="HeaderCtrl.isLoggedIn()">Hello {{ HeaderCtrl.getCurrentUser().firstName + " " + HeaderCtrl.getCurrentUser().lastName  }}</span>
+        <a  class="dropdown-toggle" data-toggle="dropdown" >
+          <span class="icon-profile"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" >
+          <li><a href="#">Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Lock</a></li>
+          <li class="divider"></li>
+          <!--<li><a href="#">Sign Out</a></li>-->
+          <li ng-hide="HeaderCtrl.isLoggedIn()" ng-class="{active: HeaderCtrl.isActive('/signup')}"><a href="/signup">Sign up</a></li>
+          <li ng-hide="HeaderCtrl.isLoggedIn()" ng-class="{active: HeaderCtrl.isActive('/login')}"><a href="/login">Login</a></li>
+          <li ng-show="HeaderCtrl.isLoggedIn()" ng-class="{active: HeaderCtrl.isActive('/logout')}"><a href="" ng-click="HeaderCtrl.logout()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</nav>

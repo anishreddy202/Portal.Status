@@ -5,8 +5,8 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/ui-dev'
+    uri: 'mongodb://localhost/portal-status'
   },
-
+  mock: true,
   seedDB: true
 };

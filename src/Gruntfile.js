@@ -9,6 +9,9 @@ module.exports = function (grunt) {
     localConfig = {};
   }
 
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-nodestatic');
+
   // Load grunt tasks automatically, when needed
   require('jit-grunt')(grunt, {
     express: 'grunt-express-server',
@@ -470,12 +473,14 @@ module.exports = function (grunt) {
           loadPath: [
             '<%= yeoman.client %>/bower_components',
             '<%= yeoman.client %>/app',
-            '<%= yeoman.client %>/components'
+            '<%= yeoman.client %>/components',
+            'mockHTML/app'
           ],
           compass: false
         },
         files: {
-          '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.scss'
+          '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.scss',
+          'mockHTML/app/app.css' : 'mockHTML/app/app.scss'
         }
       }
     },
@@ -542,6 +547,25 @@ module.exports = function (grunt) {
         }
       }
     },
+    nodestatic: {
+      server: {
+        options: {
+          port: 9001,
+          base: 'mockHTML',
+          keepalive: true
+        }
+      }
+    },
+    sassMock: {
+      dist: {
+        options: {
+          style: 'expanded'
+        },
+        files: {
+          'mockHTML/app/app.css' : 'mockHTML/app/app.scss'
+        }
+      }
+    }
   });
 
   // Used for delaying livereload until after server has restarted
@@ -569,7 +593,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:server',
         'injector',
         'wiredep',
@@ -581,7 +605,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:sass', 
+      'injector:sass',
       'concurrent:server',
       'injector',
       'wiredep',
@@ -611,7 +635,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -624,7 +648,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:test',
         'injector',
         'wiredep',
@@ -642,7 +666,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:sass', 
+    'injector:sass',
     'concurrent:dist',
     'injector',
     'wiredep',
@@ -664,4 +688,10 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('html', 'Start a custom static web server.', function() {
+    grunt.log.writeln('Starting static web server in "mockHTML" on port 9001.');
+    grunt.task.run('sass');
+    grunt.task.run('nodestatic:server');
+  });
 };

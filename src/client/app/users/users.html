@@ -1,0 +1,64 @@
+<header data-ng-include=" 'components/header/header.html'"></header>
+<div class="page list">
+  <!-- Middle Content goes here -->
+  <div class="container-fluid">
+    <div class="row panel">
+      <div class="col-xs-4 col-sm-4 col-md-4">
+        <span class="subhead-name">Users</span>
+      </div>
+
+      <div class=" col-xs-5 col-sm-6 col-md-6">
+        <form class="text-center clearfix" role="search">
+          <div class="input-group">
+            <input class="form-control" ng-model= 'UsersCtrl.searchText' ng-keyup="UsersCtrl.keydown()" placeholder="Search" type="text" >
+            <span class="input-group-addon" ng-click="UsersCtrl.searchUser()">
+              <span class="glyphicon glyphicon-search"></span>
+            </span>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-xs-3 col-sm-2 col-md-2">
+        <button ng-click="UsersCtrl.addNewUser()" class="btn btn-dark pull-right">Add User</button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Displaying {{UsersCtrl.users.length}} of {{UsersCtrl.count}} Users</div>
+
+      <div class="panel-body">
+      </div>
+
+      <!-- Table -->
+      <table class="table">
+        <tbody>
+        <tr ng-repeat="user in UsersCtrl.users" ng-click="UsersCtrl.viewUser(user)">
+          <td>
+            <span class="icon-profile"></span>
+          </td>
+          <td>
+            <!--<span>{{user.firstName}} {{user.lastName}}</span>-->
+            <span>{{user.userName}}</span>
+            <span>User Name</span>
+          </td>
+          <td>
+            <span>{{user.email}}</span>
+            <span>Email Address</span>
+          </td>
+          <td>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div ng-show="UsersCtrl.users.length != UsersCtrl.count" class="row text-center">
+      <a ng-click ="UsersCtrl.nextPage()" class="view-more">View More</a>
+    </div>
+
+  </div>
+
+</div>
+
+
