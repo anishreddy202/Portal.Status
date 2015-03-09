@@ -5,18 +5,22 @@
 <div class="modal-body">
   <div class="row">
     <div>Selected Locations</div>
+    <div class="container">
     <div ng-repeat="loc in StatusCtrl.selectedLocations">
-
-      <span>{{loc.locationName}}</span>
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-          SelectedServices
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-          <li role="presentation" ng-repeat="service in loc.services"><a role="menuitem" tabindex="-1" href="#">{{service.serviceName}}</a></li>
-        </ul>
+        <div class="row">
+          <div class="col-md-1">{{loc.locationName}}</div>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+              SelectedServices
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation" ng-repeat="service in loc.services"><a role="menuitem" tabindex="-1" href="#">{{service.serviceName}}</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
+
 
     </div>
 

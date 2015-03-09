@@ -10,7 +10,8 @@
   function StatusService($http){
 
     var service = {
-      getStatus: getStatus
+      getStatus: getStatus,
+      updateStatus:updateStatus
     };
 
     /******* implementations *********/
@@ -18,6 +19,16 @@
     function getStatus(pageSize,currentpage) {
       return $http({method: 'GET', url: '/api/v1/status' }).
         success(function(data) {
+          console.log(data);
+          return data;
+        }).
+        error();
+    }
+
+    function updateStatus(report) {
+      return $http({method: 'POST', url: '/api/v1/status', data:report }).
+        success(function(data) {
+          console.log(data);
           return data;
         }).
         error();

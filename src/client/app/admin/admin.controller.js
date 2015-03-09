@@ -40,7 +40,6 @@
 
     function selectNetwork(network){
       self.selectedNetwork = network;
-      console.log(self.selectedNetwork);
     }
 
     function toggleCell(data){
@@ -75,7 +74,6 @@
 
     function updateStatus(){
       self.selectedLocations = [];
-      console.log(self.selectedNetwork);
 
       for(var i =0;i< self.selectedNetwork.locations.length;i++){
         var locationObj = {};
@@ -97,8 +95,73 @@
         }
 
       }
-      console.log(self.selectedLocations);
       self.open();
+    }
+
+    function updateNetworkStatus(){
+       for(var i =0;i< self.network.length;i++){
+         if(self.network[i].code == self.selectedNetwork.code ){
+           self.network[i] = self.selectedNetwork;
+         }
+       }
+      var dto = MapNetworkStatusDTO()
+
+      StatusService.updateStatus(dto)
+        .then(function(response) {
+          self.network= [];
+          self.networkModel = [];
+          MapNetworkStatus(response.data)
+          self.selectedNetwork = self.network[0];
+        })
+        .catch();
+
+    }
+
+    function MapNetworkStatusDTO(){
+      var networkStatus = []
+      for(var i =0;i< self.network.length;i++){
+          var network = {};
+          network.code = self.network[i].code;
+          network.name = self.network[i].name.toUpperCase();
+          network.systems = self.network[i].systems;
+          network.services = MapNetworkServicesDTO(self.network[i].services, self.network[i].locations)
+        networkStatus.push(network);
+      }
+
+      return networkStatus
+    }
+
+    function MapNetworkServicesDTO(data,locations){
+      var services = []
+      for(var i =0;i< data.length;i++){
+        var service = {};
+        service.code = data[i].code;
+        service.name = data[i].name.toUpperCase();
+        service.locations = MapNetworkLocationsDTO(locations, service.code);
+        services.push(service);
+      }
+      return services;
+    }
+
+    function MapNetworkLocationsDTO(data, code){
+      var locations = []
+      for(var i =0;i< data.length;i++){
+        var loc = {};
+        loc.code = data[i].code.toUpperCase();
+        loc.name = data[i].name.toUpperCase();
+        loc.region = data[i].region.toUpperCase();
+
+
+        for(var k=0;k< data[i].services.length;k++){
+          if(data[i].services[k].code == code){
+            loc.status = data[i].services[k].status;
+            loc.enabled = data[i].services[k].enabled;
+          }
+        }
+
+        locations.push(loc);
+      }
+      return locations;
     }
 
     function open() {
@@ -107,14 +170,22 @@
         controller: function(){
           this.items = self.statuses;
           this.selectedLocations = self.selectedLocations;
-          console.log(this.selectedLocations);
           this.selectedState = "OK";
           this.changeState = function(data){
             this.selectedState = data;
-          }
+          };
           this.update = function(){
+            for(var i =0;i< self.selectedNetwork.locations.length;i++){
+              for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++){
 
-          }
+                if(self.selectedNetwork.locations[i].services[k].isSelected){
+                  self.selectedNetwork.locations[i].services[k].status = this.selectedState
+                }
+              }
+            }
+            updateNetworkStatus();
+            modalInstance.dismiss('cancel');
+          };
 
           this.status = {
             isopen: false

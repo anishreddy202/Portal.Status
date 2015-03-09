@@ -26,7 +26,7 @@ router.post('/', function(req, res) {
   statusService.setup(config);
   var report = req.body;
 
-  statusService.create(report, function(err, result) {
+  statusService.createReport(report, function(err, result) {
     if (err) {
       res.send(err);
     }
