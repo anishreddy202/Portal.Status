@@ -10,38 +10,42 @@ var StatusService = function(configuration){
 
   self.report = function(done){
 
-    db.connect(config, function(err, db) {
-      if(err) {
-        if(!report) {
-          getDefaultReport();
-        }
+      getDefaultReport();
+      return done(null, report);
 
-        return done(null, report);
-      }
+     //TO DO  
+    // db.connect(config, function(err, db) {
+    //   if(err) {
+    //     if(!report) {
+    //       getDefaultReport();
+    //     }
 
-      db.collectionExists("status", function(err, exists) {
-        if(err || !exists) {
-          if(!report) {
-            getDefaultReport();
-          }
+    //     return done(null, report);
+    //   }
 
-          return done(null, report);
-        }
+    //   db.collectionExists("status", function(err, exists) {
+    //     if(err || !exists) {
+    //       if(!report) {
+    //         getDefaultReport();
+    //       }
 
-        db.status.first({}, function(err, result) {
-          if(err || result === null) {
-            if(!report) {
-              getDefaultReport();
-            }
+    //       return done(null, report);
+    //     }
 
-            return done(null, report);
-          }
+    //     db.status.first({}, function(err, result) {
+    //       if(err || result === null) {
+    //         if(!report) {
+    //           getDefaultReport();
+    //         }
 
-            return done(null, result);
-        });
-      });
+    //         return done(null, report);
+    //       }
 
-    });
+    //         return done(null, result);
+    //     });
+    //   });
+
+    // });
   };
 
   self.createReport = function(report,done){
