@@ -13,8 +13,8 @@
     "angular-ui-router": "~0.2.13",
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
-    "vdms-styles": "git+https://git.edgecastcdn.net/CMSG3/styles.git#~0.0.6",
-    "PatternLibrary": "git+https://git.edgecastcdn.net/CMSG3/cms.PatternLibrary.git#~0.0.10",
+    "vdms-styles": "git+https://github.com/vzdigitalmedia/styles.git#~0.0.6",
+    "PatternLibrary": "git+https://github.com/vzdigitalmedia/cms.PatternLibrary.git#~0.0.10",
     "angular-bootstrap": "~0.12.1"
   },
   "devDependencies": {
