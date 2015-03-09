@@ -1,0 +1,92 @@
+
+/* --- Style --- */
+.navbar-default {
+  border-radius: 0px;
+  border: none;
+  min-height: $header_height;
+  max-height: $header_height;
+  background-color: $cms_hdr_color;
+  box-shadow: darken($cms_hdr_color, 40%) 0px 0px 7px;
+
+  .navbar-nav-vdms {
+
+    .dropdown {
+      margin-top: 10px;
+
+      .profile-name {
+        margin-right: 15px;
+      }
+
+      .dropdown-toggle {
+        cursor: pointer;
+        text-decoration: none;
+        color: darken($cms_hdr_color, 30%);
+
+        > span {
+          margin-top: -5px;
+          padding-left: 15px;
+          vertical-align: top;
+          display: inline-block;
+          font-size: $font-size-large;
+          border-left: 1px solid darken($cms_hdr_color, 15%);
+        }
+
+        &:hover { color: darken($cms_hdr_color, 40%); }
+      }
+
+      .dropdown-menu {
+        margin-top: 6px;
+        margin-right: -15px;
+        padding: 0px;
+        overflow: hidden;
+        border: medium none;
+        border-radius: 0px;
+      }
+
+      &.ui-dropdown{
+        .dropdown-menu {
+          &.dropdown-menu-right {
+            @include prefixer(border-bottom-left-radius, 20px, spec);
+          }
+
+          > li { margin: 0px; }
+          > li a {
+            padding: 10px 15px;
+            background: none repeat scroll 0% 0% $cms_hdr_dd_color;
+            color: lighten($cms_hdr_color, 70%);
+          }
+          > li.divider {
+            height: 2px;
+            background-color: tint($cms_hdr_dd_color, 20%);
+          }
+
+          > li a:hover {
+            background-color: darken($cms_hdr_dd_color, 12%);
+            color: lighten($cms_hdr_color, 90%);
+            @include transition(all $nav-transition_duration ease-in-out);
+          }
+        }
+      }
+    }
+  }
+}
+
+.menu-button {
+  width: 46px;
+  margin-top: -5px;
+  padding: 0px 12px;
+
+  .icon-bar {
+    display: block;
+    width: 22px;
+    height: 4px;
+    border-radius: 1px;
+    background-color: darken($cms_hdr_color, 30%);
+  }
+  .icon-bar + .icon-bar { margin-top: 4px; }
+
+  &:hover {
+    cursor: pointer;
+    .icon-bar { background-color: darken($cms_hdr_color, 40%); }
+  }
+}

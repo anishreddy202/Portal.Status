@@ -1,0 +1,206 @@
+// When true, asset path helpers are used, otherwise the regular CSS `url()` is used.
+// When there no function is defined, `fn('')` is parsed as string that equals the right hand side
+// NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
+//$bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
+
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+
+// Medium screen / desktop
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+
+// Large screen / wide desktop
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+//== Colors
+//
+$black:                 #000000;
+$tundora:               #4A4244;
+$silver-chalice:        #ACACAC;
+$white:                 #ffffff;
+
+
+//## Verizon Style Guide Colors.
+$vz-red:                #ED1C24;  // rgba(237,28,36,1)    hsla(358,85%,52%,1)   #ED1C24  **PRIMARY
+$vz-dark-gray:          #585A5D;  // rgba(88,90,93,1)     hsla(216,3%,35%,1)    #585A5D  **SECONDARY
+$vz-light-gray:         #D2D3D4;  // rgba(210,211,212)    hsla(210,2%,83%,1)    #D2D3D4  **SECONDARY
+$vz-white:              #FFFFFF;  // rgba(0,0,0,1)        hsla(0,0%,0%,1)       #FFFFFF  **SECONDARY
+$vz-neptune:            #73B9B0;  // rgba(115,185,176,1)  hsla(172,33%,59%,1)   #73B9B0  **TERTIARY
+$vz-white-lilac:        #EEF1F9;  // rgba(238,241,249,1)  hsla(224,48%,95%,1)   #EEF1F9  **TERTIARY
+$vz-yellow:             #FADF4C;  // rgba(250,223,75,1)   hsla(51,95%,64%,1)    #FADF4C  **TERTIARY
+$vz-green:              #4A9A4D;  // rgba(74,154,77,1)    hsla(122,35%,45%,1)   #4A9A4D  **TERTIARY
+$vz-blue:               #3B73B0;  // rgba(59,115,176,1)   hsla(211,50%,46%,1)   #3B73B0  **TERTIARY
+$vz-roti:               #C49F39;  // rgba(196,159,57,1)   hsla(44,55%,50%,1)    #C49F39  **TERTIARY
+$vz-dusty-gray:         #9F9797;  // rgba(159,151,151)    hsla(0,4%,61%,1)      #9F9797  **TERTIARY
+$vz-hopbush:            #92669F;  // rgba(210,102,159)    hsla(328,55%,61%)     #92669F  **TERTIARY
+$vz-vivid-violet:       #7F3483;  // rgba(127,52,131)     hsla(297,43%,36%)     #7F3483  **TERTIARY
+$vz-boston-blue:        #3195A9;  // rgba(49,149,169)     hsla(190,55%,43%)     #3195A9  **TERTIARY
+
+
+//## Bootstrap Branding Colors.
+$brand-primary:         #428BCA;  // rgba(66,139,201,1)   hsla(208,56%,53%,1)   #428BCA
+$brand-success:         #5CB85C;  // rgba(92,184,92,1)    hsla(120,39%,54%,1)   #5CB85C
+$brand-info:            #5BC0DE;  // rgba(91,192,222,1)   hsla(194,66%,61%,1)   #5BC0DE
+$brand-warning:         #F0AD4E;  // rgba(240,173,73,1)   hsla(35,84%,62%,1)    #F0AD4E
+$brand-danger:          #D9534F;  // rgba(217,83,79,1)    hsla(2,64%,58%,1)     #D9534F
+
+
+$gray-darker:   $tundora;
+$gray-dark:     $tundora;
+$gray:          $vz-dark-gray;
+$gray-light:    $silver-chalice;
+$gray-bg:       $vz-light-gray;
+$gray-lighter:  $vz-light-gray;
+
+
+//** Background color for `<body>`.
+$body-bg:               $white;
+$main_container_bg:     darken($white, 8%);
+//** Global text color on `<body>`.
+$text-color:            lighten($black, 15%);
+
+// ** Header Color
+$cms_hdr_color: $vz-light-gray;
+//$cms_hdr_color: #A9B2C3;
+//$cms_hdr_dd_color: #E97451;
+$cms_hdr_dd_color: adjust-color($vz-red, $saturation:-14%, $lightness:-5%);
+
+
+
+$divider-default-bg:              #f6f6f6; // also: pagination bg
+$divider-default-border:          darken(adjust-hue($divider-default-bg, -10), 5%); // #E9E9E9
+$divider-default-border-light:    tint($divider-default-bg, 15%); // #f7f7f7;
+
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+$font-path:               "../fonts" !default;
+$font-family-vz:          "Apex", Arial, sans-serif !default;
+
+$font-family-sans-serif:  "Open Sans", "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+
+$font-size-base:          14px !default;
+$font-size-large:         ceil(($font-size-base * 1.45)) !default; // ~21px
+$font-size-medium:        ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$font-size-h1:            floor(($font-size-base * 2.6)) !default; // ~36px
+$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.7)) !default; // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-h5:            $font-size-base !default;
+$font-size-h6:            ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$font-size-60:            ceil(($font-size-base * 4.28)) !default; // ~60px
+$font-size-140:           ceil(($font-size-base * 10)) !default; // ~140px
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-font-weight:                normal !default;
+
+$btn-default-color:              #333 !default;
+$btn-default-bg:                 #fff !default;
+$btn-default-border:             #ccc !default;
+
+$btn-primary-color:              #fff !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
+
+$btn-success-color:              #fff !default;
+$btn-success-bg:                 $brand-success !default;
+$btn-success-border:             darken($btn-success-bg, 5%) !default;
+
+$btn-info-color:                 #fff !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border:                darken($btn-info-bg, 5%) !default;
+
+$btn-warning-color:              #fff !default;
+$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-border:             darken($btn-warning-bg, 5%) !default;
+
+$btn-danger-color:               #fff !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border:              darken($btn-danger-bg, 5%) !default;
+
+$btn-dark-color:                 #fff !default;
+$btn-dark-bg:                    $gray-dark !default;
+$btn-dark-border:                darken($btn-dark-bg, 5%) !default;
+
+$btn-gray-color:                 #fff !default;
+$btn-gray-bg:                    $silver-chalice !default;
+$btn-gray-border:                darken($btn-gray-bg, 5%) !default;
+
+$btn-link-disabled-color:        $gray-light !default;
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+
+
+//** Global textual link color.
+$link-color:            $brand-primary;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%);
+//** Link hover decoration.
+$link-hover-decoration: underline;
+
+
+// Layout
+$screen-sm-max:         ($screen-sm - 1);
+
+// Top header
+$header_height:               40px;           //**
+
+
+// Sidebar
+$nav-transition_duration: .25s;
+
+$light_bg_link_hover_bg:             transparent; //#f6f6f6;
+$light_bg_link_hover_color:          $brand-primary;
+$light_bg_link_active_bg:            #f6f6f6;
+$light_bg_link_active_color:         $brand-primary;
+$light_bg_link_open_bg:              $light_bg_link_active_bg;      // vertical nav only
+$light_bg_link_open_color:           $light_bg_link_active_color;   // vertical nav only
+$light_bg_sub_nav_bg:                $light_bg_link_active_bg;
+$light_bg_sub_link_active_color:     $brand-primary;
+
+$dark_bg_link_hover_bg:              transparent;
+$dark_bg_link_hover_color:           rgba(255,255,255,.8);
+$dark_bg_link_active_bg:             darken($gray, 3%);
+$dark_bg_link_active_color:          rgba(255,255,255,.8);
+$dark_bg_link_open_bg:               $dark_bg_link_active_bg;      // vertical nav only
+$dark_bg_link_open_color:            $dark_bg_link_active_color;   // vertical nav only
+$dark_bg_sub_nav_bg:                 $dark_bg_link_active_bg;
+$dark_bg_sub_link_active_color:      $dark_bg_link_active_color;
+
+
+// Components
+$border-radius-base:        2px !default;
+$border-radius-large:       3px !default;
+$border-radius-small:       2px !default;
+

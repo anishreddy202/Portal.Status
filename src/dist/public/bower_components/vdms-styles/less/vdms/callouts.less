@@ -1,0 +1,63 @@
+/*
+ * Callouts
+ *
+ * Not quite alerts, but custom and helpful notes for folks reading the docs.
+ * Requires a base and modifier class.
+ */
+
+.callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid @callout-border-color;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+.callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.callout p:last-child {
+  margin-bottom: 0;
+}
+.callout code {
+  border-radius: 3px;
+}
+.callout+.callout {
+  margin-top: -5px;
+}
+.callout-default {
+  border-left-color: @callout-default-color;
+}
+.callout-default h4 {
+  color: @callout-default-color;
+}
+.callout-primary {
+  border-left-color: @brand-primary;
+}
+.callout-primary h4 {
+  color: @brand-primary;
+}
+.callout-success {
+  border-left-color: @brand-success;
+}
+.callout-success h4 {
+  color: @brand-success;
+}
+.callout-danger {
+  border-left-color: @brand-danger;
+}
+.callout-danger h4 {
+  color: @brand-danger;
+}
+.callout-warning {
+  border-left-color: @brand-warning;
+}
+.callout-warning h4 {
+  color: @brand-warning;
+}
+.callout-info {
+  border-left-color: @brand-info;
+}
+.callout-info h4 {
+  color: @brand-info;
+}

@@ -1,0 +1,36 @@
+// pull-in
+.pull-in {
+  margin: 0 -15px;
+}
+
+// divider
+.divider {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  &.divider-dashed {
+    border: 1px dashed $divider-default-border;
+  }
+  &.divider-dotted {
+    border: 1px dotted $divider-default-border;
+  }
+}
+.divider-sm {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.divider-lg {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.divider-xl {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.space {
+    display: inline;
+    padding: 5px;
+}
+.space-md { padding: 15px; }
+.space-lg { padding: 25px; }

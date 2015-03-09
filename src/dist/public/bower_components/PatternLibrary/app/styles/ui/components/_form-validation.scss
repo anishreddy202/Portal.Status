@@ -1,0 +1,33 @@
+// form validation
+.form-validation{
+    .ng-pristine {} // When it is first initialized
+    .ng-dirty {} // When the view changes
+    .ng-valid.ng-dirty {
+        border-color: $brand-success;
+    }
+    .ng-invalid.ng-dirty {
+        border-color: $brand-danger;
+    }
+  .has-feedback label ~ .form-control-feedback {
+    top: 25px;
+  }
+
+  .form-group.has-feedback{
+    div {
+      div {
+        .form-control-feedback {
+          right: 15px;
+        }
+      }
+    }
+  }
+
+  div.row {
+    div.has-feedback{
+      .form-control-feedback {
+        right: 15px;
+      }
+    }
+  }
+
+}
