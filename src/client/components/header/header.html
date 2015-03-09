@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation" ng-controller="HeaderCtrl as HeaderCtrl">
   <div class="container-fluid">
-
     <div class="navbar-nav-vdms pull-right">
+
       <div class="nav-right dropdown ui-dropdown">
         <span ng-show="HeaderCtrl.isLoggedIn()">Hello {{ HeaderCtrl.getCurrentUser().firstName + " " + HeaderCtrl.getCurrentUser().lastName  }}</span>
         <a  class="dropdown-toggle" data-toggle="dropdown" >

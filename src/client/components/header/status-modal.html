@@ -1,0 +1,84 @@
+<form name="UsersCtrl.form" class="form-validation" novalidate>
+<div class="modal-header">
+  <h3>User Details<a ng-click="UsersCtrl.cancel()" class="icon-close pull-right"></a></h3>
+</div>
+<div class="modal-body">
+    <div class="form-group"
+         data-ng-class="{'has-error': UsersCtrl.form.username.$invalid && UsersCtrl.form.username.$dirty,
+                          'has-success': !UsersCtrl.form.username.$invalid,
+                          'has-feedback': (UsersCtrl.form.username.$invalid && UsersCtrl.form.username.$dirty) || !UsersCtrl.form.username.$invalid}">
+      <label>User Name:</label>
+      <input type="text" name="username" placeholder="username" class="form-control" required
+             data-ng-model="UsersCtrl.selectedUser.userName" data-ng-readonly="!UsersCtrl.newUser">
+            <span class="form-control-feedback"
+                  data-ng-class="{'icon-check': !UsersCtrl.form.username.$invalid,
+                             'icon-error': UsersCtrl.form.username.$invalid && UsersCtrl.form.username.$dirty}"
+                  data-ng-show="!UsersCtrl.form.username.$pristine"></span>
+      <p class="help-block error" data-ng-show="UsersCtrl.form.username.$invalid && !UsersCtrl.form.username.$pristine">UserName is required.</p>
+    </div>
+    <div class="form-group"
+         data-ng-class="{'has-error': UsersCtrl.form.email.$invalid && UsersCtrl.form.email.$dirty,
+                            'has-success': !UsersCtrl.form.email.$invalid,
+                            'has-feedback': (UsersCtrl.form.email.$invalid && UsersCtrl.form.email.$dirty) || !UsersCtrl.form.email.$invalid}">
+      <label>Email:</label>
+      <input type="email" name="email" placeholder="email" class="form-control" required
+             data-ng-model="UsersCtrl.selectedUser.email">
+              <span class="form-control-feedback"
+                    data-ng-class="{'icon-check': !UsersCtrl.form.email.$invalid,
+                               'icon-error': UsersCtrl.form.email.$invalid && UsersCtrl.form.email.$dirty}"
+                    data-ng-show="!UsersCtrl.form.email.$pristine"></span>
+      <p class="help-block error" data-ng-show="UsersCtrl.form.email.$invalid && !UsersCtrl.form.email.$pristine">Email is required.</p>
+    </div>
+    <div class="form-group" data-ng-if="UsersCtrl.newUser"
+         data-ng-class="{'has-error': UsersCtrl.form.password.$invalid && UsersCtrl.form.password.$dirty,
+                            'has-success': !UsersCtrl.form.password.$invalid,
+                            'has-feedback': (UsersCtrl.form.password.$invalid && UsersCtrl.form.password.$dirty) || !UsersCtrl.form.password.$invalid}">
+      <label>Password:</label>
+      <input type="text" name="password" placeholder="password" class="form-control" required
+             data-ng-model="UsersCtrl.selectedUser.password">
+              <span class="form-control-feedback"
+                    data-ng-class="{'icon-check': !UsersCtrl.form.password.$invalid,
+                               'icon-error': UsersCtrl.form.password.$invalid && UsersCtrl.form.password.$dirty}"
+                    data-ng-show="!UsersCtrl.form.password.$pristine"></span>
+      <p class="help-block error" data-ng-show="UsersCtrl.form.password.$invalid && !UsersCtrl.form.password.$pristine">Password is required.</p>
+    </div>
+  <div class="form-group"
+       data-ng-class="{'has-error': UsersCtrl.form.firstName.$invalid && UsersCtrl.form.firstName.$dirty,
+                            'has-success': !UsersCtrl.form.firstName.$invalid && UsersCtrl.form.firstName.$dirty,
+                            'has-feedback': (UsersCtrl.form.firstName.$invalid && UsersCtrl.form.firstName.$dirty) || !UsersCtrl.form.firstName.$invalid}">
+    <label>First Name:</label>
+    <input type="text" name="firstName" placeholder="firstName" class="form-control"
+           data-ng-model="UsersCtrl.selectedUser.firstName">
+              <span class="form-control-feedback"
+                    data-ng-class="{'icon-check': !UsersCtrl.form.firstName.$invalid && UsersCtrl.form.firstName.$dirty,
+                               'icon-error': UsersCtrl.form.firstName.$invalid && UsersCtrl.form.firstName.$dirty}"
+                    data-ng-show="!UsersCtrl.form.firstName.$pristine"></span>
+    <p class="help-block error" data-ng-show="UsersCtrl.form.firstName.$invalid && !UsersCtrl.form.firstName.$pristine">First Name is required.</p>
+  </div>
+  <div class="form-group"
+       data-ng-class="{'has-error': UsersCtrl.form.lastName.$invalid && UsersCtrl.form.lastName.$dirty,
+                            'has-success': !UsersCtrl.form.lastName.$invalid && UsersCtrl.form.lastName.$dirty,
+                            'has-feedback': (UsersCtrl.form.lastName.$invalid && UsersCtrl.form.lastName.$dirty) || !UsersCtrl.form.lastName.$invalid}">
+    <label>Last Name:</label>
+    <input type="text" name="lastName" placeholder="lastName" class="form-control"
+           data-ng-model="UsersCtrl.selectedUser.lastName">
+              <span class="form-control-feedback"
+                    data-ng-class="{'icon-check': !UsersCtrl.form.lastName.$invalid && UsersCtrl.form.lastName.$dirty,
+                               'icon-error': UsersCtrl.form.lastName.$invalid && UsersCtrl.form.lastName.$dirty}"
+                    data-ng-show="!UsersCtrl.form.lastName.$pristine"></span>
+    <p class="help-block error" data-ng-show="UsersCtrl.form.lastName.$invalid && !UsersCtrl.form.lastName.$pristine">Last Name is required.</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="btn-group btn-group-justified">
+    <a ng-show="!UsersCtrl.loggedInUser && !UsersCtrl.newUser" ng-click="UsersCtrl.delete()" class="btn btn-inverseX label-default" role="button">
+      <span class="icon-trash"></span>
+      Delete User
+    </a>
+    <a ng-click="UsersCtrl.save()" class="btn btn-danger" data-ng-disabled="UsersCtrl.form.$invalid" role="button">
+      <span class="icon-save"></span>
+      Save
+    </a>
+  </div>
+</div>
+</form>

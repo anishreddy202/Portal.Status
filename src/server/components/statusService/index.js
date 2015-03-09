@@ -16,6 +16,12 @@ var StatusService = function() {
     });
   };
 
+  self.createReport = function(report,done) {
+    service.createReport(report,function(err, result) {
+      done(err, result);
+    });
+  };
+
   return self;
 };
 

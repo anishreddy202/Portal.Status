@@ -1,6 +1,7 @@
 'use strict';
 var db = require("mongoDAL");
 var Verror = require("verror");
+var Validator = require('../lib/validator');
 
 var StatusService = function(configuration){
   var self = this;
@@ -40,6 +41,37 @@ var StatusService = function(configuration){
         });
       });
 
+    });
+  };
+
+  self.createReport = function(report,done){
+
+    var validator = new Validator();
+    validator.validate(data.report, function(err, result){
+        if(err){
+          return done(err, null);
+        }
+
+        db.connect(config, function(err, db) {
+          if(err) {
+            return done(err, null);
+          }
+
+          db.collectionExists("status", function(err, exists) {
+            if(err || !exists) {
+              return done(err, null);
+            }
+
+            db.status.saveData(result, function(err, result) {
+              if(err) {
+                return done(err, null);
+              }
+
+              return done(null, result);
+            });
+          });
+
+        });
     });
   };
 

@@ -6,7 +6,7 @@
  */
 
 'use strict';
-var express = require('express'); 
+var express = require('express');
 var router = express.Router();
 var config = require('../../config/environment');
 var statusService = require('../../components/statusService');
@@ -21,6 +21,19 @@ router.get('/', function(req, res) {
     res.json(result.report);
   });
 });
+
+router.post('/', function(req, res) {
+  statusService.setup(config);
+  var report = req.body;
+
+  statusService.create(report, function(err, result) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(result);
+  });
+});
+
 
 
 module.exports = router;

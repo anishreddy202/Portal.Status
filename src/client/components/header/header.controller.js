@@ -5,9 +5,9 @@
     .module('uiApp')
     .controller('HeaderCtrl', HeaderCtrl);
 
-  HeaderCtrl.$inject = ['$location','authService'];
+  HeaderCtrl.$inject = ['$location','authService','$modal'];
 
-  function HeaderCtrl ($location, authService) {
+  function HeaderCtrl ($location, authService,modal) {
     var self = this;
 
     self.isCollapsed = true;
@@ -17,6 +17,7 @@
     self.logout = logout;
     self.isActive = isActive;
     self.sideNavToggle = sideNavToggle;
+    self.updateStatus = updateStatus;
 
     function logout() {
       if(self.isCollapsed){
@@ -42,6 +43,16 @@
       }
 
       $('#wrapper').toggleClass('sidebar-toggle');
+    }
+
+    function updateStatus(){
+      self.open();
+    }
+
+    function open() {
+      var modalInstance = modal.open({
+        templateUrl: 'components/header/status-modal.html'
+      });
     }
   }
 
