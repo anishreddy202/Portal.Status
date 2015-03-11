@@ -32,15 +32,13 @@ var StatusService = function(configuration){
          }
 
          db.status.last({}, function(err, result) {
-           if(err || result === null) {
+           if(err === null && result === undefined) {
              if(!report) {
                getDefaultReport();
              }
-
              return done(null, report);
            }
-
-             return done(null, result);
+           return done(null, result);
          });
        });
 
@@ -89,6 +87,30 @@ var StatusService = function(configuration){
     //    });
     //});
   };
+
+  self.createNews = function(news,done){
+    db.news.saveData(news, function(err, result) {
+      if(err) {
+        return done(err, null);
+      }
+
+      return done(null, result);
+    });
+
+  };
+
+
+  self.getNews = function(done){
+    db.news.query({}, function(err, result) {
+      if(err) {
+        return done(err, null);
+      }
+
+      return done(null, result);
+    });
+
+  };
+
 
   var getDefaultReport = function() {
     try {

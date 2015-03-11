@@ -6,14 +6,16 @@
     .controller('AdminCtrl', AdminFn);
 
 
-  AdminFn.$inject = ['StatusService','StatusModel','$rootScope','$modal'];
+  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location'];
 
-  function AdminFn(StatusService,StatusModel,$rootScope,modal) {
+  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location) {
     var self = this;
 
+    var original =[]
     self.network= [];
     self.networkModel = [];
     self.selectedNetwork;
+    self.news=[];
 
     self.statuses = ["OK","ERR","MNT","DGR"];
 
@@ -25,15 +27,24 @@
     self.toggleRow = toggleRow;
     self.updateStatus = updateStatus;
     self.open = open;
+    self.gotoNews = gotoNews;
+
 
     init();
 
     function init(){
       StatusService.getStatus()
         .then(function(response) {
+          original = response.data;
           MapNetworkStatus(response.data)
           self.selectedNetwork = self.network[0];
           $rootScope.network = self.network;
+        })
+        .catch();
+
+      StatusService.getNews()
+        .then(function(response) {
+          self.news = response.data;
         })
         .catch();
     }
@@ -47,19 +58,46 @@
       $rootScope.selectedNetwork = data;
     }
 
+    function gotoNews(){
+
+      var newHash = 'news';
+      if ($location.hash() !== newHash) {
+        // set the $location.hash to `newHash` and
+        // $anchorScroll will automatically scroll to it
+        $location.hash('news');
+      } else {
+        // call $anchorScroll() explicitly,
+        // since $location.hash hasn't changed
+        $anchorScroll();
+      }
+
+    }
+
     function toggleColumn(data){
+      if(data.isSelected){
+        data.isSelected = false;
+      }
+      else{
+        data.isSelected = true;
+      }
       for(var i =0;i< self.selectedNetwork.locations.length;i++){
         for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++) {
           if(data.code === self.selectedNetwork.locations[i].services[k].code){
-            self.selectedNetwork.locations[i].services[k].isSelected = !self.selectedNetwork.locations[i].services[k].isSelected
+            self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
           }
         }
       }
     }
 
     function toggleRow(data){
+      if(data.isSelected){
+        data.isSelected = false;
+      }
+      else{
+        data.isSelected = true;
+      }
       for(var i =0;i< data.services.length;i++){
-        data.services[i].isSelected = !data.services[i].isSelected
+        data.services[i].isSelected = data.isSelected;
       }
     }
 
@@ -95,73 +133,46 @@
         }
 
       }
-      self.open();
+        self.open();
     }
 
-    function updateNetworkStatus(){
-       for(var i =0;i< self.network.length;i++){
-         if(self.network[i].code == self.selectedNetwork.code ){
-           self.network[i] = self.selectedNetwork;
-         }
-       }
-      var dto = MapNetworkStatusDTO()
+    function updateNetworkStatus(news){
 
-      StatusService.updateStatus(dto)
+      var dto = new AdminDTOModel.network(self.selectedNetwork);
+
+      angular.forEach(original, function(item, i){
+        if(item.code == dto.code ){
+          original[i] = dto;
+        }
+      });
+
+      StatusService.updateStatus(original)
         .then(function(response) {
           self.network= [];
           self.networkModel = [];
           MapNetworkStatus(response.data)
-          self.selectedNetwork = self.network[0];
+
+          angular.forEach(self.network, function(item, i){
+            if(item.code == self.selectedNetwork.code ){
+              self.selectedNetwork = item;
+            }
+          });
+
+          createNews(news)
+
         })
         .catch();
 
     }
 
-    function MapNetworkStatusDTO(){
-      var networkStatus = []
-      for(var i =0;i< self.network.length;i++){
-          var network = {};
-          network.code = self.network[i].code;
-          network.name = self.network[i].name.toUpperCase();
-          network.systems = self.network[i].systems;
-          network.services = MapNetworkServicesDTO(self.network[i].services, self.network[i].locations)
-        networkStatus.push(network);
-      }
 
-      return networkStatus
-    }
-
-    function MapNetworkServicesDTO(data,locations){
-      var services = []
-      for(var i =0;i< data.length;i++){
-        var service = {};
-        service.code = data[i].code;
-        service.name = data[i].name.toUpperCase();
-        service.locations = MapNetworkLocationsDTO(locations, service.code);
-        services.push(service);
-      }
-      return services;
-    }
-
-    function MapNetworkLocationsDTO(data, code){
-      var locations = []
-      for(var i =0;i< data.length;i++){
-        var loc = {};
-        loc.code = data[i].code.toUpperCase();
-        loc.name = data[i].name.toUpperCase();
-        loc.region = data[i].region.toUpperCase();
+    function createNews (news) {
+      StatusService.createNews(news)
+        .then(function(response) {
 
 
-        for(var k=0;k< data[i].services.length;k++){
-          if(data[i].services[k].code == code){
-            loc.status = data[i].services[k].status;
-            loc.enabled = data[i].services[k].enabled;
-          }
-        }
-
-        locations.push(loc);
-      }
-      return locations;
+        })
+        .catch();
     }
 
     function open() {
@@ -171,6 +182,7 @@
           this.items = self.statuses;
           this.selectedLocations = self.selectedLocations;
           this.selectedState = "OK";
+          this.comment;
           this.changeState = function(data){
             this.selectedState = data;
           };
@@ -183,7 +195,14 @@
                 }
               }
             }
-            updateNetworkStatus();
+
+            var news ={};
+
+            news.status = this.selectedState;
+            news.comment = this.comment;
+            news.locations = this.selectedLocations;
+
+            updateNetworkStatus(news);
             modalInstance.dismiss('cancel');
           };
 

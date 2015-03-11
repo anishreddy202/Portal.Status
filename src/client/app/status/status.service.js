@@ -11,7 +11,9 @@
 
     var service = {
       getStatus: getStatus,
-      updateStatus:updateStatus
+      updateStatus:updateStatus,
+      createNews: createNews,
+      getNews: getNews
     };
 
     /******* implementations *********/
@@ -19,7 +21,6 @@
     function getStatus(pageSize,currentpage) {
       return $http({method: 'GET', url: '/api/v1/status' }).
         success(function(data) {
-          console.log(data);
           return data;
         }).
         error();
@@ -28,7 +29,22 @@
     function updateStatus(report) {
       return $http({method: 'POST', url: '/api/v1/status', data:report }).
         success(function(data) {
-          console.log(data);
+          return data;
+        }).
+        error();
+    }
+
+    function createNews(news) {
+      return $http({method: 'POST', url: '/api/v1/status/news', data:news }).
+        success(function(data) {
+          return data;
+        }).
+        error();
+    }
+
+    function getNews() {
+      return $http({method: 'GET', url: '/api/v1/status/news' }).
+        success(function(data) {
           return data;
         }).
         error();

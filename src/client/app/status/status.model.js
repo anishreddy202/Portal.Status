@@ -42,6 +42,7 @@
       this.name = data.name.toLowerCase();
       this.region =data.region.toLowerCase();
       this.code = data.code.toLowerCase();
+      this.isSelected = false;
       this.services =[]
 
       return self;
