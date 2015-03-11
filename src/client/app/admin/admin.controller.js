@@ -28,6 +28,12 @@
     self.updateStatus = updateStatus;
     self.open = open;
     self.gotoNews = gotoNews;
+    self.enableService = enableService;
+    self.popsModal = popsModal;
+    self.servicesModal = servicesModal;
+    self.openEnableService = openEnableService;
+    self.openPopsModal = openPopsModal;
+    self.openServicesModal=openServicesModal;
 
 
     init();
@@ -54,23 +60,10 @@
     }
 
     function toggleCell(data){
-      data.isSelected = !data.isSelected;
-      $rootScope.selectedNetwork = data;
-    }
-
-    function gotoNews(){
-
-      var newHash = 'news';
-      if ($location.hash() !== newHash) {
-        // set the $location.hash to `newHash` and
-        // $anchorScroll will automatically scroll to it
-        $location.hash('news');
-      } else {
-        // call $anchorScroll() explicitly,
-        // since $location.hash hasn't changed
-        $anchorScroll();
+      if(data.enabled) {
+        data.isSelected = !data.isSelected;
+        $rootScope.selectedNetwork = data;
       }
-
     }
 
     function toggleColumn(data){
@@ -83,13 +76,16 @@
       for(var i =0;i< self.selectedNetwork.locations.length;i++){
         for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++) {
           if(data.code === self.selectedNetwork.locations[i].services[k].code){
-            self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
+            if(self.selectedNetwork.locations[i].services[k].enabled) {
+              self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
+            }
           }
         }
       }
     }
 
     function toggleRow(data){
+      console.log(data);
       if(data.isSelected){
         data.isSelected = false;
       }
@@ -97,8 +93,31 @@
         data.isSelected = true;
       }
       for(var i =0;i< data.services.length;i++){
-        data.services[i].isSelected = data.isSelected;
+        if(data.services[i].enabled) {
+          data.services[i].isSelected = data.isSelected;
+        }
       }
+    }
+
+    function gotoNews(){
+      var newHash = 'news';
+      if ($location.hash() !== newHash) {
+        $location.hash('news');
+      } else {
+        $anchorScroll();
+      }
+    }
+
+    function enableService(){
+      self.openEnableService();
+    }
+
+    function popsModal(){
+      self.openPopsModal();
+    }
+
+    function servicesModal(){
+      self.openServicesModal();
     }
 
     /**private functions **/
@@ -158,7 +177,8 @@
             }
           });
 
-          createNews(news)
+          if(news != null)
+            createNews(news)
 
         })
         .catch();
@@ -220,24 +240,67 @@
             $scope.status.isopen = !$scope.status.isopen;
           };
 
-          //this.loggedInUser = self.loggedInUser;
-          //this.newUser = self.newUser;
-
-          //this.cancel = function(){
-          //  modalInstance.dismiss('cancel');
-          //};
-          //this.save = function(){
-          //  self.selectedUser = this.selectedUser;
-          //  self.saveUser();
-          //  modalInstance.dismiss('cancel');
-          //};
-          //this.delete = function(){
-          //  self.selectedUser = this.selectedUser;
-          //  self.deleteUser();
-          //  modalInstance.dismiss('cancel');
-          //};
         },
         controllerAs: 'StatusCtrl'
+      });
+    }
+
+    function openEnableService() {
+      var modalInstance2 = modal.open({
+        templateUrl: 'app/admin/enableservice-modal.html',
+        controller: function(){
+          var defaultLocation = {};
+          defaultLocation.name = "Select Location"
+          this.enableService = true;
+          this.enableOptions = [true,false];
+          this.enable = function(data){
+            this.enableService = data;
+          };
+          this.services = self.selectedNetwork.services;
+          this.locations = self.selectedNetwork.locations;
+          this.selectedLocation = defaultLocation;
+          this.selectedService = {name:"Select Service"};
+          this.selectLocation = function(data){
+            this.selectedLocation = data;
+          };
+          this.selectService = function(data){
+            this.selectedService = data;
+          };
+          this.update = function(){
+            for(var i =0;i< self.selectedNetwork.locations.length;i++){
+              if(self.selectedNetwork.locations[i].code == this.selectedLocation.code) {
+                for (var k = 0; k < self.selectedNetwork.locations[i].services.length; k++) {
+
+                  if (self.selectedNetwork.locations[i].services[k].code == this.selectedService.code) {
+                    self.selectedNetwork.locations[i].services[k].enabled = this.enableService
+                  }
+                }
+              }
+            };
+            updateNetworkStatus(null);
+            modalInstance2.dismiss('cancel');
+          };
+
+        },
+        controllerAs: 'vm'
+      });
+    }
+
+    function openPopsModal() {
+      var modalInstance = modal.open({
+        templateUrl: 'app/admin/pops-modal.html',
+        controller: function(){
+        },
+        controllerAs: 'vm'
+      });
+    }
+
+    function openServicesModal() {
+      var modalInstance3 = modal.open({
+        templateUrl: 'app/admin/services-modal.html',
+        controller: function(){
+        },
+        controllerAs: 'vm'
       });
     }
 

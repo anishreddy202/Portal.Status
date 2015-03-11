@@ -1,6 +1,11 @@
 <header data-ng-include=" 'components/header/header.html'"></header>
-<div class="outer-wrap">
+<div class="row">
+  <div class="container">
     <div class="btn btn-primary" ng-click="vm.updateStatus()">Update Status</div>
+    <div class="btn btn-primary" ng-click="vm.popsModal()">POPS</div>
+    <div class="btn btn-primary" ng-click="vm.servicesModal()">Services</div>
+    <div class="btn btn-primary" ng-click="vm.enableService()">Enable Service</div>
+  </div>
 </div>
 <div class="outer-wrap">
   <div class="content-wrapper">

@@ -1,0 +1,62 @@
+<form name="StatusCtrl.form" class="form-validation" novalidate>
+  <div class="modal-header">
+    <h3>Enable Service</h3>
+  </div>
+  <div class="modal-body">
+    <!--<div class="form-group">-->
+      <!--<div ng-repeat="loc in StatusCtrl.selectedLocations">-->
+        <!--<div class="col-md-3">{{loc.locationName}}</div>-->
+        <!--<div class="dropdown">-->
+          <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">-->
+            <!--SelectedServices-->
+            <!--<span class="caret"></span>-->
+          <!--</button>-->
+          <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">-->
+            <!--<li role="presentation" ng-repeat="service in loc.services"><a role="menuitem" tabindex="-1" href="#">{{service.serviceName}}</a></li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="form-group">
+      <label class="col-md-3">Select Service</label>
+      <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+          {{vm.selectedService.name }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="service in vm.services" ng-click="vm.selectService(service)"><a>{{service.name}}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-3">Select Location</label>
+      <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+          {{vm.selectedLocation.name }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="loc in vm.locations" ng-click="vm.selectLocation(loc)"><a>{{loc.name}} {{loc.code}}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-3">Enable Service</label>
+      <div class="btn-group" dropdown is-open="StatusCtrl.status.isopen">
+        <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+          {{vm.enableService }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="option in vm.enableOptions" ng-click="vm.enable(option)"><a>{{option}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="btn-group btn-group-justified">
+      <a ng-click="vm.update()" class="btn btn-danger" role="button">
+        <span class="icon-save"></span>
+        Save
+      </a>
+    </div>
+  </div>
+</form>
