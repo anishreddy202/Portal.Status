@@ -55,4 +55,3 @@ function appRun($rootScope, $location, authService) {
     });
   });
 }
-

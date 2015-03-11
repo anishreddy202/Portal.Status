@@ -4,7 +4,8 @@
 </div>
 <div class="modal-body">
   <div class="row">
-    <div>Selected Locations</div>
+    <div ng-if="StatusCtrl.selectedLocations.length != 0">Selected Locations</div>
+    <div ng-if="StatusCtrl.selectedLocations.length == 0">No Location Selected</div>
     <div class="container">
     <div ng-repeat="loc in StatusCtrl.selectedLocations">
         <div class="row">
@@ -20,12 +21,10 @@
           </div>
         </div>
       </div>
-
-
     </div>
 
   </div>
-  <div class="btn-group" dropdown is-open="StatusCtrl.status.isopen">
+  <div class="btn-group" dropdown is-open="StatusCtrl.status.isopen" ng-if="StatusCtrl.selectedLocations.length != 0">
     <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
       {{StatusCtrl.selectedState }} <span class="caret"></span>
     </button>
@@ -35,8 +34,7 @@
   </div>
 </div>
 <div class="modal-footer">
-  <div class="btn-group btn-group-justified">
-
+  <div class="btn-group btn-group-justified" ng-if="StatusCtrl.selectedLocations.length != 0">
     <a ng-click="StatusCtrl.update()" class="btn btn-danger" role="button">
       <span class="icon-save"></span>
       Save

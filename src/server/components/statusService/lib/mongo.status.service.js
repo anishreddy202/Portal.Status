@@ -32,15 +32,13 @@ var StatusService = function(configuration){
          }
 
          db.status.last({}, function(err, result) {
-           if(err || result === null) {
+           if(err === null && result === undefined) {
              if(!report) {
                getDefaultReport();
              }
-
              return done(null, report);
            }
-
-             return done(null, result);
+           return done(null, result);
          });
        });
 
