@@ -3,34 +3,39 @@
   <h3>Status Details</h3>
 </div>
 <div class="modal-body">
-  <div class="row">
+  <div class="form-group">
     <div ng-if="StatusCtrl.selectedLocations.length != 0">Selected Locations</div>
     <div ng-if="StatusCtrl.selectedLocations.length == 0">No Location Selected</div>
-    <div class="container">
-    <div ng-repeat="loc in StatusCtrl.selectedLocations">
-        <div class="row">
-          <div class="col-md-1">{{loc.locationName}}</div>
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-              SelectedServices
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-              <li role="presentation" ng-repeat="service in loc.services"><a role="menuitem" tabindex="-1" href="#">{{service.serviceName}}</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-  <div class="btn-group" dropdown is-open="StatusCtrl.status.isopen" ng-if="StatusCtrl.selectedLocations.length != 0">
-    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-      {{StatusCtrl.selectedState }} <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li ng-repeat="status in StatusCtrl.items" ng-click="StatusCtrl.changeState(status)"><a>{{status}}</a></li>
-    </ul>
+
+  <div class="form-group">
+    <div ng-repeat="loc in StatusCtrl.selectedLocations">
+        <div class="col-md-3">{{loc.locationName}}</div>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            SelectedServices
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation" ng-repeat="service in loc.services"><a role="menuitem" tabindex="-1" href="#">{{service.serviceName}}</a></li>
+          </ul>
+        </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3">Change State</label>
+    <div class="btn-group" dropdown is-open="StatusCtrl.status.isopen" ng-if="StatusCtrl.selectedLocations.length != 0">
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+        {{StatusCtrl.selectedState }} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="status in StatusCtrl.items" ng-click="StatusCtrl.changeState(status)"><a>{{status}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment:</label>
+    <textarea class="form-control" cols="10" rows="5" id="comment"></textarea>
   </div>
 </div>
 <div class="modal-footer">
