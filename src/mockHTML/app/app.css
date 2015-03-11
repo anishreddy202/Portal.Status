@@ -394,17 +394,7 @@ a:hover, a:focus {
   .network-news .network-news-info {
     margin-top: 0px;
     padding: 10px 0 0;
-    height: 141px;
-    	/*-webkit-transition: all .5s ease-out;
-      -moz-transition: all .5s ease-out;
-      -o-transition: all .5s ease-out;
-      -transition: all .5s ease-out; */
-    /*&.hide-this {
-    	height: 0px;	
-    }
-    &.show-this {
-    	height: 141px;
-    } */ }
+    height: 141px; }
     .network-news .network-news-info hr {
       opacity: .2;
       margin-top: 0px;
@@ -829,5 +819,3 @@ footer {
 
 .icon-uplynk:before {
   content: "\e603"; }
-
-/*# sourceMappingURL=app.css.map */
