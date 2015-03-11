@@ -11,7 +11,8 @@
 
     var service = {
       getStatus: getStatus,
-      updateStatus:updateStatus
+      updateStatus:updateStatus,
+      createNews: createNews
     };
 
     /******* implementations *********/
@@ -31,6 +32,15 @@
         }).
         error();
     }
+
+    function createNews(news) {
+      return $http({method: 'POST', url: '/api/v1/status/news', data:news }).
+        success(function(data) {
+          return data;
+        }).
+        error();
+    }
+
 
     return service;
 

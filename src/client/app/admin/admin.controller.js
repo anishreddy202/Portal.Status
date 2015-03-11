@@ -112,7 +112,7 @@
         self.open();
     }
 
-    function updateNetworkStatus(){
+    function updateNetworkStatus(news){
 
       var dto = new AdminDTOModel.network(self.selectedNetwork);
 
@@ -134,9 +134,20 @@
             }
           });
 
+          createNews(news)
+
         })
         .catch();
 
+    }
+
+    function createNews (news) {
+      StatusService.createNews(news)
+        .then(function(response) {
+
+
+        })
+        .catch();
     }
 
     function open() {
@@ -146,6 +157,7 @@
           this.items = self.statuses;
           this.selectedLocations = self.selectedLocations;
           this.selectedState = "OK";
+          this.comment;
           this.changeState = function(data){
             this.selectedState = data;
           };
@@ -158,7 +170,14 @@
                 }
               }
             }
-            updateNetworkStatus();
+
+            var news ={};
+
+            news.status = this.selectedState;
+            news.comment = this.comment;
+            news.locations = this.selectedLocations;
+
+            updateNetworkStatus(news);
             modalInstance.dismiss('cancel');
           };
 

@@ -88,6 +88,19 @@ var StatusService = function(configuration){
     //});
   };
 
+  self.createNews = function(news,done){
+
+
+    db.news.saveData(news, function(err, result) {
+      if(err) {
+        return done(err, null);
+      }
+
+      return done(null, result);
+    });
+
+  };
+
   var getDefaultReport = function() {
     try {
       report = JSON.parse(require('fs').readFileSync(__dirname + '/files/defaultReport.json', 'utf8'));
