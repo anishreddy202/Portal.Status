@@ -89,8 +89,6 @@ var StatusService = function(configuration){
   };
 
   self.createNews = function(news,done){
-
-
     db.news.saveData(news, function(err, result) {
       if(err) {
         return done(err, null);
@@ -100,6 +98,19 @@ var StatusService = function(configuration){
     });
 
   };
+
+
+  self.getNews = function(done){
+    db.news.query({}, function(err, result) {
+      if(err) {
+        return done(err, null);
+      }
+
+      return done(null, result);
+    });
+
+  };
+
 
   var getDefaultReport = function() {
     try {

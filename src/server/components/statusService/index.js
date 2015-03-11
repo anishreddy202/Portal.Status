@@ -28,6 +28,12 @@ var StatusService = function() {
     });
   };
 
+  self.getNews = function(done) {
+    service.getNews(function(err, result) {
+      done(err, result);
+    });
+  };
+
   return self;
 };
 

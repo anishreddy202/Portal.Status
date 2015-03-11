@@ -46,6 +46,17 @@ router.post('/news', function(req, res) {
   });
 });
 
+router.get('/news', function(req, res) {
+  statusService.setup(config);
+
+  statusService.getNews(function(err, result) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(result);
+  });
+});
+
 
 
 module.exports = router;

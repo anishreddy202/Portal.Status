@@ -6,15 +6,16 @@
     .controller('AdminCtrl', AdminFn);
 
 
-  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal'];
+  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location'];
 
-  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal) {
+  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location) {
     var self = this;
 
     var original =[]
     self.network= [];
     self.networkModel = [];
     self.selectedNetwork;
+    self.news=[];
 
     self.statuses = ["OK","ERR","MNT","DGR"];
 
@@ -26,6 +27,8 @@
     self.toggleRow = toggleRow;
     self.updateStatus = updateStatus;
     self.open = open;
+    self.gotoNews = gotoNews;
+
 
     init();
 
@@ -38,6 +41,12 @@
           $rootScope.network = self.network;
         })
         .catch();
+
+      StatusService.getNews()
+        .then(function(response) {
+          self.news = response.data;
+        })
+        .catch();
     }
 
     function selectNetwork(network){
@@ -47,6 +56,21 @@
     function toggleCell(data){
       data.isSelected = !data.isSelected;
       $rootScope.selectedNetwork = data;
+    }
+
+    function gotoNews(){
+
+      var newHash = 'news';
+      if ($location.hash() !== newHash) {
+        // set the $location.hash to `newHash` and
+        // $anchorScroll will automatically scroll to it
+        $location.hash('news');
+      } else {
+        // call $anchorScroll() explicitly,
+        // since $location.hash hasn't changed
+        $anchorScroll();
+      }
+
     }
 
     function toggleColumn(data){
@@ -140,6 +164,7 @@
         .catch();
 
     }
+
 
     function createNews (news) {
       StatusService.createNews(news)

@@ -16,7 +16,7 @@
         </div>
         <div class="pull-right">
           <ul>
-            <li><a href="#"><span class="badge">2</span>Network Status Updates</a></li>
+            <li><a ng-click="vm.gotoNews()"><span class="badge">{{vm.news.length}}</span>Network Status Updates</a></li>
             <li><a href="#"><span class="icon-envelope"></span>VDMS Support</a></li>
           </ul>
         </div>
@@ -137,6 +137,25 @@
     </div>
     <!-- tab panel ends -->
 
+  </div>
+
+  <div class="push"></div>
+
+  <div class="network-news well" id="news">
+    <div class="wrapper">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <span class="status-label">Network Status News</span>
+        <!--a href="#" class="status-label-toggle pull-right" id="hide-below">hide</a>
+        <a href="#" class="status-label-toggle pull-right" id="show-below" style="display:none;">show</a-->
+        <div class="network-news-info" ng-repeat="news in vm.news">
+          <hr>
+          <p class="time-notice">Nov. 25 2014) 6:14a.m. PST - Seoul - ICN : HTTP Large<br>
+            <strong>[Mitigated] Notice of Possible Service Degradation affecting the ICN POP</strong></p>
+          <p>{{news.comment}}</p>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <div class="push"></div>

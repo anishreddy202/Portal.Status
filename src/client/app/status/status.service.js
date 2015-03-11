@@ -12,7 +12,8 @@
     var service = {
       getStatus: getStatus,
       updateStatus:updateStatus,
-      createNews: createNews
+      createNews: createNews,
+      getNews: getNews
     };
 
     /******* implementations *********/
@@ -41,6 +42,13 @@
         error();
     }
 
+    function getNews() {
+      return $http({method: 'GET', url: '/api/v1/status/news' }).
+        success(function(data) {
+          return data;
+        }).
+        error();
+    }
 
     return service;
 
