@@ -1,1 +1,57 @@
-<div>News LIst and create Page are here</div>
+<div class="page list">
+  <!-- Middle Content goes here -->
+  <div class="container-fluid">
+    <div class="row panel">
+      <div class="col-xs-4 col-sm-4 col-md-4">
+        <span class="subhead-name">News</span>
+      </div>
+
+      <div class=" col-xs-5 col-sm-6 col-md-6">
+        <form class="text-center clearfix" role="search">
+          <div class="input-group">
+            <input class="form-control" ng-model= 'vm.searchText'  placeholder="Search" type="text" >
+            <span class="input-group-addon" >
+              <span class="glyphicon glyphicon-search"></span>
+            </span>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-xs-3 col-sm-2 col-md-2">
+        <button ng-click="vm.addNews()" class="btn btn-dark pull-right">Add News</button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Displaying {{vm.news.length}} of {{vm.news.length}} News</div>
+
+      <div class="panel-body">
+      </div>
+
+      <!-- Table -->
+      <table class="table">
+        <tbody>
+        <tr ng-repeat="news in vm.news | filter:vm.searchText" ng-click="vm.news(news)">
+          <td>
+            <span class="icon-news"></span>
+          </td>
+          <td>
+            <!--<span>{{user.firstName}} {{user.lastName}}</span>-->
+            <span>{{news.comment}}</span>
+            <span>{{news.date}}</span>
+          </td>
+          <td>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div ng-show="UsersCtrl.users.length != UsersCtrl.count" class="row text-center">
+      <a ng-click ="UsersCtrl.nextPage()" class="view-more">View More</a>
+    </div>
+
+  </div>
+
+</div>
