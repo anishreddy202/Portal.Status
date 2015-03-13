@@ -9,17 +9,21 @@
   </div>
 
   <div class="form-group">
-    <div ng-repeat="loc in StatusCtrl.selectedLocations">
-        <div class="col-md-3">{{loc.locationName}}</div>
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-            SelectedServices
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-            <li role="presentation" ng-repeat="service in loc.services"><a role="menuitem" tabindex="-1" href="#">{{service.serviceName}}</a></li>
-          </ul>
+    <div ng-repeat="service in StatusCtrl.selectedLocations">
+        <div>{{service.name}}</div>
+        <div class="well">
+          <li role="presentation" ng-repeat="location in service.locations">
+            <a role="menuitem">{{location.name}}</a></li>
         </div>
+        <!--<div class="dropdown">-->
+          <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">-->
+            <!--SelectedServices-->
+            <!--<span class="caret"></span>-->
+          <!--</button>-->
+          <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">-->
+            <!--<li role="presentation" ng-repeat="service in loc.services"><a role="menuitem" tabindex="-1" href="#">{{service.serviceName}}</a></li>-->
+          <!--</ul>-->
+        <!--</div>-->
     </div>
   </div>
   <div class="form-group">

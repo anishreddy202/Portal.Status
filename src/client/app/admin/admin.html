@@ -2,8 +2,6 @@
 <div class="row">
   <div class="container">
     <div class="btn btn-primary" ng-click="vm.updateStatus()">Update Status</div>
-    <div class="btn btn-primary" ng-click="vm.popsModal()">POPS</div>
-    <div class="btn btn-primary" ng-click="vm.servicesModal()">Services</div>
     <div class="btn btn-primary" ng-click="vm.enableService()">Enable Service</div>
   </div>
 </div>
@@ -154,8 +152,7 @@
         <a href="#" class="status-label-toggle pull-right" id="show-below" style="display:none;">show</a-->
         <div class="network-news-info" ng-repeat="news in vm.news">
           <hr>
-          <p class="time-notice">Nov. 25 2014) 6:14a.m. PST - Seoul - ICN : HTTP Large<br>
-            <strong>[Mitigated] Notice of Possible Service Degradation affecting the ICN POP</strong></p>
+          <p class="time-notice">Nov. 25 2014 6:14a.m. PST - Seoul - ICN : HTTP Large<br>
           <p>{{news.comment}}</p>
         </div>
 

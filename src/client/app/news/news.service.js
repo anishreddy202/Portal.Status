@@ -11,7 +11,8 @@
 
     var service = {
       createNews: createNews,
-      getNews: getNews
+      getNews: getNews,
+      deleteNews:deleteNews
     };
 
     /******* implementations *********/
@@ -31,6 +32,14 @@
         }).
         error();
     }
+
+    function deleteNews(news) {
+      return $http({method: 'DELETE', url: '/api/v1/news/'+ news.id  }).
+        success(function(data) {
+          return data;
+        }).
+        error();
+    };
 
     return service;
 

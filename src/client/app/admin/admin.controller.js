@@ -6,9 +6,9 @@
     .controller('AdminCtrl', AdminFn);
 
 
-  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location'];
+  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location','NewsService'];
 
-  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location) {
+  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location,NewsService) {
     var self = this;
 
     var original =[]
@@ -29,11 +29,7 @@
     self.open = open;
     self.gotoNews = gotoNews;
     self.enableService = enableService;
-    self.popsModal = popsModal;
-    self.servicesModal = servicesModal;
     self.openEnableService = openEnableService;
-    self.openPopsModal = openPopsModal;
-    self.openServicesModal=openServicesModal;
 
 
     init();
@@ -41,6 +37,7 @@
     function init(){
       StatusService.getStatus()
         .then(function(response) {
+          console.log(response.data);
           original = response.data;
           MapNetworkStatus(response.data)
           self.selectedNetwork = self.network[0];
@@ -48,8 +45,13 @@
         })
         .catch();
 
-      StatusService.getNews()
+      getNews();
+    }
+
+    function getNews(){
+      NewsService.getNews()
         .then(function(response) {
+
           self.news = response.data;
         })
         .catch();
@@ -112,14 +114,6 @@
       self.openEnableService();
     }
 
-    function popsModal(){
-      self.openPopsModal();
-    }
-
-    function servicesModal(){
-      self.openServicesModal();
-    }
-
     /**private functions **/
 
     function MapNetworkStatus(data){
@@ -130,28 +124,31 @@
     }
 
     function updateStatus(){
+
       self.selectedLocations = [];
 
-      for(var i =0;i< self.selectedNetwork.locations.length;i++){
-        var locationObj = {};
-        locationObj.locationCode = self.selectedNetwork.locations[i].code;
-        locationObj.locationName = self.selectedNetwork.locations[i].name;
-        locationObj.services = [];
-        for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++){
+      var dto = new AdminDTOModel.network(self.selectedNetwork);
 
-          if(self.selectedNetwork.locations[i].services[k].isSelected){
-            var obj = {
-              "serviceName":self.selectedNetwork.locations[i].services[k].name,
-              "serviceCode":self.selectedNetwork.locations[i].services[k].code
+        for(var i =0;i< dto.services.length;i++){
+          var ServiceObj = {};
+          ServiceObj.code = dto.services[i].code;
+          ServiceObj.name = dto.services[i].name;
+          ServiceObj.locations = [];
+          for(var k =0;k< dto.services[i].locations.length;k++){
+
+            if(dto.services[i].locations[k].isSelected){
+              var obj = {
+                "name":dto.services[i].locations[k].name,
+                "code":dto.services[i].locations[k].code
+              }
+              ServiceObj.locations.push(obj);
             }
-            locationObj.services.push(obj);
           }
-        }
-        if(locationObj.services.length > 0){
-          self.selectedLocations.push(locationObj);
-        }
+          if(ServiceObj.locations.length > 0) {
+            self.selectedLocations.push(ServiceObj);
+          }
 
-      }
+        }
         self.open();
     }
 
@@ -177,20 +174,19 @@
             }
           });
 
-          if(news != null)
+          if(news != null) {
             createNews(news)
+          }
 
         })
         .catch();
 
     }
 
-
     function createNews (news) {
-      StatusService.createNews(news)
+      NewsService.createNews(news)
         .then(function(response) {
-
-
+            getNews();
         })
         .catch();
     }
@@ -272,7 +268,8 @@
                 for (var k = 0; k < self.selectedNetwork.locations[i].services.length; k++) {
 
                   if (self.selectedNetwork.locations[i].services[k].code == this.selectedService.code) {
-                    self.selectedNetwork.locations[i].services[k].enabled = this.enableService
+                    self.selectedNetwork.locations[i].services[k].enabled = this.enableService;
+                    self.selectedNetwork.locations[i].services[k].status = "OK"
                   }
                 }
               }
@@ -286,26 +283,8 @@
       });
     }
 
-    function openPopsModal() {
-      var modalInstance = modal.open({
-        templateUrl: 'app/admin/pops-modal.html',
-        controller: function(){
-        },
-        controllerAs: 'vm'
-      });
-    }
-
-    function openServicesModal() {
-      var modalInstance3 = modal.open({
-        templateUrl: 'app/admin/services-modal.html',
-        controller: function(){
-        },
-        controllerAs: 'vm'
-      });
-    }
 
   }
 
 })();
-
 

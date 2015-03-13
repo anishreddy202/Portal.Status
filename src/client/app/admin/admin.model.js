@@ -38,6 +38,7 @@
       this.region = data.region.toUpperCase();
       this.status = null;
       this.enabled = null;
+      this.isSelected = false;
       return self;
     }
 
@@ -64,6 +65,7 @@
           if(data.code == code){
             loc.status = data.status;
             loc.enabled = data.enabled;
+            loc.isSelected = data.isSelected;
           }
         });
 

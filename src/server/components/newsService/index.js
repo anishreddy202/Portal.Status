@@ -16,6 +16,12 @@ var NewsService = function() {
     });
   };
 
+  self.deleteNews = function(params,done) {
+    service.deleteNews(params,function(err, result) {
+      done(err, result);
+    });
+  };
+
   self.getNews = function(done) {
     service.getNews(function(err, result) {
       done(err, result);

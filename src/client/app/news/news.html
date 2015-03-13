@@ -1,3 +1,4 @@
+<header data-ng-include=" 'components/header/header.html'"></header>
 <div class="page list">
   <!-- Middle Content goes here -->
   <div class="container-fluid">
@@ -32,25 +33,25 @@
       <!-- Table -->
       <table class="table">
         <tbody>
-        <tr ng-repeat="news in vm.news | filter:vm.searchText" ng-click="vm.news(news)">
+        <tr ng-repeat="news in vm.news | filter:vm.searchText">
           <td>
             <span class="icon-news"></span>
           </td>
           <td>
-            <!--<span>{{user.firstName}} {{user.lastName}}</span>-->
             <span>{{news.comment}}</span>
             <span>{{news.date}}</span>
           </td>
-          <td>
+          <td class="pull-right">
+            <span class="icon-trash" ng-click="vm.removeNews(news)"></span>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
 
-    <div ng-show="UsersCtrl.users.length != UsersCtrl.count" class="row text-center">
-      <a ng-click ="UsersCtrl.nextPage()" class="view-more">View More</a>
-    </div>
+    <!--<div ng-show="UsersCtrl.users.length != UsersCtrl.count" class="row text-center">-->
+      <!--<a ng-click ="UsersCtrl.nextPage()" class="view-more">View More</a>-->
+    <!--</div>-->
 
   </div>
 

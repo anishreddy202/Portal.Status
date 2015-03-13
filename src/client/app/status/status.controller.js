@@ -6,28 +6,51 @@
     .controller('StatusCtrl', StatusFn);
 
 
-  StatusFn.$inject = ['StatusService','StatusModel'];
+  StatusFn.$inject = ['StatusService','StatusModel','NewsService','$anchorScroll', '$location'];
 
-  function StatusFn(StatusService,StatusModel) {
+  function StatusFn(StatusService,StatusModel,NewsService,$anchorScroll, $location) {
 
     var self = this;
 
     self.network= [];
     self.networkModel = [];
     self.selectedNetwork;
+    self.News =[];
 
     self.selectNetwork = selectNetwork;
+    self.gotoNews = gotoNews;
 
     init();
 
     function init(){
+      getStatus();
+      getNews();
+    }
+
+    function getStatus(){
       StatusService.getStatus()
         .then(function(response) {
-          MapNetworkStatus(response.data)
+          MapNetworkStatus(response.data);
           self.selectedNetwork = self.network[0];
-          console.log(self.selectedNetwork);
         })
         .catch();
+    }
+
+    function getNews(){
+      NewsService.getNews()
+        .then(function(response) {
+          self.news = response.data;
+        })
+        .catch();
+    }
+
+    function gotoNews(){
+      var newHash = 'news';
+      if ($location.hash() !== newHash) {
+        $location.hash('news');
+      } else {
+        $anchorScroll();
+      }
     }
 
     function selectNetwork(network){

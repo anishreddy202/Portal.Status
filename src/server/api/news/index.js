@@ -34,4 +34,15 @@ router.post('/', function(req, res) {
   });
 });
 
+router.delete('/:id', function(req, res) {
+  newsService.setup(config);
+  var params = req.params;
+  newsService.deleteNews(params, function(err, result) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(result);
+  });
+});
+
 module.exports = router;
