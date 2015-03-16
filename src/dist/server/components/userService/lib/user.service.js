@@ -10,7 +10,6 @@ var Verror = require('verror');
 
 var UserService = function(config){
   var self = this;
-  console.log(config);
   self.create = function(postedUser, done){
     postedUser.id = uuid.v4();
     var mappedUser = new User(postedUser);
@@ -37,7 +36,6 @@ var UserService = function(config){
   };
 
   self.read = function(params, done) {
-    console.log(config);
     db.connect(config.mongo, function (err, db) {
       db.users.first(params, function (err, result) {
         assert.ok(err === null, err);
