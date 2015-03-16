@@ -1,0 +1,70 @@
+// Checkbox
+.ui-checkbox {
+  position: relative;
+  margin: 0 20px 10px 20px;
+  input[type="checkbox"] + span:hover {
+    cursor: pointer;
+    &:before {
+      border-color: $brand-primary;
+    }
+  }
+  input[type="checkbox"]:disabled + span:hover {
+    cursor: not-allowed;
+    &:before {
+      border-color: #ccc;
+    }
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + span {
+    font-weight: normal;
+  }
+
+  input[type="checkbox"] + span:before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-left: -20px;
+    background-color: transparent;
+    border-radius: $border-radius-small;
+    border: 1px solid #ccc;
+    @include transition(all .15s ease-in-out);
+  }
+
+  input[type="checkbox"]:disabled + span:before {
+    opacity: .65;
+    border: 1px solid #ccc;
+    cursor: no-drop;
+  }
+
+  input[type="checkbox"]:checked + span:before {
+    border: 1px solid $brand-primary;
+  }
+  input[type="checkbox"]:checked + span:after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 7px;
+    left: -15px;
+    background-color: $brand-primary;
+    display: block;
+  }
+
+  input[type="checkbox"]:disabled:checked + span:before {
+    opacity: .65;
+    border: 1px solid #ccc;
+  }
+  input[type="checkbox"]:disabled:checked + span:after {
+    opacity: .65;
+    cursor: no-drop;
+    background-color: #ccc;
+  }
+}
+

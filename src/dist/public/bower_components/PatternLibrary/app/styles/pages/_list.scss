@@ -1,0 +1,136 @@
+.list {
+
+  .panel.panel-default {
+    min-height: 393px;
+  }
+
+  .row.panel {
+    border: none;
+    .btn {
+      background: $vz-dusty-gray;
+      border-color: $vz-dusty-gray ;
+      &:hover { background: $silver-chalice; }
+    }
+  }
+  .panel {
+    .table {
+      border-top: 0px;
+    }
+  }
+  .panel-body { 
+    padding-top: 5px; 
+    border-bottom: 1px solid #ddd; 
+  }
+
+  .input-group, .btn {
+    margin-top: 13px;
+  }
+  .subhead-name {
+    font-size: $font-size-large;
+    color: $vz-dark-gray;
+  }
+  .panel-heading {
+    padding-bottom: 8px;
+    color: $vz-dark-gray;
+    background: $vz-light-gray;
+    text-transform: inherit;
+  }
+  .view-more {
+    color: $vz-dark-gray;
+  }
+
+  tbody {
+    span:first-child {
+      color: $vz-blue;
+      font-size: $font-size-medium;
+    }
+    span:nth-child(2) {
+      display: block;
+      color: $vz-light-gray;
+      margin-top: 3px;
+    }
+    span.icon-profile {
+      font-size: $font-size-h2;
+      color: $vz-light-gray;
+    }
+    span a {
+      padding: 0.1em 0.5em;
+      color: $vz-blue;
+      background: $vz-light-gray;
+      font-size: $font-size-base;
+      cursor: pointer;
+      border: none;
+      &:hover {
+        color: $vz-blue;
+        background: $vz-light-gray;
+      }
+    }
+    
+    tr:last-child {
+      border-bottom: 1px solid #ddd;
+    }
+    tr:nth-child(2n+2) {
+      background: #f0f0f0;
+    }
+    td:nth-child(1) {
+      width: 3%;
+      text-align: center;
+    }
+    td:nth-child(2) {
+      width: 37%;
+    }
+    td:nth-child(3) {
+      width: 45%;
+    }
+    td:nth-child(4) {
+      width: 10%;
+    }
+    td:nth-child(3), td:nth-child(4) {
+      text-align: center;
+    }
+    td .btn {
+      margin: 0px;
+      padding: 1px 8px 0px;
+    }
+    
+  } 
+  /*---- tooltip customs ------*/
+    .changecolor + .tooltip > .tooltip-inner {
+        background-color: $vz-dark-gray; 
+        color: #fff; 
+        text-align: left;
+    }
+    .changecolor + .tooltip.top > .tooltip-arrow{
+        bottom:0;
+        left:50%;
+        margin-left:-5px;
+        border-left:5px solid transparent;
+        border-right:5px solid transparent;
+        border-top:5px solid $vz-dark-gray;
+    }
+    .changecolor + .tooltip.left > .tooltip-arrow{
+        top:50%;
+        right:0;
+        margin-top:-5px;
+        border-top:5px solid transparent;
+        border-bottom:5px solid transparent;
+        border-left:5px solid $vz-dark-gray;
+    }
+    .changecolor + .tooltip.bottom > .tooltip-arrow{
+        top:0;
+        left:50%;
+        margin-left:-5px;
+        border-left:5px solid transparent;
+        border-right:5px solid transparent;
+        border-bottom:5px solid $vz-dark-gray;
+    }
+    .changecolor + .tooltip.right > .tooltip-arrow{
+        top:50%;
+        left:0;
+        margin-top:-5px;
+        border-top:5px solid transparent;
+        border-bottom:5px solid transparent;
+        border-right:5px solid $vz-dark-gray;
+    }
+
+}

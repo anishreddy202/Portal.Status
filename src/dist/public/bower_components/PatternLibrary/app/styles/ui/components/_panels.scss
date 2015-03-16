@@ -1,0 +1,36 @@
+// overrides Bootstrap
+
+$panel-head: $vz-light-gray;
+$panel-head-text: $text-color;
+$panel-body: $white;
+$panel-body-text: $vz-dark-gray;
+$panel-head-border-bottom: $silver-chalice;
+$panel-border: $silver-chalice;
+
+.panel {
+  border-color: $panel-border;
+  box-shadow: none;
+  @include border-top-radius(0px);
+  @include border-bottom-radius(0px);
+  .panel-heading {
+    padding: 14px 15px 15px;
+    text-transform: uppercase;
+    border-bottom-color: $panel-border;
+    @include border-top-radius(0px);
+  }
+  .panel-title {
+    font-size: $font-size-base;
+  }
+}
+
+.panel-default {
+  @include panel-variant($panel-border, $text-color, $panel-head, $panel-head-border-bottom);
+  >.panel-heading {
+    background-color: $panel-head;
+    color: $panel-head-text;
+  }
+}
+
+
+
+

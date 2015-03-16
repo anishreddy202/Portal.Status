@@ -1,0 +1,13 @@
+{
+  "mock": "true",
+  "mongo": {
+    "host": "localhost",
+    "port": "27017",
+    "db" : "test"
+  },
+  "nuxeo":{
+    "baseURL":"http://192.168.145.30/nuxeo/",
+    "username":"Administrator",
+    "password":"Administrator"
+  }
+}

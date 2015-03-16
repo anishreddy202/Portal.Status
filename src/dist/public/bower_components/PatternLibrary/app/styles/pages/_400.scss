@@ -1,0 +1,38 @@
+.error-400 {
+  margin-top: 80px;
+
+  .header-content {
+    margin-top: 25px;
+    h1 {
+      font-size: $font-size-140;
+      color: #838485;
+      font-family: $font-family-vz;
+    small {
+      margin-left: 10px;
+      font-size: $font-size-60;
+      color: #838485;
+      }
+    }
+  }
+
+  hr {
+    border-color: #808080;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .footer-content {
+    margin-top: 10px;
+    h4 {
+      font-size: $font-size-h3;
+      color: #838485;
+    span {
+      margin-left: 20px;
+      font-size: $font-size-h1;
+      vertical-align: middle;
+      }
+    }
+  p { margin-top: 15px; color: #838485; }
+  }
+  
+}

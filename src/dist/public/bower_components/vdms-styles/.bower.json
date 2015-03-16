@@ -1,0 +1,34 @@
+{
+  "name": "vdms-styles",
+  "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+  "version": "0.0.6",
+  "homepage": "https://git.edgecastcdn.net/pages/ui/styles",
+  "main": [
+    "dist/css/bootstrap.css",
+    "dist/js/core.js",
+    "dist/fonts/VerizonApex",
+    "less/bootstrap.less"
+  ],
+  "ignore": [
+    "/.*",
+    "_config.yml",
+    "CNAME",
+    "composer.json",
+    "CONTRIBUTING.md",
+    "docs",
+    "js/tests",
+    "test-infra"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1"
+  },
+  "_release": "0.0.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.6",
+    "commit": "17a3825a4d88bf2c55d0f0dea4b58fad2629e6dd"
+  },
+  "_source": "https://git.edgecastcdn.net/CMSG3/styles.git",
+  "_target": "~0.0.6",
+  "_originalSource": "git+https://git.edgecastcdn.net/CMSG3/styles.git"
+}
