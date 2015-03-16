@@ -21,7 +21,7 @@ var Validator = function(){
                        "ARN", "STO", "VIE", "WAW", "BTH", "HHP", "CGK", "KHH", "MEL", "KIX", "SIN", "SYD",
                        "HND", "NRT", "MCC", "TCC", "UCC", "LIS", "LLS", "ODS"];
 
-  var locationSchema = Joi.array().includes(
+  var locationSchema = Joi.array().items(
     Joi.object().keys({
       code: Joi.string().valid(locationCodes).required(),
       name: Joi.string().required(),
@@ -29,14 +29,14 @@ var Validator = function(){
       status: Joi.string().valid(statusCodes).required()
     })).required();
 
-  var serviceSchema = Joi.array().includes(
+  var serviceSchema = Joi.array().items(
     Joi.object().keys({
       code: Joi.string().valid(serviceCodes).required(),
       name: Joi.string().required(),
       locations: locationSchema
     })).required();
 
-  var systemSchema = Joi.array().includes(
+  var systemSchema = Joi.array().items(
     Joi.object().keys({
       code: Joi.string().valid(systemCodes).required(),
       name: Joi.string().required(),
@@ -51,7 +51,7 @@ var Validator = function(){
     services: serviceSchema
   });
 
-  var schema = Joi.array().includes(categorySchema);
+  var schema = Joi.array().items(categorySchema);
 
   ////////////  END SCHEMA DEFINITION   ////////////
 
