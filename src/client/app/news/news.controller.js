@@ -10,7 +10,7 @@
   function NewsFn (NewsService,modal,StatusService) {
     var self = this;
     self.news=[];
-    self.searchText;
+    self.searchText = '';
 
     self.open = open;
     self.addNews = addNews;
@@ -31,7 +31,7 @@
       StatusService.getStatus()
         .then(function(response) {
           products = response.data;
-          locations = response.data[0].services[0].locations;
+          locations = mapLocations(response.data[0].services[0].locations);
         })
         .catch();
     }
@@ -57,6 +57,28 @@
         .catch();
     }
 
+    function mapLocations(data){
+      var locs = []
+      for(var i=0;i<data.length;i++){
+        var loc = {};
+        loc.name = data[i].name;
+        loc.code = data[i].code;
+        locs.push(loc);
+      }
+      return locs
+    }
+
+    function mapServices(data){
+      var servs = []
+      for(var i=0;i<data.length;i++){
+        var serv = {};
+        serv.name = data[i].name;
+        serv.code = data[i].code;
+        servs.push(serv);
+      }
+      return servs;
+    }
+
     function open() {
       var modalInstance = modal.open({
         templateUrl: 'app/news/news-modal.html',
@@ -66,21 +88,14 @@
           };
           this.products = products;
           this.services = [];
-          this.locations=[];
-          this.comment = "";
-          this.selectedProduct = {"name":"Select Product"};
-          this.selectedService = {"name":"Select Service"};
-          this.selectedLocation = {"name":"Select POP"};
+          this.locations= locations;
+          this.comment = '';
+          this.selectedProduct = {'name':'Select Product'};
+          this.selectedService = [];
+          this.selectedLocation = [];
           this.selectProduct = function(data){
-              this.selectedProduct = data;
-              this.services = data.services
-          };
-          this.selectService = function(data){
-            this.selectedService = data;
-            this.locations = data.locations
-          };
-          this.selectLocation = function(data){
-            this.selectedLocation = data;
+              this.selectedProduct = {'name': data.name,'code':data.code};
+              this.services = mapServices(data.services);
           };
           this.save = function(){
             var news ={};

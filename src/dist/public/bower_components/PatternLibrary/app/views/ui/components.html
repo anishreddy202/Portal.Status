@@ -1,0 +1,342 @@
+<div class="page">
+
+  <!-- Panels -->
+  <section class="panel panel-default">
+    <div class="panel-heading"><strong>Panels</strong></div>
+    <div class="panel-body">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel Title</h3>
+        </div>
+        <div class="panel-body">
+          Panel Body
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          Panel Body
+        </div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel CMS</h3>
+        </div>
+        <div class="panel-body">
+          Panel Content
+        </div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel Primary</h3>
+        </div>
+        <div class="panel-body">
+          Panel Content
+        </div>
+      </div>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel Success</h3>
+        </div>
+        <div class="panel-body">
+          Panel Content
+        </div>
+      </div>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel Info</h3>
+        </div>
+        <div class="panel-body">
+          Panel Content
+        </div>
+      </div>
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel Warning</h3>
+        </div>
+        <div class="panel-body">
+          Panel Content
+        </div>
+      </div>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel heading</h3>
+        </div>
+        <div class="panel-body">
+          Panel Content
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end Panels -->
+
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Well -->
+          <section class="panel panel-default">
+            <div class="panel-heading"><strong>Well</strong></div>
+            <div class="panel-body">
+              <div class="well">Content with class well applied.</div>
+              <div class="well well-sm">Content with class well and well-sm applied.</div>
+              <div class="well well-lg">Content with class well and well-lg applied.</div>
+            </div>
+          </section>
+          <!-- end Well -->
+        </div>
+        <div class="col-md-6">
+
+            <!-- Modal -->
+            <section class="panel panel-default">
+                <div class="panel-heading"><strong>Modal</strong></div>
+                <div class="panel-body" data-ng-controller="ModalDemoCtrl as demoModal">
+
+                  <script type="text/ng-template" id="myModalContent.html">
+                    <div class="modal-header">
+                      <h3>Sample Modal Pattern<a class="icon-close pull-right" ng-click="modal.cancel()"></a></h3>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="field1">Field 1:</label>
+                        <input class="form-control" id="field1" placeholder="Field 1 Data" type="text">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Field 2:</label>
+                        <input class="form-control" id="email" placeholder="Email Address" type="email">
+                      </div>
+                      <div class="form-group">
+                        <label>List Items:</label>
+                        <label ng-repeat="item in modal.items" class="ui-radio">
+                          <input name="radio1" type="radio" value="{{ item }}"
+                                 ng-checked="modal.selected.item === item"
+                                 ng-click="modal.selected.item = item">
+                          <span>{{ item }}</span>
+                        </label>
+                      </div>
+
+                      <br>
+                      Selected: <b>{{ modal.selected.item }}</b>
+                    </div>
+
+                    <div class="modal-footer">
+                      <div class="btn-group btn-group-justified">
+                        <a class="btn btn-gray" role="button" ng-click="modal.cancel()">
+                          <span class="icon-trash"></span>
+                          Delete
+                        </a>
+                        <a class="btn btn-danger" role="button" ng-click="modal.ok()">
+                          <span class="icon-save"></span>
+                          Save
+                        </a>
+                      </div>
+                    </div>
+
+
+                  </script>
+
+                    <script type="text/ng-template" id="myModalContent1.html">
+
+                        <div class="modal-header">
+                            <h3>User Details<a class="icon-close pull-right"></a></h3>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label for="admin">User Name:</label>
+                            <input class="form-control" id="admin" placeholder="Administrator" type="text">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Email Address:</label>
+                            <input class="form-control" id="exampleInputEmail1" placeholder="administrator@example.com" type="email">
+                          </div>
+                          <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input class="form-control" id="password" placeholder="********" type="text">
+                          </div>
+                          <div class="form-group">
+                            <label for="cname">Contact Name:</label>
+                            <input class="form-control" id="cname" placeholder="First Name Last Name" type="text">
+                          </div>
+                          <div class="form-group">
+                            <label for="company">Company:</label>
+                            <input class="form-control" id="company" placeholder="Example Inc." type="text">
+                          </div>
+
+                          <hr>
+
+                          <div class="form-group">
+                            <label for="company">Groups:</label>
+                            <textarea class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="txtArea" placeholder="Text Area" rows="5" data-ng-model="form.txtArea" required=""></textarea>
+                          </div>
+
+                          <div class="form-group">
+                          <label for="company">Manage Users:</label>
+                          <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group btn-group-lg">
+                              <a href="javascript:;" class="btn btn-default btn-direction">On</a>
+                              <a href="javascript:;" class="btn btn-default btn-direction">Off</a>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+
+                        <div class="modal-footer">
+                          <div class="btn-group btn-group-justified">
+                            <a class="btn btn-inverseX label-default" role="button">
+                              <span class="icon-trash"></span>
+                              Button One
+                            </a>
+                            <a class="btn btn-inverseX label-default" role="button">
+                              <span class="icon-trash"></span>
+                              Button Two
+                            </a>
+                            <a class="btn btn-danger" role="button">
+                              <span class="icon-save"></span>
+                              Button Three
+                            </a>
+                          </div>
+                        </div>
+
+                    </script>
+
+                    <button class="btn btn-gap-v btn-primary" data-ng-click="demoModal.open()">Open me!</button>
+                    <div class="divider"></div>
+                    <div class="callout callout-info">
+                        <p>Selection from a modal: <strong>{{ demoModal.selected }}</strong></p>
+                    </div>
+                </div>
+            </section>
+            <!-- end Modal -->
+        </div>
+      </div>
+
+
+
+
+
+  <!-- Scrollable Box **USES JQUERY.SLIMSCROLL**-->
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong>Scrollable Box</strong></div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Scrollable Box</div>
+            <div class="panel-body ui-map " data-slim-scroll data-scroll-height="200px">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, tenetur, repellat obcaecati unde esse doloribus accusamus exercitationem vitae corporis blanditiis aspernatur quibusdam porro rerum voluptatum quos eligendi necessitatibus enim! Maiores, doloribus, fuga, perspiciatis cupiditate aperiam repellendus natus nisi recusandae rerum optio consectetur nemo reprehenderit nesciunt molestiae at. Molestiae, nesciunt inventore dignissimos itaque exercitationem vero aliquam provident aperiam repudiandae nostrum. Ipsa, possimus, natus culpa magni rem iusto ut quisquam cupiditate aspernatur nemo sed aliquam quam illum illo quos dolor animi ipsum dolorem sunt beatae officia facere voluptatem omnis! Sapiente, illo voluptatibus amet omnis optio labore nesciunt porro facere praesentium laudantium molestiae voluptas eos incidunt quod nulla. Provident, debitis, odit qui ab facere adipisci laborum ea necessitatibus sapiente voluptatibus minima inventore veritatis unde nemo ipsa quisquam dolorum autem et minus repudiandae nostrum aliquam numquam aperiam similique vero delectus maiores non aliquid laboriosam eius impedit cum vel a corporis consequuntur natus earum suscipit. Repellat, laborum, cupiditate aperiam distinctio vero dolor est quibusdam sit rerum expedita tempore reiciendis quidem quisquam deserunt autem pariatur eos fugiat qui hic temporibus ullam dicta voluptatem sequi at iusto! Accusamus, iure, optio temporibus molestiae ab dolor blanditiis veritatis corporis eius reiciendis sed molestias obcaecati dolorem similique rerum illo excepturi.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body ui-map " data-slim-scroll data-scroll-height="240px">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, tenetur, repellat obcaecati unde esse doloribus accusamus exercitationem vitae corporis blanditiis aspernatur quibusdam porro rerum voluptatum quos eligendi necessitatibus enim! Maiores, doloribus, fuga, perspiciatis cupiditate aperiam repellendus natus nisi recusandae rerum optio consectetur nemo reprehenderit nesciunt molestiae at. Molestiae, nesciunt inventore dignissimos itaque exercitationem vero aliquam provident aperiam repudiandae nostrum. Ipsa, possimus, natus culpa magni rem iusto ut quisquam cupiditate aspernatur nemo sed aliquam quam illum illo quos dolor animi ipsum dolorem sunt beatae officia facere voluptatem omnis! Sapiente, illo voluptatibus amet omnis optio labore nesciunt porro facere praesentium laudantium molestiae voluptas eos incidunt quod nulla. Provident, debitis, odit qui ab facere adipisci laborum ea necessitatibus sapiente voluptatibus minima inventore veritatis unde nemo ipsa quisquam dolorum autem et minus repudiandae nostrum aliquam numquam aperiam similique vero delectus maiores non aliquid laboriosam eius impedit cum vel a corporis consequuntur natus earum suscipit. Repellat, laborum, cupiditate aperiam distinctio vero dolor est quibusdam sit rerum expedita tempore reiciendis quidem quisquam deserunt autem pariatur eos fugiat qui hic temporibus ullam dicta voluptatem sequi at iusto! Accusamus, iure, optio temporibus molestiae ab dolor blanditiis veritatis corporis eius reiciendis sed molestias obcaecati dolorem similique rerum illo excepturi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- end Scrollable Box -->
+
+
+  <!-- Labels and Badges -->
+  <div class="row">
+    <div class="col-md-6">
+      <section class="panel panel-default">
+        <div class="panel-heading">
+          <strong>Labels</strong>
+        </div>
+        <div class="panel-body text-center">
+          <span class="label label-default">Default label</span>
+          <div class="space"></div>
+          <span class="label label-primary">Primary</span>
+          <div class="space"></div>
+          <span class="label label-success">Success</span>
+          <div class="space"></div>
+          <span class="label label-info">Info</span>
+          <div class="space"></div>
+          <span class="label label-warning">Warning</span>
+          <div class="space"></div>
+          <span class="label label-danger">Danger</span>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-md-6">
+      <section class="panel panel-default">
+        <div class="panel-heading">
+          <strong>Badges</strong>
+        </div>
+        <div class="panel-body text-center">
+          <span class="badge">7</span>
+          <div class="space"></div>
+          <span class="badge badge-primary">1</span>
+          <div class="space"></div>
+          <span class="badge badge-success">2</span>
+          <div class="space"></div>
+          <span class="badge badge-info">4</span>
+          <div class="space"></div>
+          <span class="badge badge-warning">8</span>
+          <div class="space"></div>
+          <span class="badge badge-danger">16</span>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- end Labels and Badges -->
+
+
+  <!-- ToolTips and Popovers -->
+  <div class="row">
+    <div class="col-md-6">
+      <section class="panel panel-default">
+        <div class="panel-heading">
+          <strong>Tooltip</strong>
+        </div>
+        <div class="panel-body text-center">
+            <button class="btn btn-w-lg btn-default btn-gap" tooltip-placement="top" tooltip="On the Top!" tooltip-append-to-body="true">Tooltip on Top</button>
+            <br>
+            <button class="btn btn-w-lg btn-primary btn-gap" tooltip-placement="left" tooltip="On the Left!" tooltip-append-to-body="true">Tooltip on Left</button>
+            <br>
+            <button class="btn btn-w-lg btn-success btn-gap" tooltip-placement="right" tooltip="On the Right!" tooltip-append-to-body="true">Tooltip on Right</button>
+            <br>
+            <button class="btn btn-w-lg btn-danger btn-gap" tooltip-animation="false" tooltip="I don't fade. :-(" tooltip-append-to-body="true">Without Animation</button>
+            <br>
+            <button class="btn btn-w-lg btn-warning btn-gap" tooltip-popup-delay='1000' tooltip='Appears with delay' tooltip-append-to-body="true">Tooltip Delayed</button>
+            <br>
+            <button class="btn btn-w-lg btn-info btn-gap" tooltip-placement="bottom" tooltip="On the Bottom!" tooltip-append-to-body="true">Tooltip on Bottom</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-md-6">
+      <section class="panel panel-default">
+        <div class="panel-heading">
+          <strong>Popover</strong>
+        </div>
+        <div class="panel-body text-center">
+          <button popover-placement="top" popover-title="The Popover Title" popover="On the Top! Here' goes the popover content..." popover-append-to-body="true" class="btn btn-w-lg btn-danger btn-gap">Popover on Top</button>
+          <br>
+          <button popover-placement="right" popover-title="The Popover Title" popover="On the Right! Here' goes the popover content..." popover-append-to-body="true" class="btn btn-w-lg btn-warning btn-gap">Popover on Right</button>
+          <br>
+          <button popover-placement="bottom" popover-title="The Popover Title" popover="On the Bottom! Here' goes the popover content..." popover-append-to-body="true" class="btn btn-w-lg btn-info btn-gap">Popover on Bottom</button>
+          <br>
+          <button popover-placement="left" popover-title="The Popover Title" popover="On the Left! Here' goes the popover content..." popover-append-to-body="true" class="btn btn-w-lg btn-success btn-gap">Popover on Left</button>
+          <br>
+          <button popover="On mouse enter!" popover-trigger="mouseenter" class="btn btn-w-lg btn-primary btn-gap">Popover on Mouseenter</button>
+          <div class="divider"></div>
+          <input type="text" value="Popover on Click" popover="I appeared on focus! Click away and I'll vanish..."  popover-trigger="focus" class="form-control">
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- end ToolTips and Popovers -->
+
+
+</div>  <!-- end Page -->

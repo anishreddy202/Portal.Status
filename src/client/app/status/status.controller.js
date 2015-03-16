@@ -14,7 +14,7 @@
 
     self.network= [];
     self.networkModel = [];
-    self.selectedNetwork;
+    self.selectedNetwork=null;
     self.News =[];
 
     self.selectNetwork = selectNetwork;
@@ -30,7 +30,7 @@
     function getStatus(){
       StatusService.getStatus()
         .then(function(response) {
-          MapNetworkStatus(response.data);
+          mapNetworkStatus(response.data);
           self.selectedNetwork = self.network[0];
         })
         .catch();
@@ -60,7 +60,8 @@
 
     /**private functions **/
 
-    function MapNetworkStatus(data){
+    function mapNetworkStatus(data){
+      console.log(data);
       for(var i = 0; i< data.length;i++){
         var network = new StatusModel.network(data[i]);
         self.network.push(network);

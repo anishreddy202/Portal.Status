@@ -1,0 +1,55 @@
+.lock {
+
+  .row:first-child {
+  	margin-top: 50px;
+  	margin-bottom: 10px;
+  }
+  .vz-logo-header {
+  	max-height: 150px;
+  	display: inline-block;
+  }
+  .signin-header {
+  	margin-top: 35px;
+  	margin-left: 20px;
+  	display: inline-block;
+		vertical-align: middle;
+  	color: $gray-light;
+  }
+  .form-header {
+  	color: $gray-light;
+    h2 { color: #999; }
+    h4 {
+      span {
+        margin-top: -7px;
+        margin-right: 10px;
+        font-size: $font-size-h1;
+        color: #999;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+  .help-link {
+  	margin-top: 25px;
+  	color: $gray-light;
+    span { 
+      font-size: 24px;
+      vertical-align: middle;
+      margin-top: -2px;
+      display: inline-block;
+    }
+  }
+  .warning-info {
+  	margin: 5px 0 -20px;
+
+  	.text-alert {
+	    color: $brand-danger;
+	    font-size: $font-size-medium;
+      span { margin-right: 5px; }
+		}
+  }
+  .col-xs-4 {
+  	background-color: transparent;
+  	border: none;
+  }
+}

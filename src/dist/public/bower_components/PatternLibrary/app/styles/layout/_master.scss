@@ -1,0 +1,15 @@
+html {
+  position: relative;
+  min-height: 100%; // important!
+  height: 100%; // important!
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: $text-color;
+}
+.page {
+  margin-right: 20px;
+  margin-left:20px;
+}
