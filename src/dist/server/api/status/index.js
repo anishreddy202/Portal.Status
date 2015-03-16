@@ -26,7 +26,30 @@ router.post('/', function(req, res) {
   statusService.setup(config);
   var report = req.body;
 
-  statusService.create(report, function(err, result) {
+  statusService.createReport(report, function(err, result) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(result);
+  });
+});
+
+router.post('/news', function(req, res) {
+  statusService.setup(config);
+  var news = req.body;
+
+  statusService.createNews(news, function(err, result) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(result);
+  });
+});
+
+router.get('/news', function(req, res) {
+  statusService.setup(config);
+
+  statusService.getNews(function(err, result) {
     if (err) {
       res.send(err);
     }
