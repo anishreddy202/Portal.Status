@@ -39,7 +39,7 @@
           return data;
         }).
         error();
-    };
+    }
 
     return service;
 

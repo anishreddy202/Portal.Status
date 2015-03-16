@@ -10,59 +10,59 @@
   function AdminDTOModel(){
 
     var model = {
-      network: network
+      network: Network
     };
 
-    function network(data){
-      var self = this;
-      this.code = data.code;
-      this.name = data.name.toUpperCase();
-      this.systems = data.systems;
-      this.services = MapNetworkServicesDTO(data.services, data.locations);
+    function Network(data){
+      var self;
+      self.code = data.code;
+      self.name = data.name.toUpperCase();
+      self.systems = data.systems;
+      self.services = mapNetworkServicesDTO(data.services, data.locations);
       return self;
 
     }
 
-    function service(data,locations){
-      var self = this;
-      this.name = data.name.toUpperCase();
-      this.code = data.code;
-      this.locations = MapNetworkLocationsDTO(locations,data.code);
+    function Service(data,locations){
+      var self;
+      self.name = data.name.toUpperCase();
+      self.code = data.code;
+      self.locations = mapNetworkLocationsDTO(locations,data.code);
       return self;
     }
 
-    function location(data){
-      var self = this;
-      this.name = data.name.toUpperCase();
-      this.code = data.code.toUpperCase();
-      this.region = data.region.toUpperCase();
-      this.status = null;
-      this.enabled = null;
-      this.isSelected = false;
+    function Location(data){
+      var self;
+      self.name = data.name.toUpperCase();
+      self.code = data.code.toUpperCase();
+      self.region = data.region.toUpperCase();
+      self.status = null;
+      self.enabled = null;
+      self.isSelected = false;
       return self;
     }
 
     /****private functions *****/
 
-    function MapNetworkServicesDTO(data, locations){
+    function mapNetworkServicesDTO(data, locations){
       var services = [];
 
       angular.forEach(data, function(item, i){
-        services.push(new service(item,locations));
+        services.push(new Service(item,locations));
       });
 
       return services;
     }
 
-    function MapNetworkLocationsDTO(data,code){
+    function mapNetworkLocationsDTO(data,code){
 
       var locations = [];
 
       angular.forEach(data, function(item, i){
-        var loc = new location(item);
+        var loc = new Location(item);
 
         angular.forEach(item.services, function(data, i){
-          if(data.code == code){
+          if(data.code === code){
             loc.status = data.status;
             loc.enabled = data.enabled;
             loc.isSelected = data.isSelected;

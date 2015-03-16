@@ -41,7 +41,6 @@
       function login(user, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-        console.log("i am here");
         $http.post('/auth/local', {
           email: user.email,
           password: user.password

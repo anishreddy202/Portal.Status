@@ -10,7 +10,7 @@
   function NewsFn (NewsService,modal,StatusService) {
     var self = this;
     self.news=[];
-    self.searchText;
+    self.searchText = '';
 
     self.open = open;
     self.addNews = addNews;
@@ -31,7 +31,7 @@
       StatusService.getStatus()
         .then(function(response) {
           products = response.data;
-          locations = MapLocations(response.data[0].services[0].locations);
+          locations = mapLocations(response.data[0].services[0].locations);
         })
         .catch();
     }
@@ -57,7 +57,7 @@
         .catch();
     }
 
-    function MapLocations(data){
+    function mapLocations(data){
       var locs = []
       for(var i=0;i<data.length;i++){
         var loc = {};
@@ -68,7 +68,7 @@
       return locs
     }
 
-    function MapServices(data){
+    function mapServices(data){
       var servs = []
       for(var i=0;i<data.length;i++){
         var serv = {};
@@ -89,13 +89,13 @@
           this.products = products;
           this.services = [];
           this.locations= locations;
-          this.comment = "";
-          this.selectedProduct = {"name":"Select Product"};
+          this.comment = '';
+          this.selectedProduct = {'name':'Select Product'};
           this.selectedService = [];
           this.selectedLocation = [];
           this.selectProduct = function(data){
-              this.selectedProduct = {"name": data.name,"code":data.code};
-              this.services = MapServices(data.services);
+              this.selectedProduct = {'name': data.name,'code':data.code};
+              this.services = mapServices(data.services);
           };
           this.save = function(){
             var news ={};

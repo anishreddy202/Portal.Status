@@ -34,7 +34,7 @@
           .catch( function(err) {
             self.errors.failed = true;
             if(err.message === undefined){
-              self.errors.other = "System Error";
+              self.errors.other ='System Error';
             }else{
               self.errors.other = err.message;
             }
