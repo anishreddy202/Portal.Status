@@ -6,9 +6,9 @@
     .controller('AdminCtrl', AdminFn);
 
 
-  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location','NewsService'];
+  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location','NewsService', 'Analytics'];
 
-  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location,NewsService) {
+  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location,NewsService, Analytics) {
     var self = this;
 
     var original =[]
@@ -38,10 +38,13 @@
     function init(){
       StatusService.getStatus()
         .then(function(response) {
+
           original = response.data;
           mapNetworkStatus(response.data);
           self.selectedNetwork = self.network[0];
           getNews();
+
+          Analytics.trackPage('/admin');
         })
         .catch();
 
@@ -50,15 +53,18 @@
     function getNews(){
       NewsService.getNews()
         .then(function(response) {
+
             self.news = response.data;
              for(var i =0;i< self.news.length;i++){
                if(self.news[i].product.code === self.selectedNetwork.code){
                  self.productNews.push(self.news[i]);
                }
              }
-          console.log(self.news);
+          self.news = response.data;
         })
         .catch();
+      Analytics.trackEvent('News', 'get',self.news);
+      Analytics.trackTrans();
     }
 
     function selectNetwork(network){
@@ -69,6 +75,8 @@
           self.productNews.push(self.news[i]);
         }
       }
+      Analytics.trackEvent('Network', 'Select',network);
+      Analytics.trackTrans();
     }
 
     function toggleCell(data){
@@ -116,6 +124,8 @@
       } else {
         $anchorScroll();
       }
+      Analytics.trackEvent('News', 'goto','');
+      Analytics.trackTrans();
     }
 
     function enableService(){
@@ -158,6 +168,8 @@
 
         }
         self.open();
+
+      Analytics.trackEvent('Network', 'updateClick','');
     }
 
     function updateNetworkStatus(news){
@@ -185,6 +197,8 @@
           if(news !== null) {
             createNews(news)
           }
+          Analytics.trackEvent('Network', 'update','');
+          Analytics.trackTrans();
 
         })
         .catch();
