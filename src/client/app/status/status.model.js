@@ -32,6 +32,7 @@
       var self = this;
       this.name = data.name.toLowerCase().replace('cdn','CDN').replace('upl','UpL');
       this.code = data.code;
+      this.id = data.code
       this.status = data.status;
       return self
     }
@@ -42,6 +43,7 @@
       this.name = data.name.toLowerCase();
       this.region =data.region.toLowerCase();
       this.code = data.code.toLowerCase();
+      this.id = data.code;
       this.isSelected = false;
       this.services =[]
 
@@ -53,6 +55,7 @@
       this.name = data.name.toLowerCase().replace('waf','WAF').replace('can','CAN').replace('api','API').replace('adn','ADN')
                   .replace('http','HTTP').replace('cdn','CDN').replace('upl','UpL').replace('ftp','FTP').replace('edgecast','EdgeCast');
       this.code = data.code;
+      this.id = data.code;
       this.enabled;
       this.status;
       this.isSelected = false;

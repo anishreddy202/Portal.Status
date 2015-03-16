@@ -16,6 +16,7 @@
     self.networkModel = [];
     self.selectedNetwork;
     self.news=[];
+    self.productNews = [];
 
     self.statuses = ["OK","ERR","MNT","DGR"];
 
@@ -37,34 +38,42 @@
     function init(){
       StatusService.getStatus()
         .then(function(response) {
-          console.log(response.data);
           original = response.data;
           MapNetworkStatus(response.data)
           self.selectedNetwork = self.network[0];
-          $rootScope.network = self.network;
+          getNews();
         })
         .catch();
 
-      getNews();
     }
 
     function getNews(){
       NewsService.getNews()
         .then(function(response) {
-
-          self.news = response.data;
+            self.news = response.data;
+             for(var i =0;i< self.news.length;i++){
+               if(self.news[i].product.code === self.selectedNetwork.code){
+                 self.productNews.push(self.news[i]);
+               }
+             }
+          console.log(self.news);
         })
         .catch();
     }
 
     function selectNetwork(network){
+      self.productNews = [];
       self.selectedNetwork = network;
+      for(var i =0;i< self.news.length;i++){
+        if(self.news[i].product.code === self.selectedNetwork.code){
+          self.productNews.push(self.news[i]);
+        }
+      }
     }
 
     function toggleCell(data){
       if(data.enabled) {
         data.isSelected = !data.isSelected;
-        $rootScope.selectedNetwork = data;
       }
     }
 
@@ -214,9 +223,10 @@
 
             var news ={};
 
+            news.product = {"name": self.selectedNetwork.name,"code":self.selectedNetwork.code};
             news.status = this.selectedState;
             news.comment = this.comment;
-            news.locations = this.selectedLocations;
+            news.services = this.selectedLocations;
 
             updateNetworkStatus(news);
             modalInstance.dismiss('cancel');
