@@ -165,7 +165,8 @@ a:hover, a:focus {
       .tabs-wrapper ul.nav-tabs li.active > a, .tabs-wrapper ul.nav-tabs li.active > a:hover, .tabs-wrapper ul.nav-tabs li.active > a:focus {
         background: none repeat scroll 0% 0% transparent;
         border: medium none;
-        color: #ffffff; }
+        color: #ffffff;
+        outline: 0; }
       .tabs-wrapper ul.nav-tabs li.active {
         margin-left: -1px;
         margin-bottom: -7px;
@@ -257,10 +258,15 @@ a:hover, a:focus {
           margin-left: 0px;
           text-align: center; }
           .tabs-wrapper ul.nav-tabs li .table-header-list > ul > li {
+            margin-right: 2px;
             padding: 0px;
             border: none; }
             .tabs-wrapper ul.nav-tabs li .table-header-list > ul > li span {
               font-size: 16px; }
+            .tabs-wrapper ul.nav-tabs li .table-header-list > ul > li:first-child {
+              margin-left: 1px; }
+            .tabs-wrapper ul.nav-tabs li .table-header-list > ul > li:last-child {
+              margin-right: 0px; }
       .tabs-wrapper ul.nav-tabs li.transact > .table-header-logo span {
         font-size: 35px;
         margin-top: 13px; }
@@ -388,17 +394,7 @@ a:hover, a:focus {
   .network-news .network-news-info {
     margin-top: 0px;
     padding: 10px 0 0;
-    height: 141px;
-    	/*-webkit-transition: all .5s ease-out;
-      -moz-transition: all .5s ease-out;
-      -o-transition: all .5s ease-out;
-      -transition: all .5s ease-out; */
-    /*&.hide-this {
-    	height: 0px;	
-    }
-    &.show-this {
-    	height: 141px;
-    } */ }
+    height: 141px; }
     .network-news .network-news-info hr {
       opacity: .2;
       margin-top: 0px;
@@ -582,13 +578,8 @@ a:hover, a:focus {
   .table-wrapper tbody tr:last-child {
     border-top: 1px solid #e1e1e1;
     border-bottom: 1px solid #e1e1e1; }
-    .table-wrapper tbody tr:last-child td {
-      border-right: 0px; }
-      .table-wrapper tbody tr:last-child td:first-child::before, .table-wrapper tbody tr:last-child td:last-child::after {
-        border-right: none;
-        border-left: none;
-        margin-left: 0px;
-        border-bottom: 1px solid #e1e1e1; }
+    .table-wrapper tbody tr:last-child td:first-child::before, .table-wrapper tbody tr:last-child td:last-child::after {
+      border-bottom: 1px solid #e1e1e1; }
 
 .store .table-wrapper table thead tr,
 .accelerate .table-wrapper table thead tr,

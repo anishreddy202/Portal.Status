@@ -106,6 +106,4 @@ router.get('/search/:id', function(req, res) {
   });
 });
 
-90/72 - 8.1  - 10/156
-
 module.exports = router;

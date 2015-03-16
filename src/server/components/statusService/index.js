@@ -22,6 +22,18 @@ var StatusService = function() {
     });
   };
 
+  self.createNews = function(news,done) {
+    service.createNews(news,function(err, result) {
+      done(err, result);
+    });
+  };
+
+  self.getNews = function(done) {
+    service.getNews(function(err, result) {
+      done(err, result);
+    });
+  };
+
   return self;
 };
 
