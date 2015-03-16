@@ -227,24 +227,25 @@
             news.status = this.selectedState;
             news.comment = this.comment;
             news.services = this.selectedLocations;
+            news.dateTime = new Date();
 
             updateNetworkStatus(news);
             modalInstance.dismiss('cancel');
           };
 
-          this.status = {
-            isopen: false
-          };
-
-          this.toggled = function(open) {
-            $log.log('Dropdown is now: ', open);
-          };
-
-          this.toggleDropdown = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            $scope.status.isopen = !$scope.status.isopen;
-          };
+          //this.status = {
+          //  isopen: false
+          //};
+          //
+          //this.toggled = function(open) {
+          //  $log.log('Dropdown is now: ', open);
+          //};
+          //
+          //this.toggleDropdown = function($event) {
+          //  $event.preventDefault();
+          //  $event.stopPropagation();
+          //  $scope.status.isopen = !$scope.status.isopen;
+          //};
 
         },
         controllerAs: 'StatusCtrl'
