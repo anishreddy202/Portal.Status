@@ -10,11 +10,11 @@
   function AdminDTOModel(){
 
     var model = {
-      network: Network
+      network: network
     };
 
-    function Network(data){
-      var self;
+    function network(data){
+      var self={};
       self.code = data.code;
       self.name = data.name.toUpperCase();
       self.systems = data.systems;
@@ -24,7 +24,7 @@
     }
 
     function Service(data,locations){
-      var self;
+      var self = {};
       self.name = data.name.toUpperCase();
       self.code = data.code;
       self.locations = mapNetworkLocationsDTO(locations,data.code);
@@ -32,7 +32,7 @@
     }
 
     function Location(data){
-      var self;
+      var self = {};
       self.name = data.name.toUpperCase();
       self.code = data.code.toUpperCase();
       self.region = data.region.toUpperCase();

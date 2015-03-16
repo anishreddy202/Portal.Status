@@ -61,6 +61,7 @@
     /**private functions **/
 
     function mapNetworkStatus(data){
+      console.log(data);
       for(var i = 0; i< data.length;i++){
         var network = new StatusModel.network(data[i]);
         self.network.push(network);

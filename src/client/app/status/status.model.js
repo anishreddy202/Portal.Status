@@ -10,12 +10,13 @@
   function StatusModel(){
 
     var model = {
-      network: Network
+      network: network
     };
 
 
-    function Network(data){
-      var self;
+    function network(data){
+
+      var self = {};
       self.name = data.name;
       self.classname = mapClassName(data.name);
       self.code = data.code;
@@ -29,7 +30,8 @@
     }
 
     function System(data){
-      var self;
+      var self = {};
+
       self.name = data.name.toLowerCase().replace('cdn','CDN').replace('upl','UpL');
       self.code = data.code;
       self.id = data.code
@@ -38,7 +40,7 @@
     }
 
     function Location(data){
-      var self;
+      var self = {};
 
       self.name = data.name.toLowerCase();
       self.region =data.region.toLowerCase();
@@ -51,7 +53,8 @@
     }
 
     function Service(data){
-      var self;
+      var self = {};
+
       self.name = data.name.toLowerCase().replace('waf','WAF').replace('can','CAN').replace('api','API').replace('adn','ADN')
                   .replace('http','HTTP').replace('cdn','CDN').replace('upl','UpL').replace('ftp','FTP').replace('edgecast','EdgeCast');
       self.code = data.code;
@@ -101,6 +104,14 @@
               svc.status = services[j].locations[k].status;
             }
           }
+
+          //_.each(services[j].locations, function(item, i){
+          //    if(item.code === loc.code.toUpperCase()){
+          //      svc.enabled = item.enabled;
+          //      svc.status = item.status;
+          //    }
+          //});
+
           loc.services.push(svc);
         }
         locations.push(loc);
