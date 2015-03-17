@@ -1,13 +1,6 @@
 <header data-ng-include=" 'components/header/header.html'"></header>
-<div class="row">
-  <div class="container">
-    <div class="btn btn-primary" ng-click="vm.updateStatus()">Update Status</div>
-    <div class="btn btn-primary" ng-click="vm.enableService()">Enable Service</div>
-  </div>
-</div>
 <div class="outer-wrap">
   <div class="content-wrapper">
-    <div id="top-header"></div>
     <!-- top header ends -->
     <div class="top-header">
       <div class="panel clearfix">
@@ -144,7 +137,7 @@
 
   <div class="push"></div>
 
-  <div class="network-news well" id="news">
+  <div class="network-news well" id="news" ng-if="vm.network.length != 0">
     <div class="wrapper">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <span class="status-label">Network Status News</span>
@@ -162,7 +155,7 @@
 
   <div class="push"></div>
 
-  <footer class="footer">
+  <footer class="footer" ng-if="vm.network.length != 0">
     <div class="well clearfix">
       <div class="pull-left">
         <div class="footer-logo">

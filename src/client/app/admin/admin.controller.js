@@ -17,9 +17,10 @@
     self.selectedNetwork = null;
     self.news=[];
     self.productNews = [];
+    var selectedNetworkCache = null;
+    self.selectedNetworkChange = true;
 
     self.statuses = ['OK','ERR','MNT','DGR'];
-
 
 
     self.selectNetwork = selectNetwork;
@@ -42,6 +43,7 @@
           original = response.data;
           mapNetworkStatus(response.data);
           self.selectedNetwork = self.network[0];
+          selectedNetworkCache = angular.copy(self.selectedNetwork);
           getNews();
 
           Analytics.trackPage('/admin');
@@ -54,12 +56,14 @@
       NewsService.getNews()
         .then(function(response) {
 
-            self.news = response.data;
-             for(var i =0;i< self.news.length;i++){
-               if(self.news[i].product.code === self.selectedNetwork.code){
-                 self.productNews.push(self.news[i]);
-               }
-             }
+        self.news = response.data;
+          self.productNews = [];
+         for(var i =0;i< self.news.length;i++){
+           if(self.news[i].product.code === self.selectedNetwork.code){
+             self.productNews.push(self.news[i]);
+           }
+         }
+
           self.news = response.data;
         })
         .catch();
@@ -83,6 +87,9 @@
       if(data.enabled) {
         data.isSelected = !data.isSelected;
       }
+
+      self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
+
     }
 
     function toggleColumn(data){
@@ -101,6 +108,9 @@
           }
         }
       }
+
+      self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
+
     }
 
     function toggleRow(data){
@@ -115,6 +125,9 @@
           data.services[i].isSelected = data.isSelected;
         }
       }
+
+      self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
+
     }
 
     function gotoNews(){
@@ -187,6 +200,8 @@
           self.network= [];
           self.networkModel = [];
           mapNetworkStatus(response.data);
+          selectedNetworkCache = angular.copy(self.selectedNetwork);
+          self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
 
           angular.forEach(self.network, function(item, i){
             if(item.code === self.selectedNetwork.code ){
@@ -245,6 +260,17 @@
             updateNetworkStatus(news);
             modalInstance.dismiss('cancel');
           };
+          this.cancel = function(){
+            for(var i =0;i< self.selectedNetwork.locations.length;i++){
+              for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++){
+                if(self.selectedNetwork.locations[i].services[k].isSelected){
+                  self.selectedNetwork.locations[i].services[k].isSelected = false;
+                }
+              }
+            }
+            self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
+            modalInstance.dismiss('cancel');
+          };
         },
         controllerAs: 'StatusCtrl'
       });
@@ -286,7 +312,6 @@
             updateNetworkStatus(null);
             modalInstance2.dismiss('cancel');
           };
-
         },
         controllerAs: 'vm'
       });

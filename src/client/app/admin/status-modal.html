@@ -12,29 +12,27 @@
     <div ng-repeat="service in StatusCtrl.selectedLocations">
         <div>{{service.name}}</div>
         <div class="well">
-          <li role="presentation" ng-repeat="location in service.locations">
-            <a role="menuitem">{{location.name}}</a></li>
+          <li style="display:inline;" role="presentation" ng-repeat="location in service.locations">
+            <a  style="padding:5px;" role="menuitem">{{location.name}}</a>
+          </li>
         </div>
-        <!--<div class="dropdown">-->
-          <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">-->
-            <!--SelectedServices-->
-            <!--<span class="caret"></span>-->
-          <!--</button>-->
-          <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">-->
-            <!--<li role="presentation" ng-repeat="service in loc.services"><a role="menuitem" tabindex="-1" href="#">{{service.serviceName}}</a></li>-->
-          <!--</ul>-->
-        <!--</div>-->
     </div>
   </div>
   <div class="form-group">
     <label class="col-md-3">Change State</label>
-    <div class="btn-group" dropdown is-open="StatusCtrl.status.isopen" ng-if="StatusCtrl.selectedLocations.length != 0">
-      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-        {{StatusCtrl.selectedState }} <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li ng-repeat="status in StatusCtrl.items" ng-click="StatusCtrl.changeState(status)"><a>{{status}}</a></li>
-      </ul>
+    <div class="radio-inline">
+      <div class="radio-inline">
+        <label><input type="radio" ng-click="StatusCtrl.changeState('OK')" name="optradio">OK</label>
+      </div>
+      <div class="radio-inline">
+        <label><input type="radio" ng-click="StatusCtrl.changeState('ERR')" name="optradio">ERR</label>
+      </div>
+      <div class="radio-inline">
+        <label><input type="radio" ng-click="StatusCtrl.changeState('MNT')" name="optradio">MNT</label>
+      </div>
+      <div class="radio-inline" >
+        <label><input type="radio" ng-click="StatusCtrl.changeState('DGR')" name="optradio">DGR</label>
+      </div>
     </div>
   </div>
   <div class="form-group">
@@ -44,6 +42,10 @@
 </div>
 <div class="modal-footer">
   <div class="btn-group btn-group-justified" ng-if="StatusCtrl.selectedLocations.length != 0">
+    <a ng-click="StatusCtrl.cancel()" class="btn btn-gray" role="button">
+      <span class="icon-trash"></span>
+      Cancel
+    </a>
     <a ng-click="StatusCtrl.update()" class="btn btn-danger" role="button">
       <span class="icon-save"></span>
       Save
