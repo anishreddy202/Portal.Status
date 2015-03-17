@@ -18,7 +18,7 @@
     self.news=[];
     self.productNews = [];
     var selectedNetworkCache = null;
-    self.selectedNetworkChange = true;
+    self.selectedNetworkChange = false;
 
     self.statuses = ['OK','ERR','MNT','DGR'];
 
@@ -72,15 +72,20 @@
     }
 
     function selectNetwork(network){
-      self.productNews = [];
-      self.selectedNetwork = network;
-      for(var i =0;i< self.news.length;i++){
-        if(self.news[i].product.code === self.selectedNetwork.code){
-          self.productNews.push(self.news[i]);
+      if(!self.selectedNetworkChange) {
+        self.productNews = [];
+        self.selectedNetwork = network;
+        selectedNetworkCache = angular.copy(self.selectedNetwork);
+        self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+
+        for (var i = 0; i < self.news.length; i++) {
+          if (self.news[i].product.code === self.selectedNetwork.code) {
+            self.productNews.push(self.news[i]);
+          }
         }
+        Analytics.trackEvent('Network', 'Select', network);
+        Analytics.trackTrans();
       }
-      Analytics.trackEvent('Network', 'Select',network);
-      Analytics.trackTrans();
     }
 
     function toggleCell(data){
@@ -88,8 +93,8 @@
         data.isSelected = !data.isSelected;
       }
 
-      self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
-
+      self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+      console.log(self.selectedNetworkChange);
     }
 
     function toggleColumn(data){
@@ -109,7 +114,7 @@
         }
       }
 
-      self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
+      self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
 
     }
 
@@ -126,7 +131,7 @@
         }
       }
 
-      self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
+      self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
 
     }
 
@@ -200,14 +205,15 @@
           self.network= [];
           self.networkModel = [];
           mapNetworkStatus(response.data);
-          selectedNetworkCache = angular.copy(self.selectedNetwork);
-          self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
 
           angular.forEach(self.network, function(item, i){
             if(item.code === self.selectedNetwork.code ){
               self.selectedNetwork = item;
             }
           });
+
+          selectedNetworkCache = angular.copy(self.selectedNetwork);
+          self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
 
           if(news !== null) {
             createNews(news)
@@ -268,7 +274,7 @@
                 }
               }
             }
-            self.selectedNetworkChange = angular.equals(selectedNetworkCache, self.selectedNetwork);
+            self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
             modalInstance.dismiss('cancel');
           };
         },
