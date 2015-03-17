@@ -1,13 +1,6 @@
 <header data-ng-include=" 'components/header/header.html'"></header>
-<div class="row">
-  <div class="container">
-    <div class="btn btn-primary" ng-click="vm.updateStatus()">Update Status</div>
-    <div class="btn btn-primary" ng-click="vm.enableService()">Enable Service</div>
-  </div>
-</div>
 <div class="outer-wrap">
   <div class="content-wrapper">
-    <div id="top-header"></div>
     <!-- top header ends -->
     <div class="top-header">
       <div class="panel clearfix">
@@ -31,7 +24,7 @@
     <div class="tab-panel" role="tabpanel" data-example-id="togglable-tabs">
       <div class="tabs-wrapper">
         <ul id="myTab" class="nav nav-tabs" role="tablist">
-          <li role="presentation" ng-repeat="status in vm.network"
+          <li role="presentation" ng-repeat="status in vm.network" ng-click="vm.selectNetwork(status)"
               ng-class="{'active ': status.name == 'DELIVER' && vm.selectedNetwork.name == 'DELIVER',
           'active transact': status.name == 'TRANSACT' && vm.selectedNetwork.name == 'TRANSACT',
           'active route': status.name == 'ROUTE' && vm.selectedNetwork.name == 'ROUTE',
@@ -39,7 +32,7 @@
           'active store': status.name == 'STORE' && vm.selectedNetwork.name == 'STORE',
           'active accelerate': status.name == 'ACCELERATE' && vm.selectedNetwork.name == 'ACCELERATE'} ">
 
-            <a href="#cdn" role="tab" id="cdn-tab" data-toggle="tab" aria-controls="cdn" aria-expanded="true" ng-click="vm.selectNetwork(status)">
+            <a>
               <div class="table-header-logo clearfix">
                 <span class="icon-{{status.classname}}"></span>
               </div>
@@ -144,7 +137,7 @@
 
   <div class="push"></div>
 
-  <div class="network-news well" id="news">
+  <div class="network-news well" id="news" ng-if="vm.network.length != 0">
     <div class="wrapper">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <span class="status-label">Network Status News</span>
@@ -162,7 +155,7 @@
 
   <div class="push"></div>
 
-  <footer class="footer">
+  <footer class="footer" ng-if="vm.network.length != 0">
     <div class="well clearfix">
       <div class="pull-left">
         <div class="footer-logo">

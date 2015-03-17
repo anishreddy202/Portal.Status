@@ -137,7 +137,7 @@
 
   <div class="push"></div>
 
-  <div class="network-news well" id="news">
+  <div class="network-news well" id="news" ng-if="vm.network.length != 0">
     <div class="wrapper">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <span class="status-label">Network Status News</span>
@@ -155,7 +155,7 @@
 
   <div class="push"></div>
 
-  <footer class="footer">
+  <footer class="footer" ng-if="vm.network.length != 0">
     <div class="well clearfix">
       <div class="pull-left">
         <div class="footer-logo">
