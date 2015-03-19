@@ -33,7 +33,7 @@ var NewsService = function(configuration){
       skip: (params.pageSize) * parseInt(params.pageIndex) || 0
     };
 
-    if(params.filter == 48) {
+    if(params.filter === 48) {
       var date = new Date().getTime() - (60 * 60 * 48 * 1000);
       filter.query = {
         dateTime: {

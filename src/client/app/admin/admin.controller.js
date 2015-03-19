@@ -11,8 +11,8 @@
   function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location,NewsService, Analytics) {
     var self = this;
 
-    var original =[]
-    self.module= "admin"
+    var original =[];
+    self.module= 'admin';
     self.network= [];
     self.networkModel = [];
     self.selectedNetwork = null;
@@ -272,7 +272,7 @@
             news.status = this.selectedState;
             news.comment = this.comment;
 
-            news.module = "admin";
+            news.module = 'admin';
             news.services = this.selectedLocations;
             news.dateTime = new Date();
 

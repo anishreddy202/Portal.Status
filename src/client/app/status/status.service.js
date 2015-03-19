@@ -44,10 +44,7 @@
         error();
     }
 
-    function getNews(period) {
-      console.log();
-      console.log("i am from admin");
-      //if(!period){period = 48;}
+    function getNews() {
       return $http({method: 'GET', url: '/api/v1/status/news' }).
         success(function(data) {
           return data;

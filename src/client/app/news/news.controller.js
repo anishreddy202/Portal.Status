@@ -11,10 +11,10 @@
     var self = this;
     self.news=[];
     self.searchText = '';
-    self.module= "news";
+    self.module= 'news';
     self.pageSize = 1;
     self.currentPage = 0;
-    self.count;
+    self.count = 0;
 
     self.open = open;
     self.addNews = addNews;
