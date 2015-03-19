@@ -12,6 +12,7 @@
     var self = this;
 
     var original =[]
+    self.module= "admin"
     self.network= [];
     self.networkModel = [];
     self.selectedNetwork = null;
@@ -53,10 +54,14 @@
     }
 
     function getNews(){
-      NewsService.getNews()
+      var params = {};
+      params.period = 48;
+      params.pageSize = 0;
+      params.currentPage = 0;
+      NewsService.getNews(params)
         .then(function(response) {
 
-        self.news = response.data;
+        self.news = response.data.news;
           self.productNews = [];
          for(var i =0;i< self.news.length;i++){
            if(self.news[i].product.code === self.selectedNetwork.code){
@@ -110,6 +115,9 @@
             if(self.selectedNetwork.locations[i].services[k].enabled) {
               self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
             }
+            //else{
+            //  self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
+            //}
           }
         }
       }
@@ -129,6 +137,9 @@
         if(data.services[i].enabled) {
           data.services[i].isSelected = data.isSelected;
         }
+        //else{
+        //  data.services[i].isSelected = data.isSelected;
+        //}
       }
 
       self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
@@ -260,6 +271,8 @@
             news.product = {'name': self.selectedNetwork.name,'code':self.selectedNetwork.code};
             news.status = this.selectedState;
             news.comment = this.comment;
+
+            news.module = "admin";
             news.services = this.selectedLocations;
             news.dateTime = new Date();
 
@@ -267,13 +280,24 @@
             modalInstance.dismiss('cancel');
           };
           this.cancel = function(){
+            console.log(self.selectedNetwork);
+            for(var i =0;i< self.selectedNetwork.services.length;i++){
+              if(self.selectedNetwork.services[i].isSelected){
+                self.selectedNetwork.services[i].isSelected = false;
+              }
+            }
             for(var i =0;i< self.selectedNetwork.locations.length;i++){
+
+              if(self.selectedNetwork.locations[i].isSelected){
+                self.selectedNetwork.locations[i].isSelected = false;
+              }
               for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++){
                 if(self.selectedNetwork.locations[i].services[k].isSelected){
                   self.selectedNetwork.locations[i].services[k].isSelected = false;
                 }
               }
             }
+
             self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
             modalInstance.dismiss('cancel');
           };

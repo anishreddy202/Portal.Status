@@ -13,8 +13,9 @@ var newsService = require('../../components/newsService');
 
 router.get('/', function(req, res) {
   newsService.setup(config);
-
-  newsService.getNews(function(err, result) {
+  var params = req.query;
+  console.log(params);
+  newsService.getNews(params,function(err, result) {
     if (err) {
       res.send(err);
     }
