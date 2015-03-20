@@ -12,7 +12,7 @@
         </div>
         <div class="pull-right">
           <ul>
-            <li><a ng-click="vm.gotoNews()"><span class="badge">{{vm.news.length}}</span>Network Status Updates</a></li>
+            <li><a ng-click="vm.gotoNews()"><span class="badge">{{vm.productNews.length}}</span>Network Status Updates</a></li>
             <li><a href="#"><span class="icon-envelope"></span>VDMS Support</a></li>
           </ul>
         </div>
@@ -143,10 +143,26 @@
         <span class="status-label">Network Status News</span>
         <!--a href="#" class="status-label-toggle pull-right" id="hide-below">hide</a>
         <a href="#" class="status-label-toggle pull-right" id="show-below" style="display:none;">show</a-->
-        <div class="network-news-info" ng-repeat="news in vm.news">
+        <div class="network-news-info" ng-repeat="news in vm.productNews">
           <hr>
-          <p class="time-notice">Nov. 25 2014 6:14a.m. PST - Seoul - ICN : HTTP Large<br>
-          <p>{{news.comment}}</p>
+          <p class="time-notice">{{news.comment}}</p>
+          <p class="time-notice">{{news.dateTime}}</p>
+          <div ng-if="news.module == 'admin'">
+            <div class="time-notice" ng-repeat="service in news.services" >
+              <p class="time-notice">{{service.name}}</p>
+              <p class="time-notice" style="padding-left: 20px;" ng-repeat="loc in service.locations">{{loc.name}}</p>
+            </div>
+            <div ng-repeat="loc in news.locations" ><p class="time-notice" style="padding-left: 10px">{{loc.name}}</p></div>
+          </div>
+          <div ng-if="news.module == 'news'">
+            <div ng-if="news.locations.length != 0"><p class="time-notice">SERVICES</p></div>
+            <div class="time-notice" ng-repeat="service in news.services" >
+              <p class="time-notice"  style="padding-left: 20px;">{{service.name}}</p>
+              <p class="time-notice"  style="padding-left: 20px;" ng-repeat="loc in service.locations">{{loc.name}}</p>
+            </div>
+            <div ng-if="news.locations.length != 0"><p class="time-notice">LOCATIONS</p></div>
+            <div ng-repeat="loc in news.locations" ><p class="time-notice"  style="padding-left: 20px">{{loc.name}}</p></div>
+          </div>
         </div>
 
       </div>

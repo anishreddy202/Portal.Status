@@ -9,15 +9,3 @@
     <li data-ng-repeat='option in options'> <a data-ng-click='setSelectedItem()'>{{option.name}}<span data-ng-class='isChecked(option)'></span></a></li>
     </ul>
 </div>
-
-<!--<div class="btn-group" dropdown >-->
-  <!--<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">-->
-    <!--<span ng-if='model.length != 0' >{{model.length }} Selected</span><span ng-if='model.length == 0'>Select</span><span class="caret"></span>-->
-  <!--</button>-->
-  <!--<ul class="dropdown-menu" role="menu">-->
-    <!--<li><a data-ng-click='selectAll()'><i class='icon-ok-sign'></i>  Check All</a></li>-->
-    <!--<li><a data-ng-click='deselectAll();'><i class='icon-remove-sign'></i>  Uncheck All</a></li>-->
-    <!--<li class='divider'></li>-->
-    <!--<li data-ng-repeat='option in options'> <a data-ng-click='setSelectedItem()'>{{option.name}}<span data-ng-class='isChecked(option)'></span></a></li>-->
-  <!--</ul>-->
-<!--</div>-->

@@ -22,8 +22,8 @@ var NewsService = function() {
     });
   };
 
-  self.getNews = function(done) {
-    service.getNews(function(err, result) {
+  self.getNews = function(params,done) {
+    service.getNews(params,function(err, result) {
       done(err, result);
     });
   };
