@@ -27,7 +27,7 @@ describe("Status Data", function(){
     done();
   });
   it('Should have a time stamp', function(done){
-    data.should.have.property('time');
+    data.should.have.property('timeStamp');
     done();
   });
   it('Should Define a report property of type array', function(done){

@@ -66,6 +66,9 @@ var Validator = function(){
     Joi.validate(data, schema, options, function(err, value){
       var error = null;
 
+      console.log(err);
+      console.log(value);
+
       if (err) {
         error = new Verror(err, 'Schema Validator Error');
         log('FAILED: ' + value + ' - ' + JSON.stringify(err, null, 2));
