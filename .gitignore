@@ -12,4 +12,5 @@
 /chef/data_bags/ssh/authorized_keys.json
 /.vagrant/
 /.idea/
+/azure/
 npm-debug.log
