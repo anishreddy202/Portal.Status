@@ -35,11 +35,11 @@
         <tbody>
         <tr ng-repeat="news in vm.news | filter:vm.searchText">
           <td>
-            <span class="icon-news"></span>
+            <span class="icon-envelope"></span>
           </td>
           <td>
             <span>{{news.comment}}</span>
-            <span>{{news.date}}</span>
+            <span>{{news.dateTime}}</span>
           </td>
           <td class="pull-right">
             <span class="icon-trash" ng-click="vm.removeNews(news)"></span>

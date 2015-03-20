@@ -12,7 +12,7 @@
     self.news=[];
     self.searchText = '';
     self.module= 'news';
-    self.pageSize = 1;
+    self.pageSize = 10;
     self.currentPage = 0;
     self.count = 0;
 
@@ -34,7 +34,6 @@
 
       NewsService.getNews(params)
         .then(function(response) {
-          console.log(response.data)
           angular.forEach(response.data.news, function(item){
             self.news.push(item);
           });

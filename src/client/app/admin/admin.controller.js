@@ -54,22 +54,13 @@
     }
 
     function getNews(){
-      var params = {};
-      params.period = 48;
-      params.pageSize = 0;
-      params.currentPage = 0;
+      var params = {
+        period: 48, pageSize:0,currentPage:0
+      };
       NewsService.getNews(params)
         .then(function(response) {
-
-        self.news = response.data.news;
-          self.productNews = [];
-         for(var i =0;i< self.news.length;i++){
-           if(self.news[i].product.code === self.selectedNetwork.code){
-             self.productNews.push(self.news[i]);
-           }
-         }
-
-          self.news = response.data;
+          self.news = response.data.news;
+          mapProductNews();
         })
         .catch();
       Analytics.trackEvent('News', 'get',self.news);
@@ -78,28 +69,25 @@
 
     function selectNetwork(network){
       if(!self.selectedNetworkChange) {
+
         self.productNews = [];
         self.selectedNetwork = network;
         selectedNetworkCache = angular.copy(self.selectedNetwork);
         self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+        mapProductNews();
 
-        for (var i = 0; i < self.news.length; i++) {
-          if (self.news[i].product.code === self.selectedNetwork.code) {
-            self.productNews.push(self.news[i]);
-          }
-        }
         Analytics.trackEvent('Network', 'Select', network);
         Analytics.trackTrans();
       }
     }
 
     function toggleCell(data){
+
       if(data.enabled) {
         data.isSelected = !data.isSelected;
       }
-
       self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
-      console.log(self.selectedNetworkChange);
+
     }
 
     function toggleColumn(data){
@@ -162,6 +150,15 @@
     }
 
     /**private functions **/
+
+    function mapProductNews(){
+      self.productNews = [];
+      for(var i =0;i< self.news.length;i++){
+        if(self.news[i].product.code === self.selectedNetwork.code){
+          self.productNews.push(self.news[i]);
+        }
+      }
+    }
 
     function mapNetworkStatus(data){
       for(var i = 0; i< data.length;i++){
