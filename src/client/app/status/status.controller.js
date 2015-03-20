@@ -16,6 +16,7 @@
     self.networkModel = [];
     self.selectedNetwork=null;
     self.News =[];
+    self.productNews = [];
 
     self.selectNetwork = selectNetwork;
     self.gotoNews = gotoNews;
@@ -37,9 +38,13 @@
     }
 
     function getNews(){
-      NewsService.getNews()
+      var params = {
+        period: 48, pageSize:0,currentPage:0
+      };
+      NewsService.getNews(params)
         .then(function(response) {
           self.news = response.data;
+          mapProductNews();
         })
         .catch();
     }
@@ -60,8 +65,16 @@
 
     /**private functions **/
 
+    function mapProductNews(){
+      self.productNews = [];
+      for(var i =0;i< self.news.length;i++){
+        if(self.news[i].product.code === self.selectedNetwork.code){
+          self.productNews.push(self.news[i]);
+        }
+      }
+    }
+
     function mapNetworkStatus(data){
-      console.log(data);
       for(var i = 0; i< data.length;i++){
         var network = new StatusModel.network(data[i]);
         self.network.push(network);

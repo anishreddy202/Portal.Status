@@ -25,8 +25,8 @@
         error();
     }
 
-    function getNews() {
-      return $http({method: 'GET', url: '/api/v1/news' }).
+    function getNews(params) {
+      return $http({method: 'GET', url: '/api/v1/news?filter='+ params.period + '&pageSize='+params.pageSize+'&pageIndex='+ params.currentPage }).
         success(function(data) {
           return data;
         }).

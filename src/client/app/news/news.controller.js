@@ -11,10 +11,15 @@
     var self = this;
     self.news=[];
     self.searchText = '';
+    self.module= 'news';
+    self.pageSize = 10;
+    self.currentPage = 0;
+    self.count = 0;
 
     self.open = open;
     self.addNews = addNews;
     self.removeNews = removeNews;
+    self.nextPage = nextPage;
 
     var products = [];
     var locations = [];
@@ -22,9 +27,19 @@
     init();
 
     function init(){
-      NewsService.getNews()
+      var params = {};
+      params.filter = null;
+      params.pageSize = self.pageSize;
+      params.currentPage = self.currentPage;
+
+      NewsService.getNews(params)
         .then(function(response) {
-          self.news = response.data;
+          angular.forEach(response.data.news, function(item){
+            self.news.push(item);
+          });
+
+          self.count = response.data.count;
+          self.currentPage = response.data.currentPage;
         })
         .catch();
 
@@ -34,6 +49,11 @@
           locations = mapLocations(response.data[0].services[0].locations);
         })
         .catch();
+    }
+
+    function nextPage(){
+      self.currentPage++;
+      init();
     }
 
     function addNews() {
@@ -102,7 +122,9 @@
             news.product = this.selectedProduct
             news.services = this.selectedService;
             news.comment = this.comment;
+            news.module = 'news';
             news.locations = this.selectedLocation;
+            news.dateTime = new Date();
 
             saveNews(news)
             modalInstance.dismiss('cancel');

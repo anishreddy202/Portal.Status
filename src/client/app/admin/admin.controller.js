@@ -11,7 +11,8 @@
   function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location,NewsService, Analytics) {
     var self = this;
 
-    var original =[]
+    var original =[];
+    self.module= 'admin';
     self.network= [];
     self.networkModel = [];
     self.selectedNetwork = null;
@@ -32,6 +33,8 @@
     self.gotoNews = gotoNews;
     self.enableService = enableService;
     self.openEnableService = openEnableService;
+    self.manageSystem = manageSystem;
+    self.openManageSystem = openManageSystem;
 
 
     init();
@@ -53,18 +56,13 @@
     }
 
     function getNews(){
-      NewsService.getNews()
+      var params = {
+        period: 48, pageSize:0,currentPage:0
+      };
+      NewsService.getNews(params)
         .then(function(response) {
-
-        self.news = response.data;
-          self.productNews = [];
-         for(var i =0;i< self.news.length;i++){
-           if(self.news[i].product.code === self.selectedNetwork.code){
-             self.productNews.push(self.news[i]);
-           }
-         }
-
-          self.news = response.data;
+          self.news = response.data.news;
+          mapProductNews();
         })
         .catch();
       Analytics.trackEvent('News', 'get',self.news);
@@ -73,28 +71,25 @@
 
     function selectNetwork(network){
       if(!self.selectedNetworkChange) {
+
         self.productNews = [];
         self.selectedNetwork = network;
         selectedNetworkCache = angular.copy(self.selectedNetwork);
         self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+        mapProductNews();
 
-        for (var i = 0; i < self.news.length; i++) {
-          if (self.news[i].product.code === self.selectedNetwork.code) {
-            self.productNews.push(self.news[i]);
-          }
-        }
         Analytics.trackEvent('Network', 'Select', network);
         Analytics.trackTrans();
       }
     }
 
     function toggleCell(data){
+
       if(data.enabled) {
         data.isSelected = !data.isSelected;
       }
-
       self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
-      console.log(self.selectedNetworkChange);
+
     }
 
     function toggleColumn(data){
@@ -110,6 +105,9 @@
             if(self.selectedNetwork.locations[i].services[k].enabled) {
               self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
             }
+            //else{
+            //  self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
+            //}
           }
         }
       }
@@ -129,6 +127,9 @@
         if(data.services[i].enabled) {
           data.services[i].isSelected = data.isSelected;
         }
+        //else{
+        //  data.services[i].isSelected = data.isSelected;
+        //}
       }
 
       self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
@@ -150,7 +151,20 @@
       self.openEnableService();
     }
 
+    function manageSystem(){
+      self.openManageSystem();
+    }
+
     /**private functions **/
+
+    function mapProductNews(){
+      self.productNews = [];
+      for(var i =0;i< self.news.length;i++){
+        if(self.news[i].product.code === self.selectedNetwork.code){
+          self.productNews.push(self.news[i]);
+        }
+      }
+    }
 
     function mapNetworkStatus(data){
       for(var i = 0; i< data.length;i++){
@@ -190,6 +204,30 @@
       Analytics.trackEvent('Network', 'updateClick','');
     }
 
+    function updateSystems(){
+      StatusService.updateStatus(original)
+        .then(function(response) {
+          self.network= [];
+          self.networkModel = [];
+          original = response.data;
+          mapNetworkStatus(response.data);
+
+          angular.forEach(self.network, function(item, i){
+            if(item.code === self.selectedNetwork.code ){
+              self.selectedNetwork = item;
+            }
+          });
+
+          selectedNetworkCache = angular.copy(self.selectedNetwork);
+          self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+
+          Analytics.trackEvent('Network', 'update','');
+          Analytics.trackTrans();
+
+        })
+        .catch();
+    }
+
     function updateNetworkStatus(news){
 
       var dto = new AdminDTOModel.network(self.selectedNetwork);
@@ -204,6 +242,7 @@
         .then(function(response) {
           self.network= [];
           self.networkModel = [];
+          original = response.data;
           mapNetworkStatus(response.data);
 
           angular.forEach(self.network, function(item, i){
@@ -260,6 +299,8 @@
             news.product = {'name': self.selectedNetwork.name,'code':self.selectedNetwork.code};
             news.status = this.selectedState;
             news.comment = this.comment;
+
+            news.module = 'admin';
             news.services = this.selectedLocations;
             news.dateTime = new Date();
 
@@ -267,13 +308,24 @@
             modalInstance.dismiss('cancel');
           };
           this.cancel = function(){
+            console.log(self.selectedNetwork);
+            for(var i =0;i< self.selectedNetwork.services.length;i++){
+              if(self.selectedNetwork.services[i].isSelected){
+                self.selectedNetwork.services[i].isSelected = false;
+              }
+            }
             for(var i =0;i< self.selectedNetwork.locations.length;i++){
+
+              if(self.selectedNetwork.locations[i].isSelected){
+                self.selectedNetwork.locations[i].isSelected = false;
+              }
               for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++){
                 if(self.selectedNetwork.locations[i].services[k].isSelected){
                   self.selectedNetwork.locations[i].services[k].isSelected = false;
                 }
               }
             }
+
             self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
             modalInstance.dismiss('cancel');
           };
@@ -318,6 +370,46 @@
             updateNetworkStatus(null);
             modalInstance2.dismiss('cancel');
           };
+        },
+        controllerAs: 'vm'
+      });
+    }
+
+    function openManageSystem() {
+      var modalInstance = modal.open({
+        templateUrl: 'app/admin/managesystem-modal.html',
+        controller: function(){
+          console.log(original);
+          this.selectedProduct = {'name':'Select Product'};
+          this.products = original;
+          this.selectProduct = function(data){
+            this.selectedProduct = {'name': data.name,'code':data.code};
+            this.systems = data.systems;
+          };
+          this.selectedSystem = {'name':'Select System'};
+          this.selectSystem = function(data){
+            this.selectedSystem = {'name': data.name,'code':data.code};
+          };
+          this.selectedState = 'OK';
+          this.changeState = function(data){
+            this.selectedState = data;
+          };
+          this.update = function(){
+            for(var i = 0;i< original.length;i++){
+              if(original[i].code == this.selectedProduct.code){
+                for(var j=0;j< original[i].systems.length;j++){
+                  if(original[i].systems[j].code == this.selectedSystem.code){
+                    original[i].systems[j].status = this.selectedState
+                  }
+                }
+              }
+            };
+            modalInstance.dismiss('cancel');
+            updateSystems();
+          };
+          this.cancel = function(){
+            modalInstance.dismiss('cancel');
+          }
         },
         controllerAs: 'vm'
       });
