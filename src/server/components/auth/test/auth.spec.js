@@ -1,6 +1,6 @@
 var assert = require("assert");
 var should = require("should");
-var db = require("../../mongoDAL");
+var db = require("mongoDAL");
 var config = require('./config.json');
 
 
