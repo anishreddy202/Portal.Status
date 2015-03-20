@@ -5,6 +5,7 @@
 /src/.idea
 /src/client/bower_components
 /src/server/config/local.env.js
+/src/dist
 
 
 /chef/cookbooks/
