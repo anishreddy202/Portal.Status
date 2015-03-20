@@ -33,6 +33,8 @@
     self.gotoNews = gotoNews;
     self.enableService = enableService;
     self.openEnableService = openEnableService;
+    self.manageSystem = manageSystem;
+    self.openManageSystem = openManageSystem;
 
 
     init();
@@ -149,6 +151,10 @@
       self.openEnableService();
     }
 
+    function manageSystem(){
+      self.openManageSystem();
+    }
+
     /**private functions **/
 
     function mapProductNews(){
@@ -198,6 +204,30 @@
       Analytics.trackEvent('Network', 'updateClick','');
     }
 
+    function updateSystems(){
+      StatusService.updateStatus(original)
+        .then(function(response) {
+          self.network= [];
+          self.networkModel = [];
+          original = response.data;
+          mapNetworkStatus(response.data);
+
+          angular.forEach(self.network, function(item, i){
+            if(item.code === self.selectedNetwork.code ){
+              self.selectedNetwork = item;
+            }
+          });
+
+          selectedNetworkCache = angular.copy(self.selectedNetwork);
+          self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+
+          Analytics.trackEvent('Network', 'update','');
+          Analytics.trackTrans();
+
+        })
+        .catch();
+    }
+
     function updateNetworkStatus(news){
 
       var dto = new AdminDTOModel.network(self.selectedNetwork);
@@ -212,6 +242,7 @@
         .then(function(response) {
           self.network= [];
           self.networkModel = [];
+          original = response.data;
           mapNetworkStatus(response.data);
 
           angular.forEach(self.network, function(item, i){
@@ -339,6 +370,46 @@
             updateNetworkStatus(null);
             modalInstance2.dismiss('cancel');
           };
+        },
+        controllerAs: 'vm'
+      });
+    }
+
+    function openManageSystem() {
+      var modalInstance = modal.open({
+        templateUrl: 'app/admin/managesystem-modal.html',
+        controller: function(){
+          console.log(original);
+          this.selectedProduct = {'name':'Select Product'};
+          this.products = original;
+          this.selectProduct = function(data){
+            this.selectedProduct = {'name': data.name,'code':data.code};
+            this.systems = data.systems;
+          };
+          this.selectedSystem = {'name':'Select System'};
+          this.selectSystem = function(data){
+            this.selectedSystem = {'name': data.name,'code':data.code};
+          };
+          this.selectedState = 'OK';
+          this.changeState = function(data){
+            this.selectedState = data;
+          };
+          this.update = function(){
+            for(var i = 0;i< original.length;i++){
+              if(original[i].code == this.selectedProduct.code){
+                for(var j=0;j< original[i].systems.length;j++){
+                  if(original[i].systems[j].code == this.selectedSystem.code){
+                    original[i].systems[j].status = this.selectedState
+                  }
+                }
+              }
+            };
+            modalInstance.dismiss('cancel');
+            updateSystems();
+          };
+          this.cancel = function(){
+            modalInstance.dismiss('cancel');
+          }
         },
         controllerAs: 'vm'
       });

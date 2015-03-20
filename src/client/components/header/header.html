@@ -21,6 +21,7 @@
     <div class="col-sm-offset-8" style="padding-top:5px;" ng-if="vm.module == 'admin'">
       <div  data-ng-disabled="!vm.selectedNetworkChange" ng-class="{'btn btn-sm btn-disabled': !vm.selectedNetworkChange,'btn btn-sm btn-danger':vm.selectedNetworkChange}" ng-click="vm.updateStatus()">Update Status</div>
       <div class="btn btn-sm btn-disabled" ng-click="vm.enableService()">Enable Service</div>
+      <div class="btn btn-sm btn-disabled" ng-click="vm.manageSystem()">Manage System</div>
     </div>
   </div>
 </nav>
