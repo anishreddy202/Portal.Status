@@ -141,6 +141,11 @@ The architecture consists of a single server architecture.  The objectives of th
 5. [Visual Design - Uplynk Tab](docs/visual/uplynk.png)
 
 
+### Continuous Integration
+
+CI has been enabled on the Master Branch
+[ ![Codeship Status for vzdigitalmedia/portals.status](https://codeship.com/projects/f623c7e0-b168-0132-08f1-3edef27c5b65/status?branch=master)](https://codeship.com/projects/69838)
+
 Development Environment
 ---------------
 
