@@ -10,6 +10,5 @@
 /chef/cookbooks/
 /chef/data_bags/ssh/authorized_keys.json
 /.vagrant/
-.idea/.name
-.idea/workspace.xml
+/.idea/
 npm-debug.log
