@@ -27,9 +27,9 @@
                         'has-success': !LoginCtrl.form.email.$invalid,
                         'has-feedback': (LoginCtrl.form.email.$invalid && LoginCtrl.form.email.$dirty) || !LoginCtrl.form.email.$invalid}">
             <label>Email</label>
-            <input type="text" name="email" placeholder="Name" class="form-control" required
+            <input type="text" name="email" placeholder="Name" class="form-control" style="line-height:2.3" required
                    data-ng-model="LoginCtrl.user.email">
-          <span class="form-control-feedback"
+          <span class="form-control-feedback" style="line-height:2.3"
                 data-ng-class="{'icon-check': !LoginCtrl.form.email.$invalid,
                            'icon-error': LoginCtrl.form.email.$invalid && LoginCtrl.form.email.$dirty}"
                 data-ng-show="!LoginCtrl.form.email.$pristine"></span>
@@ -43,7 +43,7 @@
             <label>Password</label>
             <input type="password" name="password" placeholder="password" class="form-control" required
                    data-ng-model="LoginCtrl.user.password">
-          <span class="form-control-feedback"
+          <span class="form-control-feedback" style="line-height:2.3"
                 data-ng-class="{'icon-check': !LoginCtrl.form.password.$invalid,
                            'icon-error': LoginCtrl.form.password.$invalid && LoginCtrl.form.password.$dirty}"
                 data-ng-show="!LoginCtrl.form.password.$pristine"></span>
