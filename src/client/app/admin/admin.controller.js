@@ -6,19 +6,22 @@
     .controller('AdminCtrl', AdminFn);
 
 
-  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location'];
+  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location','NewsService', 'Analytics'];
 
-  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location) {
+  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location,NewsService, Analytics) {
     var self = this;
 
-    var original =[]
+    var original =[];
+    self.module= 'admin';
     self.network= [];
     self.networkModel = [];
-    self.selectedNetwork;
+    self.selectedNetwork = null;
     self.news=[];
+    self.productNews = [];
+    var selectedNetworkCache = null;
+    self.selectedNetworkChange = false;
 
-    self.statuses = ["OK","ERR","MNT","DGR"];
-
+    self.statuses = ['OK','ERR','MNT','DGR'];
 
 
     self.selectNetwork = selectNetwork;
@@ -28,6 +31,10 @@
     self.updateStatus = updateStatus;
     self.open = open;
     self.gotoNews = gotoNews;
+    self.enableService = enableService;
+    self.openEnableService = openEnableService;
+    self.manageSystem = manageSystem;
+    self.openManageSystem = openManageSystem;
 
 
     init();
@@ -35,41 +42,53 @@
     function init(){
       StatusService.getStatus()
         .then(function(response) {
+
           original = response.data;
-          MapNetworkStatus(response.data)
+          mapNetworkStatus(response.data);
           self.selectedNetwork = self.network[0];
-          $rootScope.network = self.network;
+          selectedNetworkCache = angular.copy(self.selectedNetwork);
+          getNews();
+
+          Analytics.trackPage('/admin');
         })
         .catch();
 
-      StatusService.getNews()
+    }
+
+    function getNews(){
+      var params = {
+        period: 48, pageSize:0,currentPage:0
+      };
+      NewsService.getNews(params)
         .then(function(response) {
-          self.news = response.data;
+          self.news = response.data.news;
+          mapProductNews();
         })
         .catch();
+      Analytics.trackEvent('News', 'get',self.news);
+      Analytics.trackTrans();
     }
 
     function selectNetwork(network){
-      self.selectedNetwork = network;
+      if(!self.selectedNetworkChange) {
+
+        self.productNews = [];
+        self.selectedNetwork = network;
+        selectedNetworkCache = angular.copy(self.selectedNetwork);
+        self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+        mapProductNews();
+
+        Analytics.trackEvent('Network', 'Select', network);
+        Analytics.trackTrans();
+      }
     }
 
     function toggleCell(data){
-      data.isSelected = !data.isSelected;
-      $rootScope.selectedNetwork = data;
-    }
 
-    function gotoNews(){
-
-      var newHash = 'news';
-      if ($location.hash() !== newHash) {
-        // set the $location.hash to `newHash` and
-        // $anchorScroll will automatically scroll to it
-        $location.hash('news');
-      } else {
-        // call $anchorScroll() explicitly,
-        // since $location.hash hasn't changed
-        $anchorScroll();
+      if(data.enabled) {
+        data.isSelected = !data.isSelected;
       }
+      self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
 
     }
 
@@ -83,10 +102,18 @@
       for(var i =0;i< self.selectedNetwork.locations.length;i++){
         for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++) {
           if(data.code === self.selectedNetwork.locations[i].services[k].code){
-            self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
+            if(self.selectedNetwork.locations[i].services[k].enabled) {
+              self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
+            }
+            //else{
+            //  self.selectedNetwork.locations[i].services[k].isSelected = data.isSelected
+            //}
           }
         }
       }
+
+      self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+
     }
 
     function toggleRow(data){
@@ -97,13 +124,49 @@
         data.isSelected = true;
       }
       for(var i =0;i< data.services.length;i++){
-        data.services[i].isSelected = data.isSelected;
+        if(data.services[i].enabled) {
+          data.services[i].isSelected = data.isSelected;
+        }
+        //else{
+        //  data.services[i].isSelected = data.isSelected;
+        //}
       }
+
+      self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+
+    }
+
+    function gotoNews(){
+      var newHash = 'news';
+      if ($location.hash() !== newHash) {
+        $location.hash('news');
+      } else {
+        $anchorScroll();
+      }
+      Analytics.trackEvent('News', 'goto','');
+      Analytics.trackTrans();
+    }
+
+    function enableService(){
+      self.openEnableService();
+    }
+
+    function manageSystem(){
+      self.openManageSystem();
     }
 
     /**private functions **/
 
-    function MapNetworkStatus(data){
+    function mapProductNews(){
+      self.productNews = [];
+      for(var i =0;i< self.news.length;i++){
+        if(self.news[i].product.code === self.selectedNetwork.code){
+          self.productNews.push(self.news[i]);
+        }
+      }
+    }
+
+    function mapNetworkStatus(data){
       for(var i = 0; i< data.length;i++){
         var network = new StatusModel.network(data[i]);
         self.network.push(network);
@@ -111,29 +174,58 @@
     }
 
     function updateStatus(){
+
       self.selectedLocations = [];
 
-      for(var i =0;i< self.selectedNetwork.locations.length;i++){
-        var locationObj = {};
-        locationObj.locationCode = self.selectedNetwork.locations[i].code;
-        locationObj.locationName = self.selectedNetwork.locations[i].name;
-        locationObj.services = [];
-        for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++){
+      var dto = new AdminDTOModel.network(self.selectedNetwork);
 
-          if(self.selectedNetwork.locations[i].services[k].isSelected){
-            var obj = {
-              "serviceName":self.selectedNetwork.locations[i].services[k].name,
-              "serviceCode":self.selectedNetwork.locations[i].services[k].code
+        for(var i =0;i< dto.services.length;i++){
+          var ServiceObj = {};
+          ServiceObj.code = dto.services[i].code;
+          ServiceObj.name = dto.services[i].name;
+          ServiceObj.locations = [];
+          for(var k =0;k< dto.services[i].locations.length;k++){
+
+            if(dto.services[i].locations[k].isSelected){
+              var obj = {
+                'name':dto.services[i].locations[k].name,
+                'code':dto.services[i].locations[k].code
+              }
+              ServiceObj.locations.push(obj);
             }
-            locationObj.services.push(obj);
           }
-        }
-        if(locationObj.services.length > 0){
-          self.selectedLocations.push(locationObj);
-        }
+          if(ServiceObj.locations.length > 0) {
+            self.selectedLocations.push(ServiceObj);
+          }
 
-      }
+        }
         self.open();
+
+      Analytics.trackEvent('Network', 'updateClick','');
+    }
+
+    function updateSystems(){
+      StatusService.updateStatus(original)
+        .then(function(response) {
+          self.network= [];
+          self.networkModel = [];
+          original = response.data;
+          mapNetworkStatus(response.data);
+
+          angular.forEach(self.network, function(item, i){
+            if(item.code === self.selectedNetwork.code ){
+              self.selectedNetwork = item;
+            }
+          });
+
+          selectedNetworkCache = angular.copy(self.selectedNetwork);
+          self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+
+          Analytics.trackEvent('Network', 'update','');
+          Analytics.trackTrans();
+
+        })
+        .catch();
     }
 
     function updateNetworkStatus(news){
@@ -141,7 +233,7 @@
       var dto = new AdminDTOModel.network(self.selectedNetwork);
 
       angular.forEach(original, function(item, i){
-        if(item.code == dto.code ){
+        if(item.code === dto.code ){
           original[i] = dto;
         }
       });
@@ -150,27 +242,33 @@
         .then(function(response) {
           self.network= [];
           self.networkModel = [];
-          MapNetworkStatus(response.data)
+          original = response.data;
+          mapNetworkStatus(response.data);
 
           angular.forEach(self.network, function(item, i){
-            if(item.code == self.selectedNetwork.code ){
+            if(item.code === self.selectedNetwork.code ){
               self.selectedNetwork = item;
             }
           });
 
-          createNews(news)
+          selectedNetworkCache = angular.copy(self.selectedNetwork);
+          self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+
+          if(news !== null) {
+            createNews(news)
+          }
+          Analytics.trackEvent('Network', 'update','');
+          Analytics.trackTrans();
 
         })
         .catch();
 
     }
 
-
     function createNews (news) {
-      StatusService.createNews(news)
+      NewsService.createNews(news)
         .then(function(response) {
-
-
+            getNews();
         })
         .catch();
     }
@@ -181,8 +279,8 @@
         controller: function(){
           this.items = self.statuses;
           this.selectedLocations = self.selectedLocations;
-          this.selectedState = "OK";
-          this.comment;
+          this.selectedState = 'OK';
+          this.comment = '';
           this.changeState = function(data){
             this.selectedState = data;
           };
@@ -198,51 +296,127 @@
 
             var news ={};
 
+            news.product = {'name': self.selectedNetwork.name,'code':self.selectedNetwork.code};
             news.status = this.selectedState;
             news.comment = this.comment;
-            news.locations = this.selectedLocations;
+
+            news.module = 'admin';
+            news.services = this.selectedLocations;
+            news.dateTime = new Date();
 
             updateNetworkStatus(news);
             modalInstance.dismiss('cancel');
           };
+          this.cancel = function(){
+            console.log(self.selectedNetwork);
+            for(var i =0;i< self.selectedNetwork.services.length;i++){
+              if(self.selectedNetwork.services[i].isSelected){
+                self.selectedNetwork.services[i].isSelected = false;
+              }
+            }
+            for(var i =0;i< self.selectedNetwork.locations.length;i++){
 
-          this.status = {
-            isopen: false
+              if(self.selectedNetwork.locations[i].isSelected){
+                self.selectedNetwork.locations[i].isSelected = false;
+              }
+              for(var k =0;k< self.selectedNetwork.locations[i].services.length;k++){
+                if(self.selectedNetwork.locations[i].services[k].isSelected){
+                  self.selectedNetwork.locations[i].services[k].isSelected = false;
+                }
+              }
+            }
+
+            self.selectedNetworkChange = !angular.equals(selectedNetworkCache, self.selectedNetwork);
+            modalInstance.dismiss('cancel');
           };
-
-          this.toggled = function(open) {
-            $log.log('Dropdown is now: ', open);
-          };
-
-          this.toggleDropdown = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            $scope.status.isopen = !$scope.status.isopen;
-          };
-
-          //this.loggedInUser = self.loggedInUser;
-          //this.newUser = self.newUser;
-
-          //this.cancel = function(){
-          //  modalInstance.dismiss('cancel');
-          //};
-          //this.save = function(){
-          //  self.selectedUser = this.selectedUser;
-          //  self.saveUser();
-          //  modalInstance.dismiss('cancel');
-          //};
-          //this.delete = function(){
-          //  self.selectedUser = this.selectedUser;
-          //  self.deleteUser();
-          //  modalInstance.dismiss('cancel');
-          //};
         },
         controllerAs: 'StatusCtrl'
       });
     }
 
+    function openEnableService() {
+      var modalInstance2 = modal.open({
+        templateUrl: 'app/admin/enableservice-modal.html',
+        controller: function(){
+          var defaultLocation = {};
+          defaultLocation.name = 'Select Location'
+          this.enableService = true;
+          this.enableOptions = [true,false];
+          this.enable = function(data){
+            this.enableService = data;
+          };
+          this.services = self.selectedNetwork.services;
+          this.locations = self.selectedNetwork.locations;
+          this.selectedLocation = defaultLocation;
+          this.selectedService = {name:'Select Service'};
+          this.selectLocation = function(data){
+            this.selectedLocation = data;
+          };
+          this.selectService = function(data){
+            this.selectedService = data;
+          };
+          this.update = function(){
+            for(var i =0;i< self.selectedNetwork.locations.length;i++){
+              if(self.selectedNetwork.locations[i].code === this.selectedLocation.code) {
+                for (var k = 0; k < self.selectedNetwork.locations[i].services.length; k++) {
+
+                  if (self.selectedNetwork.locations[i].services[k].code === this.selectedService.code) {
+                    self.selectedNetwork.locations[i].services[k].enabled = this.enableService;
+                    self.selectedNetwork.locations[i].services[k].status = 'OK'
+                  }
+                }
+              }
+            }
+            updateNetworkStatus(null);
+            modalInstance2.dismiss('cancel');
+          };
+        },
+        controllerAs: 'vm'
+      });
+    }
+
+    function openManageSystem() {
+      var modalInstance = modal.open({
+        templateUrl: 'app/admin/managesystem-modal.html',
+        controller: function(){
+          console.log(original);
+          this.selectedProduct = {'name':'Select Product'};
+          this.products = original;
+          this.selectProduct = function(data){
+            this.selectedProduct = {'name': data.name,'code':data.code};
+            this.systems = data.systems;
+          };
+          this.selectedSystem = {'name':'Select System'};
+          this.selectSystem = function(data){
+            this.selectedSystem = {'name': data.name,'code':data.code};
+          };
+          this.selectedState = 'OK';
+          this.changeState = function(data){
+            this.selectedState = data;
+          };
+          this.update = function(){
+            for(var i = 0;i< original.length;i++){
+              if(original[i].code == this.selectedProduct.code){
+                for(var j=0;j< original[i].systems.length;j++){
+                  if(original[i].systems[j].code == this.selectedSystem.code){
+                    original[i].systems[j].status = this.selectedState
+                  }
+                }
+              }
+            };
+            modalInstance.dismiss('cancel');
+            updateSystems();
+          };
+          this.cancel = function(){
+            modalInstance.dismiss('cancel');
+          }
+        },
+        controllerAs: 'vm'
+      });
+    }
+
+
   }
 
 })();
-
 

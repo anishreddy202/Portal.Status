@@ -1,6 +1,6 @@
 var assert = require("assert");
 var should = require("should");
-var db = require("../../mongoDAL");
+var db = require("mongoDAL");
 var config = require('./config.json');
 
 
@@ -18,13 +18,9 @@ describe("Authentication", function() {
 
   before(function(done) {
     db.connect(config.mongo, function(err, db){
-      db.dropDb(config.mongo.db, function(err, result){
-        db.install(['users', 'logs'], function(err, result){
-          userService.create(dto, function(err, result) {
-            user = result;
-            done();
-          });
-        });
+      userService.create(dto, function(err, result) {
+        user = result;
+        done();
       });
     });
   });
@@ -46,9 +42,6 @@ describe("Authentication", function() {
     });
     it("returns a user", function() {
       should.exist(authResult.user);
-    });
-    it("creates a log entry", function() {
-      should.exist(authResult.log);
     });
 
   });
@@ -121,3 +114,4 @@ describe("Authentication", function() {
   });
 
 });
+

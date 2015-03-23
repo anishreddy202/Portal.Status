@@ -31,7 +31,9 @@
         success(function(data) {
           return data;
         }).
-        error();
+        error(function(err){
+          console.log(err);
+        });
     }
 
     function createNews(news) {

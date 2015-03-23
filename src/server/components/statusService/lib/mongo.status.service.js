@@ -2,125 +2,121 @@
 var db = require("mongoDAL");
 var Verror = require("verror");
 var Validator = require('../lib/validator');
+var Emitter = require('events').EventEmitter;
+var util = require('util');
 
 var StatusService = function(configuration){
   var self = this;
+  var continueWith = null;
   var config = configuration.mongo;
   var report;
 
-  self.report = function(done){
 
-      //getDefaultReport();
-      //return done(null, report);
+  var defaultReport = function() {
+    try {
+      if(!report)
+        report = JSON.parse(require('fs').readFileSync(__dirname + '/files/defaultReport.json', 'utf8'));
 
-    db.connect(config, function(err, db) {
-       if(err) {
-         if(!report) {
-           getDefaultReport();
-         }
+      self.emit('send-data', report);
+    } catch (err) {
+      self.emit('send-error', err, 'Bad default json file');
+    }
+  };
 
-         return done(null, report);
+  var statusReport = function() {
+     db.status.last({}, function(err, result) {
+       if(err === null && result === undefined) {
+         self.emit('default-report');
+       } else {
+         self.emit('send-data', result);
        }
+     });
+  };
 
-       db.collectionExists("status", function(err, exists) {
-         if(err || !exists) {
-           if(!report) {
-             getDefaultReport();
-           }
-
-           return done(null, report);
-         }
-
-         db.status.last({}, function(err, result) {
-           if(err === null && result === undefined) {
-             if(!report) {
-               getDefaultReport();
-             }
-             return done(null, report);
-           }
-           return done(null, result);
-         });
-       });
-
+  var validateInput = function(data){
+    var validator = new Validator();
+    validator.validate(data.report, function(err, result){
+      if(err) {
+        self.emit('send-error', err,'Invalid Report');
+      } else {
+        self.emit('save-report', data);
+      }
     });
+  };
+
+  var saveReport = function(data){
+    db.status.saveData(data, function(err, result) {
+      if(err) {
+        self.emit('send-error', err, 'Failed to Save Report');
+      }
+      else {
+        self.emit('send-data', result.report);
+      }
+    });
+  };
+
+  var sendData = function(result) {
+    if(continueWith) {
+      continueWith(null, result);
+    }
+  };
+
+  var sendError = function(err, message) {
+
+    var error = new Verror(err, message);
+
+    if(continueWith) {
+      continueWith(null, error);
+    }
+  };
+
+  var collectionExits = function(data){
+     db.collectionExists(data, function(err, exists) {
+       if (err || !exists) {
+         self.emit('default-report');
+       }
+       else{
+         self.emit('status-report');
+       }
+     });
+  }
+
+  var openConnection = function(input,eventHandler) {
+    db.connect(config, function(err) {
+      if(err) {
+        self.emit('collection-exits','status');
+      } else {
+        self.emit(eventHandler, input);
+      }
+    });
+  };
+
+  ////////////////////////////////////////////////////
+
+  self.report = function(done){
+    continueWith = done;
+    openConnection(null,'status-report');
   };
 
   self.createReport = function(report,done){
+    var newReport = {};
+    newReport.report = report;
+    newReport.timeStamp = new Date()
 
-    var obj = {};
-    obj.report = report;
-    obj.timeStamp = new Date();
-
-            db.status.saveData(obj, function(err, result) {
-              if(err) {
-                return done(err, null);
-              }
-
-              return done(null, result.report);
-            });
-
-    //var validator = new Validator();
-    //validator.validate(data.report, function(err, result){
-    //    if(err){
-    //      return done(err, null);
-    //    }
-    //
-    //    db.connect(config, function(err, db) {
-    //      if(err) {
-    //        return done(err, null);
-    //      }
-    //
-    //      db.collectionExists("status", function(err, exists) {
-    //        if(err || !exists) {
-    //          return done(err, null);
-    //        }
-    //
-    //        db.status.saveData(result, function(err, result) {
-    //          if(err) {
-    //            return done(err, null);
-    //          }
-    //
-    //          return done(null, result);
-    //        });
-    //      });
-    //
-    //    });
-    //});
+    continueWith = done;
+    openConnection(newReport, 'validate-input');
   };
 
-  self.createNews = function(news,done){
-    db.news.saveData(news, function(err, result) {
-      if(err) {
-        return done(err, null);
-      }
-
-      return done(null, result);
-    });
-
-  };
-
-
-  self.getNews = function(done){
-    db.news.query({}, function(err, result) {
-      if(err) {
-        return done(err, null);
-      }
-
-      return done(null, result);
-    });
-
-  };
-
-
-  var getDefaultReport = function() {
-    try {
-      report = JSON.parse(require('fs').readFileSync(__dirname + '/files/defaultReport.json', 'utf8'));
-    } catch (err) {
-      throw new Verror(err, 'Bad default json file');
-    }
-  }
+  self.on('default-report', defaultReport);
+  self.on('status-report', statusReport);
+  self.on('validate-input', validateInput);
+  self.on('save-report', saveReport);
+  self.on('collection-exits',collectionExits);
+  self.on('send-data',sendData);
+  self.on('send-error',sendError);
 
   return self;
 };
 
+util.inherits(StatusService,Emitter);
 module.exports = StatusService;

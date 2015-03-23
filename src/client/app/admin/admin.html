@@ -1,10 +1,6 @@
 <header data-ng-include=" 'components/header/header.html'"></header>
 <div class="outer-wrap">
-    <div class="btn btn-primary" ng-click="vm.updateStatus()">Update Status</div>
-</div>
-<div class="outer-wrap">
   <div class="content-wrapper">
-    <div id="top-header"></div>
     <!-- top header ends -->
     <div class="top-header">
       <div class="panel clearfix">
@@ -16,7 +12,7 @@
         </div>
         <div class="pull-right">
           <ul>
-            <li><a ng-click="vm.gotoNews()"><span class="badge">{{vm.news.length}}</span>Network Status Updates</a></li>
+            <li><a ng-click="vm.gotoNews()"><span class="badge">{{vm.productNews.length}}</span>Network Status Updates</a></li>
             <li><a href="#"><span class="icon-envelope"></span>VDMS Support</a></li>
           </ul>
         </div>
@@ -28,7 +24,7 @@
     <div class="tab-panel" role="tabpanel" data-example-id="togglable-tabs">
       <div class="tabs-wrapper">
         <ul id="myTab" class="nav nav-tabs" role="tablist">
-          <li role="presentation" ng-repeat="status in vm.network"
+          <li role="presentation" ng-repeat="status in vm.network" ng-click="vm.selectNetwork(status)"
               ng-class="{'active ': status.name == 'DELIVER' && vm.selectedNetwork.name == 'DELIVER',
           'active transact': status.name == 'TRANSACT' && vm.selectedNetwork.name == 'TRANSACT',
           'active route': status.name == 'ROUTE' && vm.selectedNetwork.name == 'ROUTE',
@@ -36,7 +32,7 @@
           'active store': status.name == 'STORE' && vm.selectedNetwork.name == 'STORE',
           'active accelerate': status.name == 'ACCELERATE' && vm.selectedNetwork.name == 'ACCELERATE'} ">
 
-            <a href="#cdn" role="tab" id="cdn-tab" data-toggle="tab" aria-controls="cdn" aria-expanded="true" ng-click="vm.selectNetwork(status)">
+            <a>
               <div class="table-header-logo clearfix">
                 <span class="icon-{{status.classname}}"></span>
               </div>
@@ -136,31 +132,42 @@
       </div>
     </div>
     <!-- tab panel ends -->
-
+    <div class="push"></div>
   </div>
 
-  <div class="push"></div>
 
-  <div class="network-news well" id="news">
+
+  <div class="network-news well" id="news" ng-if="vm.network.length != 0">
     <div class="wrapper">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <span class="status-label">Network Status News</span>
-        <!--a href="#" class="status-label-toggle pull-right" id="hide-below">hide</a>
-        <a href="#" class="status-label-toggle pull-right" id="show-below" style="display:none;">show</a-->
-        <div class="network-news-info" ng-repeat="news in vm.news">
+        <div class="network-news-info" ng-repeat="news in vm.productNews">
           <hr>
-          <p class="time-notice">Nov. 25 2014) 6:14a.m. PST - Seoul - ICN : HTTP Large<br>
-            <strong>[Mitigated] Notice of Possible Service Degradation affecting the ICN POP</strong></p>
-          <p>{{news.comment}}</p>
+          <p class="time-notice">{{news.comment}}</p>
+          <p class="time-notice">{{news.dateTime}}</p>
+          <div ng-if="news.module == 'admin'">
+            <div class="time-notice" ng-repeat="service in news.services" >
+              <p class="time-notice">{{service.name}}</p>
+              <p class="time-notice" style="padding-left: 20px;" ng-repeat="loc in service.locations">{{loc.name}}</p>
+            </div>
+            <div ng-repeat="loc in news.locations" ><p class="time-notice" style="padding-left: 10px">{{loc.name}}</p></div>
+          </div>
+          <div ng-if="news.module == 'news'">
+            <div ng-if="news.locations.length != 0"><p class="time-notice">SERVICES</p></div>
+            <div class="time-notice" ng-repeat="service in news.services" >
+              <p class="time-notice"  style="padding-left: 20px;">{{service.name}}</p>
+              <p class="time-notice"  style="padding-left: 20px;" ng-repeat="loc in service.locations">{{loc.name}}</p>
+            </div>
+            <div ng-if="news.locations.length != 0"><p class="time-notice">LOCATIONS</p></div>
+            <div ng-repeat="loc in news.locations" ><p class="time-notice"  style="padding-left: 20px">{{loc.name}}</p></div>
+          </div>
         </div>
 
       </div>
     </div>
   </div>
 
-  <div class="push"></div>
-
-  <footer class="footer">
+  <footer class="footer" ng-if="vm.network.length != 0">
     <div class="well clearfix">
       <div class="pull-left">
         <div class="footer-logo">

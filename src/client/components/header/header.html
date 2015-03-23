@@ -1,16 +1,15 @@
-<nav class="navbar navbar-default" role="navigation" ng-controller="HeaderCtrl as HeaderCtrl">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-    <div class="navbar-nav-vdms pull-right">
-
+    <div class="navbar-nav-vdms pull-right" ng-controller="HeaderCtrl as HeaderCtrl">
       <div class="nav-right dropdown ui-dropdown">
         <span ng-show="HeaderCtrl.isLoggedIn()">Hello {{ HeaderCtrl.getCurrentUser().firstName + " " + HeaderCtrl.getCurrentUser().lastName  }}</span>
         <a  class="dropdown-toggle" data-toggle="dropdown" >
           <span class="icon-profile"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right" role="menu" >
-          <li><a href="#">Profile</a></li>
+          <li><a href="/users">Users</a></li>
           <li class="divider"></li>
-          <li><a href="#">Lock</a></li>
+          <li><a href="/news">News</a></li>
           <li class="divider"></li>
           <!--<li><a href="#">Sign Out</a></li>-->
           <li ng-hide="HeaderCtrl.isLoggedIn()" ng-class="{active: HeaderCtrl.isActive('/signup')}"><a href="/signup">Sign up</a></li>
@@ -19,6 +18,10 @@
         </ul>
       </div>
     </div>
-
+    <div class="col-sm-offset-6" style="padding-top:5px;" ng-if="vm.module == 'admin'">
+      <div  data-ng-disabled="!vm.selectedNetworkChange" ng-class="{'btn btn-sm btn-disabled': !vm.selectedNetworkChange,'btn btn-sm btn-danger':vm.selectedNetworkChange}" ng-click="vm.updateStatus()">Update Status</div>
+      <div class="btn btn-sm btn-disabled" ng-click="vm.enableService()">Enable Service</div>
+      <div class="btn btn-sm btn-disabled" ng-click="vm.manageSystem()">Manage System</div>
+    </div>
   </div>
 </nav>

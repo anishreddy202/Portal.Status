@@ -23,16 +23,16 @@ module.exports = function(config) {
       'client/bower_components/angular-route/angular-route.js',
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'client/bower_components/angular-bootstrap/ui-bootstrap.js',
+      'client/bower_components/angular-google-analytics/dist/angular-google-analytics.js',
       'client/app/app.js',
-      'client/app/app.coffee',
       'client/app/**/*.js',
-      'client/app/**/*.coffee',
       'client/components/**/*.js',
-      'client/components/**/*.coffee',
-      'client/app/**/*.jade',
-      'client/components/**/*.jade',
-      'client/app/**/*.html',
-      'client/components/**/*.html'
+      //Mocha Tests
+      'client/test/lib/*.js',
+      'client/test/security/*.js'
+      //'client/app/**/*.html',
+      //'client/components/**/*.html'
     ],
 
     preprocessors: {

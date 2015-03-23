@@ -11,18 +11,30 @@ angular.module('uiApp', [
   'uiApp.news',
   'uiApp.users',
   'uiApp.admin',
+  'angular-google-analytics'
 ])
   .config(config)
   .factory('authInterceptor',authInterceptor)
   .run(appRun);
 
-function config ($stateProvider, $urlRouterProvider, $locationProvider,$httpProvider) {
+function config ($stateProvider, $urlRouterProvider, $locationProvider,$httpProvider, AnalyticsProvider) {
   $urlRouterProvider
     .otherwise('/');
 
   $locationProvider.html5Mode(true);
   $httpProvider.interceptors.push('authInterceptor');
+
+  AnalyticsProvider.setAccount('UA-60813302-1');
+  AnalyticsProvider.trackPages(true);
+  AnalyticsProvider.trackUrlParams(true);
+  AnalyticsProvider.useDisplayFeatures(true);
+  AnalyticsProvider.trackPrefix('VDMS-Status');
+  AnalyticsProvider.useAnalytics(true);
+  AnalyticsProvider.ignoreFirstPageLoad(false);
+  AnalyticsProvider.useECommerce(true, false);
+  AnalyticsProvider.useEnhancedLinkAttribution(true);
 }
+
 
 function authInterceptor($rootScope, $q, $cookieStore, $location){
   return {
@@ -46,7 +58,7 @@ function authInterceptor($rootScope, $q, $cookieStore, $location){
   };
 }
 
-function appRun($rootScope, $location, authService) {
+function appRun($rootScope, $location, authService, Analytics) {
   $rootScope.$on('$stateChangeStart', function (event, next) {
     authService.isLoggedInAsync(function(loggedIn) {
       if (next.authenticate && !loggedIn) {
