@@ -63,6 +63,7 @@
     function saveNews(news){
       NewsService.createNews(news)
         .then(function(response) {
+          self.news=[];
               init();
         })
         .catch();
@@ -72,6 +73,7 @@
       console.log(news);
       NewsService.deleteNews(news)
         .then(function(response) {
+          self.news=[];
           init();
         })
         .catch();
