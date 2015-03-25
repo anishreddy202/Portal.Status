@@ -2,7 +2,7 @@
 
 var express = require('express');
 var config = require('../../config/environment');
-var User = require('../userService');
+var User = require('UserService.lib');
 var authentication = require('../authentication')
 
 // Passport Configuration
