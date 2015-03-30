@@ -67,3 +67,4 @@ function appRun($rootScope, $location, authService, Analytics) {
     });
   });
 }
+

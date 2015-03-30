@@ -122,6 +122,7 @@
     }
 
     function mapUsers(response){
+      console.log(response);
       self.count = response.data.count;
       self.currentPage = response.data.currentPage;
       angular.forEach(response.data.users, function(item){

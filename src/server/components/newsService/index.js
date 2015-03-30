@@ -28,6 +28,12 @@ var NewsService = function() {
     });
   };
 
+  self.getFeed = function(params,done) {
+    service.getFeed(params,function(err, result) {
+      done(err, result);
+    });
+  };
+
   return self;
 };
 

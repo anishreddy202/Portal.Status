@@ -12,7 +12,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../../config/environment');
 var auth = require('../../components/auth/lib/auth.service.js');
-var userService = require('../../components/userService');
+var userService = require('UserService.lib');
 
 
 router.get('/', function(req, res) {
@@ -20,10 +20,14 @@ router.get('/', function(req, res) {
   var params = req.query;
 
   userService.list(params,function(err, result) {
+    var users = {};
+    users.currentPage = result.currentPage;
+    users.users = result.list;
+    users.count = result.count;
     if(err) {
       res.send(err);
     }
-    res.json(result);
+    res.json(users);
   });
 });
 

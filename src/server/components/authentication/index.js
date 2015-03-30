@@ -11,7 +11,7 @@ var AuthenticationService = function() {
   self.setup = function (configuration){
     db = require("mongoDAL");
     config = configuration;
-    var userService = require('../userService');
+    var userService = require('UserService.lib');
     userService.setup(config);
 
     if(config.mock && config.mock === 'true') {
