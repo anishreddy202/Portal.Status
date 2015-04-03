@@ -91,6 +91,9 @@
 
     function saveUser(){
       if (self.newUser){
+
+        //self.selectedUser.apiToken = getGUID();
+        console.log(self.selectedUser);
         UserService.createUser(self.selectedUser)
           .then(function(data) {
             resetSelectedUser();
@@ -122,7 +125,6 @@
     }
 
     function mapUsers(response){
-      console.log(response);
       self.count = response.data.count;
       self.currentPage = response.data.currentPage;
       angular.forEach(response.data.users, function(item){

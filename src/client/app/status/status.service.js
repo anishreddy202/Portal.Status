@@ -26,8 +26,8 @@
         error();
     }
 
-    function updateStatus(report) {
-      return $http({method: 'POST', url: '/api/v1/status', data:report }).
+    function updateStatus(report,apiToken1) {
+      return $http({method: 'POST', url: '/api/v1/status', data:report , headers: { apitoken: apiToken1 } }).
         success(function(data) {
           return data;
         }).

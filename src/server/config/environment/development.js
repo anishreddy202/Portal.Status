@@ -8,5 +8,6 @@ module.exports = {
     uri: 'mongodb://localhost/portal-status'
   },
   mock: true,
+  APIAuthentication:true,
   seedDB: true
 };

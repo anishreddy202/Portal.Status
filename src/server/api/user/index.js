@@ -13,6 +13,7 @@ var router = express.Router();
 var config = require('../../config/environment');
 var auth = require('../../components/auth/lib/auth.service.js');
 var userService = require('UserService.lib');
+var uuid = require('node-uuid');
 
 
 router.get('/', function(req, res) {
@@ -35,7 +36,7 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   userService.setup(config);
   var user = req.body;
-
+  user.apiToken = uuid.v4();
   userService.create(user, function(err, result) {
     if (err) {
       res.send(err);

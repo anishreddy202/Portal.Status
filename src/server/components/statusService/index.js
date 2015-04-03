@@ -18,6 +18,7 @@ var StatusService = function() {
 
   self.createReport = function(report,done) {
     service.createReport(report,function(err, result) {
+      console.log(JSON.stringify(report));
       done(err, result);
     });
   };

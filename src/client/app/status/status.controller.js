@@ -20,7 +20,6 @@
 
     self.selectNetwork = selectNetwork;
     self.gotoNews = gotoNews;
-
     init();
 
     function init(){

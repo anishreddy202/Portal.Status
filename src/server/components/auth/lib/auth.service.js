@@ -42,6 +42,31 @@ var AuthService = function(){
       })
   }
 
+  self.APIAuthentication = function(){
+    return compose()
+      .use(function(req,res,next){
+
+        if(!config.APIAuthentication){
+          console.log("API Not Authenticating");
+          next();
+        }else {
+
+          console.log("API Authenticating");
+          var apiToken = req.headers.apitoken;
+          if (!apiToken) {
+            return res.send(401);
+          }
+          User.setup(config);
+          User.read({'apiToken': apiToken}, function (err, user) {
+            if (err) return res.send(401)
+            if (!user) return res.send(401);
+            req.user = user;
+            next();
+          });
+        }
+      })
+  }
+
   return self;
 }
 module.exports = new AuthService();
