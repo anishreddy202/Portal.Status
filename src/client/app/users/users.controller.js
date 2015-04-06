@@ -91,6 +91,9 @@
 
     function saveUser(){
       if (self.newUser){
+
+        //self.selectedUser.apiToken = getGUID();
+        console.log(self.selectedUser);
         UserService.createUser(self.selectedUser)
           .then(function(data) {
             resetSelectedUser();

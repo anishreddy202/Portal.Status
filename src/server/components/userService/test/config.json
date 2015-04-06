@@ -1,6 +1,0 @@
-{
-  "mock": "true",
-  "mongo": {
-    "uri": "mongodb://localhost/local"
-  }
-}

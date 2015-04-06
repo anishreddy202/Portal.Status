@@ -10,6 +10,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../../config/environment');
 var newsService = require('../../components/newsService');
+var Feed = require('feed');
 
 router.get('/', function(req, res) {
   newsService.setup(config);
@@ -44,6 +45,20 @@ router.delete('/:id', function(req, res) {
     }
     res.json(result);
   });
+});
+
+router.get('/feed', function(req, res) {
+  newsService.setup(config);
+  var params = req.query;
+
+  newsService.getFeed(params,function(err, result) {
+    if (err) {
+      res.send(err);
+    }
+    res.type('rss');
+    res.send(result);
+  });
+
 });
 
 module.exports = router;

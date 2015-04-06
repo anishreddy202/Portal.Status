@@ -9,6 +9,7 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../../config/environment');
+var auth = require('../../components/auth/lib/auth.service.js');
 var statusService = require('../../components/statusService');
 
 router.get('/', function(req, res) {
@@ -22,7 +23,7 @@ router.get('/', function(req, res) {
   });
 });
 
-router.post('/', function(req, res) {
+router.post('/',auth.APIAuthentication(), function(req, res) {
   statusService.setup(config);
   var report = req.body;
 

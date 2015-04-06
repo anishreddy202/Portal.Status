@@ -13,7 +13,6 @@
     self.isCollapsed = true;
     self.isLoggedIn = authService.isLoggedIn;
     self.getCurrentUser = authService.getCurrentUser;
-
     self.logout = logout;
     self.isActive = isActive;
     self.sideNavToggle = sideNavToggle;

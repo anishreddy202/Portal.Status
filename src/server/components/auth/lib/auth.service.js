@@ -5,7 +5,7 @@ var config = require('../../../config/environment/index');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var compose = require('composable-middleware');
-var User = require('../../userService');
+var User = require('UserService.lib');
 var validateJwt = expressJwt({ secret: config.secrets.session });
 
 var AuthService = function(){
@@ -39,6 +39,31 @@ var AuthService = function(){
           req.user = user;
           next();
         });
+      })
+  }
+
+  self.APIAuthentication = function(){
+    return compose()
+      .use(function(req,res,next){
+
+        if(!config.APIAuthentication){
+          console.log("API Not Authenticating");
+          next();
+        }else {
+
+          console.log("API Authenticating");
+          var apiToken = req.headers.apitoken;
+          if (!apiToken) {
+            return res.send(401);
+          }
+          User.setup(config);
+          User.read({'apiToken': apiToken}, function (err, user) {
+            if (err) return res.send(401)
+            if (!user) return res.send(401);
+            req.user = user;
+            next();
+          });
+        }
       })
   }
 

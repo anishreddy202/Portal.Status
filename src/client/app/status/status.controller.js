@@ -20,12 +20,10 @@
 
     self.selectNetwork = selectNetwork;
     self.gotoNews = gotoNews;
-
     init();
 
     function init(){
       getStatus();
-      getNews();
     }
 
     function getStatus(){
@@ -33,6 +31,7 @@
         .then(function(response) {
           mapNetworkStatus(response.data);
           self.selectedNetwork = self.network[0];
+          getNews();
         })
         .catch();
     }
@@ -43,7 +42,7 @@
       };
       NewsService.getNews(params)
         .then(function(response) {
-          self.news = response.data;
+          self.news = response.data.news;
           mapProductNews();
         })
         .catch();

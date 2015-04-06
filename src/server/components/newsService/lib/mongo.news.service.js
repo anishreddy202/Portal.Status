@@ -4,6 +4,7 @@ var Verror = require("verror");
 var Emitter = require('events').EventEmitter;
 var util = require('util');
 var objectID=require('mongodb').ObjectID;
+var rss = require('node-rss');
 
 var NewsService = function(configuration){
   var self = this;
@@ -24,6 +25,30 @@ var NewsService = function(configuration){
     if(continueWith) {
       continueWith(null, error);
     }
+  };
+
+  var getFeed = function(params) {
+    db.news.query({}, function(err, result) {
+      if(err) {
+        self.emit('send-error', err, 'Failed to retrieve feed news');
+      } else {
+        self.emit('create-feed', result);
+      }
+    });
+  };
+
+
+  var createFeed = function(data) {
+    var feed = rss.createNewFeed('Network Status News Feed');
+
+    data.forEach(function (item) {
+      feed.addNewItem(item.comment, item.dateTime,'','',item);
+    });
+
+    var xmlString = rss.getFeedXML(feed);
+
+    self.emit('send-data', xmlString);
+
   };
 
   var getNews = function(params) {
@@ -108,12 +133,19 @@ var NewsService = function(configuration){
     openConnection(params,'delete-news');
   };
 
+  self.getFeed = function(params,done){
+    continueWith = done;
+    openConnection(params,'get-feed');
+  };
+
 
   self.on('get-news', getNews);
   self.on('create-news', createNews);
   self.on('delete-news', deleteNews);
   self.on('send-data',sendData);
   self.on('send-error',sendError);
+  self.on('get-feed',getFeed);
+  self.on('create-feed',createFeed);
 
   return self;
 };

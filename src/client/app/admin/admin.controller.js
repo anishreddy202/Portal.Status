@@ -6,9 +6,9 @@
     .controller('AdminCtrl', AdminFn);
 
 
-  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location','NewsService', 'Analytics'];
+  AdminFn.$inject = ['StatusService','StatusModel','AdminDTOModel','$rootScope','$modal','$anchorScroll', '$location','NewsService', 'Analytics','authService'];
 
-  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location,NewsService, Analytics) {
+  function AdminFn(StatusService,StatusModel,AdminDTOModel,$rootScope,modal, $anchorScroll,$location,NewsService, Analytics,authService) {
     var self = this;
 
     var original =[];
@@ -22,7 +22,8 @@
     self.selectedNetworkChange = false;
 
     self.statuses = ['OK','ERR','MNT','DGR'];
-
+    self.getCurrentUser = authService.getCurrentUser;
+    console.log(self.getCurrentUser());
 
     self.selectNetwork = selectNetwork;
     self.toggleCell = toggleCell;
@@ -205,7 +206,8 @@
     }
 
     function updateSystems(){
-      StatusService.updateStatus(original)
+      var token = self.getCurrentUser().apiToken;
+      StatusService.updateStatus(original,token)
         .then(function(response) {
           self.network= [];
           self.networkModel = [];
@@ -237,8 +239,8 @@
           original[i] = dto;
         }
       });
-
-      StatusService.updateStatus(original)
+      var token = self.getCurrentUser().apiToken;
+      StatusService.updateStatus(original,token)
         .then(function(response) {
           self.network= [];
           self.networkModel = [];
