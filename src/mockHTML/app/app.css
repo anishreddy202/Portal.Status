@@ -102,6 +102,31 @@ a:hover, a:focus {
 .push {
   height: 135px; }
 
+.jumbotron {
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eeeeee; }
+
+.jumbotron h1,
+.jumbotron .h1 {
+  color: inherit; }
+
+.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 200; }
+
+.jumbotron > hr {
+  border-top-color: #d5d5d5; }
+
+.container .jumbotron,
+.container-fluid .jumbotron {
+  border-radius: 6px; }
+
+.jumbotron .container {
+  max-width: 100%; }
+
 /* top header */
 .top-header {
   height: 60px;
@@ -147,6 +172,13 @@ a:hover, a:focus {
           margin-left: 50px;
           font-size: 16px;
           color: #999999; }
+
+/* image header */
+.image-header .jumbotron .image-bkgrnd {
+  width: 1500px;
+  height: 230px;
+  display: block;
+  background: url("../assets/Images/image-header-bkgrnd.jpg") no-repeat; }
 
 /* tabs section */
 .tabs-wrapper {
@@ -354,7 +386,6 @@ a:hover, a:focus {
 
 /*header status menu */
 .network-news {
-  margin-top: 50px;
   min-width: 1200px;
   min-height: 40px;
   z-index: 2;
@@ -819,5 +850,3 @@ footer {
 
 .icon-uplynk:before {
   content: "\e603"; }
-
-/*# sourceMappingURL=app.css.map */
