@@ -78,7 +78,7 @@ a:hover, a:focus {
   color: #2e68b1; }
 
 .icon-check-circle {
-  color: #cccccc; }
+  color: #0ABF30; }
 
 .icon-envelope {
   color: #ed1d24; }
@@ -88,6 +88,19 @@ a:hover, a:focus {
 
 .icon-check-circle:hover {
   cursor: default; }
+
+.vertical-align {
+  display: flex;
+  flex-direction: row; }
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center; }
+
+.vertical-align > [class^="col-"] > div,
+.vertical-align > [class*=" col-"] > div {
+  flex-grow: 1; }
 
 .outer-wrap {
   min-width: 1200px;
@@ -102,40 +115,37 @@ a:hover, a:focus {
 .push {
   height: 135px; }
 
-.jumbotron {
-  padding: 30px 15px;
-  margin-bottom: 30px;
-  color: inherit;
-  background-color: #eeeeee; }
-
+/*
 .jumbotron h1,
 .jumbotron .h1 {
-  color: inherit; }
-
+  //color: inherit;
+}
 .jumbotron p {
-  margin-bottom: 15px;
-  font-size: 21px;
-  font-weight: 200; }
-
+  //margin-bottom: 15px;
+  //font-size: 21px;
+  //font-weight: 200;
+}
 .jumbotron > hr {
-  border-top-color: #d5d5d5; }
-
+ // border-top-color: #d5d5d5;
+}
 .container .jumbotron,
 .container-fluid .jumbotron {
-  border-radius: 6px; }
-
+  //border-radius: 6px;
+}
 .jumbotron .container {
-  max-width: 100%; }
-
+  //max-width: 100%;
+}
+*/
 /* top header */
 .top-header {
   height: 60px;
   padding-top: 0 10px;
-  font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif; }
-  .top-header .panel {
-    width: 1200px;
+  font-family: "Apex", Arial, sans-serif; }
+  .top-header .wrapper {
     margin: 0 auto;
-    padding: 10px;
+    padding: 10px 15px 10px 10px;
+    width: 1200px; }
+  .top-header .panel {
     border-radius: 0px;
     border: none;
     box-shadow: none; }
@@ -174,11 +184,136 @@ a:hover, a:focus {
           color: #999999; }
 
 /* image header */
-.image-header .jumbotron .image-bkgrnd {
-  width: 1500px;
-  height: 230px;
-  display: block;
-  background: url("../assets/Images/image-header-bkgrnd.jpg") no-repeat; }
+.image-header .jumbotron {
+  margin-bottom: 20px;
+  padding: 30px 15px;
+  background-color: transparent; }
+  .image-header .jumbotron.image-bkgrnd {
+    width: 100%;
+    height: 230px;
+    display: block;
+    background: url("../assets/Images/image-header-bkgrnd.jpg") no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+  .image-header .jumbotron span {
+    margin-top: 55px;
+    padding: 15px 20px;
+    width: 260px;
+    height: 100px;
+    display: inline-block;
+    border-radius: 0px;
+    background-color: #dd3333;
+    font-family: "Apex", Arial, sans-serif; }
+    .image-header .jumbotron span h5 {
+      margin-bottom: 5px;
+      text-transform: uppercase; }
+    .image-header .jumbotron span h2 {
+      text-transform: capitalize; }
+
+/* legend section */
+.legend-header .container {
+  width: 1200px;
+  padding: 0 10px;
+  font-family: "Apex", Arial, sans-serif; }
+.legend-header .table-legend {
+  margin-top: 3px;
+  margin-right: -10px; }
+.legend-header h2 {
+  margin-bottom: 10px;
+  font-weight: 600; }
+.legend-header .btn-group a {
+  color: #999999;
+  font-size: 12px; }
+  .legend-header .btn-group a i {
+    margin-right: 3px;
+    font-size: 17px;
+    vertical-align: top; }
+  .legend-header .btn-group a:hover {
+    color: #cccccc;
+    text-decoration: none; }
+
+/* status menu section */
+.header-status-menu .wrapper {
+  margin: 0 auto;
+  width: 1200px; }
+.header-status-menu.well {
+  padding: 0 10px;
+  border-left: 0px;
+  border-right: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; }
+.header-status-menu .row.well {
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  padding: 19px 0px 11px;
+  min-height: 73px;
+  border-left: 0px;
+  border-right: 0px;
+  border-radius: 0px;
+  border-top: 0px none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; }
+  .header-status-menu .row.well:first-child {
+    border-top: 0px; }
+  .header-status-menu .row.well:last-child {
+    border-bottom: 0px; }
+.header-status-menu .status-label {
+  margin-top: 5px; }
+  .header-status-menu .status-label h3 {
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: "Apex", Arial, sans-serif; }
+  .header-status-menu .status-label i {
+    margin-right: 15px;
+    margin-top: -9px;
+    width: 50px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 38px;
+    color: #ed1d24; }
+.header-status-menu .pin-wrapper {
+  margin-left: 10px;
+  margin-bottom: 10px; }
+  .header-status-menu .pin-wrapper:last-child {
+    margin-bottom: 0px; }
+  .header-status-menu .pin-wrapper .pin {
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid #cccccc;
+    text-transform: capitalize; }
+    .header-status-menu .pin-wrapper .pin.no-header ul {
+      padding-left: 5px; }
+      .header-status-menu .pin-wrapper .pin.no-header ul span {
+        display: none; }
+      .header-status-menu .pin-wrapper .pin.no-header ul li {
+        border-left: 0px; }
+    .header-status-menu .pin-wrapper .pin ul {
+      padding: 0px 4px 0 13px;
+      margin-bottom: 0px; }
+      .header-status-menu .pin-wrapper .pin ul span {
+        margin-right: 10px;
+        font-size: 16px;
+        color: #999999; }
+      .header-status-menu .pin-wrapper .pin ul li {
+        display: inline-block;
+        border-left: 1px solid #cccccc;
+        padding: 2px 10px 3px; }
+        .header-status-menu .pin-wrapper .pin ul li a {
+          font-size: 18px;
+          color: #666666; }
+          .header-status-menu .pin-wrapper .pin ul li a:hover {
+            text-decoration: none;
+            color: #cccccc; }
+          .header-status-menu .pin-wrapper .pin ul li a i {
+            vertical-align: text-top;
+            display: inline-block;
+            margin-top: 3px; }
 
 /* tabs section */
 .tabs-wrapper {
@@ -226,7 +361,7 @@ a:hover, a:focus {
         border-radius: 0px;
         background: transparent;
         border: none;
-        font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif; }
+        font-family: "Apex", Arial, sans-serif; }
         .tabs-wrapper ul.nav-tabs li a:hover {
           height: 95px;
           background: #333333;
@@ -251,7 +386,7 @@ a:hover, a:focus {
         .tabs-wrapper ul.nav-tabs li .table-header-logo span.tab-header {
           font-size: 30px;
           text-transform: uppercase;
-          font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif;
+          font-family: "Apex", Arial, sans-serif;
           opacity: 0.7; }
         .tabs-wrapper ul.nav-tabs li .table-header-logo .badge {
           padding: 4px 4px 5px 4px;
@@ -340,13 +475,13 @@ a:hover, a:focus {
 
 /*table header section */
 .table-section {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   /*table legend */ }
   .table-section .table-header {
     margin: 0 auto;
     min-width: 1200px;
     background: #ed1d24;
-    font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif; }
+    font-family: "Apex", Arial, sans-serif; }
     .table-section .table-header .table-header-inner {
       width: 1200px;
       margin: 0px auto;
@@ -391,7 +526,7 @@ a:hover, a:focus {
   z-index: 2;
   position: relative;
   overflow: hidden;
-  font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif; }
+  font-family: "Apex", Arial, sans-serif; }
   .network-news.well {
     margin-bottom: 0px;
     padding: 20px 0 20px;
@@ -438,7 +573,7 @@ a:hover, a:focus {
   .network-news p {
     margin-bottom: 5px;
     padding-right: 160px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     color: #ffffff; }
     .network-news p.time-notice {
@@ -773,13 +908,13 @@ footer {
       margin-top: -8px;
       color: #cccccc;
       font-size: 11px;
-      font-family: Apex,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-family: "Apex", Arial, sans-serif;
       vertical-align: middle;
       display: inline-block; }
       footer .footer-logo .copy-right span {
         margin-left: 20px;
         font-size: 12px;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-weight: normal; }
 
 @font-face {
