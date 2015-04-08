@@ -31,7 +31,7 @@ $wrapper-width:						1200px;
 .icon-close-circle { color: $red; }
 .icon-warning { color: $orange; }
 .icon-clock { color: $blue; }
-.icon-check-circle { color: $green; }
+.icon-check-circle-open { color: $green; }
 .icon-envelope { color: $red; }
 .icon-disable { color: $grey-c; }
 
@@ -210,15 +210,16 @@ $wrapper-width:						1200px;
 				vertical-align: top;
 			}
 			&:hover {
-				color: $grey-c;
+				//color: $grey-c;
 				text-decoration: none;
+				cursor: auto;
 			}
 		}
 	}
 }
 
 /* status menu section */
-.header-status-menu {
+.status-menu {
 	.wrapper {
 		margin: 0 auto;
 		width: $wrapper-width;
@@ -232,41 +233,84 @@ $wrapper-width:						1200px;
 		-moz-box-shadow: none;
 		box-shadow: none;
 	}
-	.row.well {
-		margin-right: 0px;
-		margin-left: 0px;
-		margin-bottom: 0px;
-		padding: 19px 0px 11px;
-		min-height: 73px;
-		border-left: 0px;
-		border-right: 0px;
-		border-radius: 0px;
-		border-top: 0px none;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
-		&:first-child {
-			border-top: 0px;
+	.row {
+		&.well {
+			margin-right: 0px;
+			margin-left: 0px;
+			margin-bottom: 0px;
+			padding: 19px 0px 11px;
+			min-height: 73px;
+			border-left: 0px;
+			border-right: 0px;
+			border-radius: 0px;
+			border-top: 0px none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			&:first-child {
+				border-top: 0px;
+			}
+			&:last-child {
+				border-bottom: 0px;
+			}
 		}
-		&:last-child {
-			border-bottom: 0px;
+		&.network-update {
+			min-height: 100px;
+			.network-update-contents {
+				padding-left: 5px;
+			}
+			.status-label {
+				border-right: 1px solid #CCC;
+				i {
+					font-size: 30px;
+					margin-top: -2px;
+				}
+			}
+			h3, p {
+				color: $grey-6;
+				span {
+					margin-left: 20px;
+					padding-right: 10px;
+					color: $grey-9;
+					border-right: 1px solid $grey-9;
+					&:last-child {
+						margin-left: 10px;
+						border-right: 0px;
+					}
+				}
+			}
+			h3 {
+				text-transform: capitalize;
+			}
 		}
 	}
+	
 	.status-label {
 		margin-top: 5px;
 		h3 {
+			font-size: 22px;
 			display: inline-block;
 			text-transform: uppercase;
 			font-family: $font-family-vz;
 		}
 		i {
-			margin-right: 15px;
+			margin-right: 10px;
 			margin-top: -9px;
 			width: 50px;
 			display: inline-block;
 			vertical-align: top;
 			font-size: 38px;
 			color: $red;
+			&.icon-transact {
+				font-size: 35px;
+				margin-top: -7px;
+			}
+			&.icon-store {
+				font-size: 43px;
+			}
+			&.icon-uplynk {
+				font-size: 46px;
+			}
 		}
 	}
 	.pin-wrapper {
@@ -302,7 +346,7 @@ $wrapper-width:						1200px;
 				li {
 					display: inline-block;
 					border-left: 1px solid $grey-c;
-					padding: 2px 10px 3px;
+					padding: 1px 10px 3px;
 					a {
 						font-size: 18px;
 						color: $grey-6;
@@ -320,6 +364,7 @@ $wrapper-width:						1200px;
 			}
 		}
 	}
+	
 }
 
 /* tabs section */

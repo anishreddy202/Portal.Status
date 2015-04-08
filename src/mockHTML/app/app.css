@@ -77,7 +77,7 @@ a:hover, a:focus {
 .icon-clock {
   color: #2e68b1; }
 
-.icon-check-circle {
+.icon-check-circle-open {
   color: #0ABF30; }
 
 .icon-envelope {
@@ -231,14 +231,14 @@ a:hover, a:focus {
     font-size: 17px;
     vertical-align: top; }
   .legend-header .btn-group a:hover {
-    color: #cccccc;
-    text-decoration: none; }
+    text-decoration: none;
+    cursor: auto; }
 
 /* status menu section */
-.header-status-menu .wrapper {
+.status-menu .wrapper {
   margin: 0 auto;
   width: 1200px; }
-.header-status-menu.well {
+.status-menu.well {
   padding: 0 10px;
   border-left: 0px;
   border-right: 0px;
@@ -246,7 +246,7 @@ a:hover, a:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
-.header-status-menu .row.well {
+.status-menu .row.well {
   margin-right: 0px;
   margin-left: 0px;
   margin-bottom: 0px;
@@ -259,58 +259,87 @@ a:hover, a:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
-  .header-status-menu .row.well:first-child {
+  .status-menu .row.well:first-child {
     border-top: 0px; }
-  .header-status-menu .row.well:last-child {
+  .status-menu .row.well:last-child {
     border-bottom: 0px; }
-.header-status-menu .status-label {
+.status-menu .row.network-update {
+  min-height: 100px; }
+  .status-menu .row.network-update .network-update-contents {
+    padding-left: 5px; }
+  .status-menu .row.network-update .status-label {
+    border-right: 1px solid #CCC; }
+    .status-menu .row.network-update .status-label i {
+      font-size: 30px;
+      margin-top: -2px; }
+  .status-menu .row.network-update h3, .status-menu .row.network-update p {
+    color: #666666; }
+    .status-menu .row.network-update h3 span, .status-menu .row.network-update p span {
+      margin-left: 20px;
+      padding-right: 10px;
+      color: #999999;
+      border-right: 1px solid #999999; }
+      .status-menu .row.network-update h3 span:last-child, .status-menu .row.network-update p span:last-child {
+        margin-left: 10px;
+        border-right: 0px; }
+  .status-menu .row.network-update h3 {
+    text-transform: capitalize; }
+.status-menu .status-label {
   margin-top: 5px; }
-  .header-status-menu .status-label h3 {
+  .status-menu .status-label h3 {
+    font-size: 22px;
     display: inline-block;
     text-transform: uppercase;
     font-family: "Apex", Arial, sans-serif; }
-  .header-status-menu .status-label i {
-    margin-right: 15px;
+  .status-menu .status-label i {
+    margin-right: 10px;
     margin-top: -9px;
     width: 50px;
     display: inline-block;
     vertical-align: top;
     font-size: 38px;
     color: #ed1d24; }
-.header-status-menu .pin-wrapper {
+    .status-menu .status-label i.icon-transact {
+      font-size: 35px;
+      margin-top: -7px; }
+    .status-menu .status-label i.icon-store {
+      font-size: 43px; }
+    .status-menu .status-label i.icon-uplynk {
+      font-size: 46px; }
+.status-menu .pin-wrapper {
   margin-left: 10px;
   margin-bottom: 10px; }
-  .header-status-menu .pin-wrapper:last-child {
+  .status-menu .pin-wrapper:last-child {
     margin-bottom: 0px; }
-  .header-status-menu .pin-wrapper .pin {
+  .status-menu .pin-wrapper .pin {
     background: #fff;
     border-radius: 30px;
     border: 1px solid #cccccc;
     text-transform: capitalize; }
-    .header-status-menu .pin-wrapper .pin.no-header ul {
+    .status-menu .pin-wrapper .pin.no-header ul {
       padding-left: 5px; }
-      .header-status-menu .pin-wrapper .pin.no-header ul span {
+      .status-menu .pin-wrapper .pin.no-header ul span {
         display: none; }
-      .header-status-menu .pin-wrapper .pin.no-header ul li {
+      .status-menu .pin-wrapper .pin.no-header ul li {
         border-left: 0px; }
-    .header-status-menu .pin-wrapper .pin ul {
+    .status-menu .pin-wrapper .pin ul {
       padding: 0px 4px 0 13px;
       margin-bottom: 0px; }
-      .header-status-menu .pin-wrapper .pin ul span {
+      .status-menu .pin-wrapper .pin ul span {
         margin-right: 10px;
         font-size: 16px;
         color: #999999; }
-      .header-status-menu .pin-wrapper .pin ul li {
+      .status-menu .pin-wrapper .pin ul li {
         display: inline-block;
         border-left: 1px solid #cccccc;
-        padding: 2px 10px 3px; }
-        .header-status-menu .pin-wrapper .pin ul li a {
+        padding: 1px 10px 3px; }
+        .status-menu .pin-wrapper .pin ul li a {
           font-size: 18px;
           color: #666666; }
-          .header-status-menu .pin-wrapper .pin ul li a:hover {
+          .status-menu .pin-wrapper .pin ul li a:hover {
             text-decoration: none;
             color: #cccccc; }
-          .header-status-menu .pin-wrapper .pin ul li a i {
+          .status-menu .pin-wrapper .pin ul li a i {
             vertical-align: text-top;
             display: inline-block;
             margin-top: 3px; }
@@ -934,6 +963,12 @@ footer {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.icon-check-circle-open:before {
+  content: "\e612"; }
+
+.icon-alert:before {
+  content: "\e611"; }
 
 .icon-gauge:before {
   content: "\e60d"; }

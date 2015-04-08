@@ -23,6 +23,14 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-check-circle-open:before {
+	content: "\e612";
+}
+
+.icon-alert:before {
+	content: "\e611";
+}
+
 .icon-gauge:before {
 	content: "\e60d";
 }
