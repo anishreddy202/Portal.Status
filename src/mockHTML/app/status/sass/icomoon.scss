@@ -23,6 +23,10 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-rss:before {
+	content: "\e613";
+}
+
 .icon-check-circle-open:before {
 	content: "\e612";
 }

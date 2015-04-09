@@ -78,7 +78,7 @@ a:hover, a:focus {
   color: #3399ff; }
 
 .icon-check-circle-open {
-  color: #0ABF30; }
+  color: #68B168; }
 
 .icon-envelope {
   color: #ed1d24; }
@@ -86,10 +86,13 @@ a:hover, a:focus {
 .icon-disable {
   color: #cccccc; }
 
+.icon-rss {
+  color: #ff9900; }
+
 a:hover.icon-close-circle {
   color: #ed1d24; }
 a:hover.icon-check-circle-open {
-  color: #0ABF30; }
+  color: #68B168; }
 a:hover.icon-warning {
   color: #ef7d00; }
 a:hover.icon-clock {
@@ -305,10 +308,15 @@ a:hover.icon-disable {
     margin-top: 20px;
     padding-left: 10px;
     display: inline-block; }
-    .status-menu .row.network-update .rss p {
+    .status-menu .row.network-update .rss a {
       color: #999999;
       font-family: "Apex", Arial, sans-serif;
       font-size: 14px; }
+      .status-menu .row.network-update .rss a:hover {
+        text-decoration: none;
+        color: #666666; }
+      .status-menu .row.network-update .rss a i {
+        margin-left: 3px; }
   .status-menu .row.network-update p {
     color: #666666;
     font-size: 13px; }
@@ -955,12 +963,12 @@ a:hover.icon-disable {
     border-left-color: #ed1d24; }
 
 .icon-check-circle-open ~ .popover {
-  background: #0ABF30;
-  border: 1px solid #0ABF30; }
+  background: #68B168;
+  border: 1px solid #68B168; }
   .icon-check-circle-open ~ .popover.right > .arrow {
-    border-right-color: #0ABF30; }
+    border-right-color: #68B168; }
   .icon-check-circle-open ~ .popover.left > .arrow {
-    border-left-color: #0ABF30; }
+    border-left-color: #68B168; }
 
 .icon-warning ~ .popover {
   background: #ef7d00;
@@ -1037,6 +1045,9 @@ footer {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.icon-rss:before {
+  content: "\e613"; }
 
 .icon-check-circle-open:before {
   content: "\e612"; }

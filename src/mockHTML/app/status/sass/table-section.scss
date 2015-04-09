@@ -1,8 +1,9 @@
 /*variables */
 $red: 										#ed1d24; 
 $red-light:								#dd3333;
-$green: 									#0ABF30;
-$orange: 									#ef7d00;
+$green: 									#68B168; //0ABF30
+$orange-dark: 						#ef7d00;
+$orange-light:						#ff9900;
 $blue: 										#3399ff; //#2e68b1
 
 $table-header-background:	$red;
@@ -32,16 +33,17 @@ $font-family-base: 				"Helvetica Neue",Helvetica,Arial,sans-serif;
 $wrapper-width:						1200px;
 
 .icon-close-circle, .icon-alert { color: $red; }
-.icon-warning { color: $orange; }
+.icon-warning { color: $orange-dark; }
 .icon-clock { color: $blue; }
 .icon-check-circle-open { color: $green; }
 .icon-envelope { color: $red; }
 .icon-disable { color: $grey-c; }
+.icon-rss { color: $orange-light; }
 
 a:hover {
 	&.icon-close-circle { color: $red; }
 	&.icon-check-circle-open { color: $green; }
-	&.icon-warning { color: $orange; }
+	&.icon-warning { color: $orange-dark; }
 	&.icon-clock { color: $blue; }
 	&.icon-disable { color: $grey-c; }
 }
@@ -300,10 +302,17 @@ a:hover {
 				margin-top: 20px;
 				padding-left: 10px;
 				display: inline-block;
-				p {
+				a {
 					color: $grey-9;
 					font-family: $font-family-vz;
 					font-size: 14px;
+					&:hover {
+						text-decoration: none;
+						color: $grey-6;
+					}
+					i {
+						margin-left: 3px;
+					}
 				}
 			}
 			p {
@@ -1039,9 +1048,9 @@ a:hover {
 .popover {
 	min-width: 145px;
 	max-width: 205px;
-	background: $orange;
+	background: $orange-dark;
 	border-radius: 0px;
-	border: 1px solid $orange;
+	border: 1px solid $orange-dark;
 	top: 10px !important;
 	box-shadow: none;
 	.popover-title {
@@ -1065,7 +1074,7 @@ a:hover {
 	&.right {
     margin-top: 7%;
 		> .arrow {
-			border-right-color: $orange;
+			border-right-color: $orange-dark;
 			margin-top: 0px;
 			top: -1px !important;
 			border-top-width: 0px;
@@ -1077,7 +1086,7 @@ a:hover {
 	&.left {
     margin-top: 0%;
 		> .arrow {
-			border-left-color: $orange;
+			border-left-color: $orange-dark;
 			margin-top: 0px;
 			top: -1px !important;
 			border-top-width: 0px;
@@ -1117,17 +1126,17 @@ a:hover {
 	}
 }
 .icon-warning ~ .popover {
-	background: $orange;
-	border: 1px solid $orange;
+	background: $orange-dark;
+	border: 1px solid $orange-dark;
 	&.right {
 		> .arrow {
-			border-right-color: $orange;
+			border-right-color: $orange-dark;
 		}
 	}
 	&.left {
 		margin-left: -15px;
 		> .arrow {
-			border-left-color: $orange;
+			border-left-color: $orange-dark;
 		}
 	}
 }
